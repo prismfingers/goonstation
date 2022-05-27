@@ -29,21 +29,6 @@
 	else
 		new type(T)
 
-/obj/proc/ArtifactSanityCheck()
-	// This proc is called in any other proc or thing that uses the new artifact shit. If there was an improper artifact variable
-	// involved when trying to do the new shit, it would probably spew errors fucking everywhere and generally be horrible so if
-	// the sanity check detects that an artifact doesn't have the proper shit set up it'll just wipe out the artifact and stop
-	// the rest of the proc from occurring.
-	// This proc should be called in an if statement at the start of every artifact proc, since it returns 0 or 1.
-	if (!src.artifact || src.disposed)
-		return 0
-	// if the artifact var isn't set at all, it's probably not an artifact so don't bother continuing
-	if (!istype(src.artifact,/datum/artifact/))
-		logTheThing("debug", null, null, "<b>I Said No/Artifact:</b> Invalid artifact variable in [src.type] at [log_loc(src)]")
-		qdel(src) // wipes itself out since if it's processing it'd be calling procs it can't use again and again
-		return 0 // uh oh, we've got a poorly set up artifact and now we need to stop the proc that called it!
-	else
-		return 1 // give the all clear
 
 /obj/proc/ArtifactSetup()
 	// This proc gets called in every artifact's New() proc, after src.artifact is turned from a 1 into its appropriate datum.
@@ -485,9 +470,6 @@
 		return 1
 
 /obj/proc/ArtifactTakeDamage(var/dmg_amount)
-	if (!src.ArtifactSanityCheck() || !isnum(dmg_amount))
-		return
-
 	var/datum/artifact/A = src.artifact
 
 	A.health -= dmg_amount
@@ -495,7 +477,6 @@
 
 	if (A.health <= 0)
 		src.ArtifactDestroyed()
-	return
 
 /// Removes all artifact forms attached to this and makes them fall to the floor
 /// Because artifacts often like to disappear in mysterious ways
@@ -508,63 +489,6 @@
 		src.visible_message("The artifact form that was attached falls to the ground.")
 	else if(removed > 1)
 		src.visible_message("All the artifact forms that were attached fall to the ground.")
-
-/obj/proc/ArtifactDestroyed()
-	// Call this rather than straight disposing() on an artifact if you want to destroy it. This way, artifacts can have their own
-	// version of this for ones that will deliver a payload if broken.
-	if (!src.ArtifactSanityCheck())
-		return
-
-	var/datum/artifact/A = src.artifact
-
-	var/turf/T = get_turf(src)
-	if (istype(T,/turf/))
-		switch(A.artitype.name)
-			if("ancient")
-				T.visible_message("<span class='alert'><B>[src] sparks and sputters violently before falling apart!</B></span>")
-			if("martian")
-				T.visible_message("<span class='alert'><B>[src] bursts open, and rapidly liquefies!</B></span>")
-			if("wizard")
-				T.visible_message("<span class='alert'><B>[src] shatters and disintegrates!</B></span>")
-			if("eldritch")
-				T.visible_message("<span class='alert'><B>[src] warps in on itself and vanishes!</B></span>")
-			if("precursor")
-				T.visible_message("<span class='alert'><B>[src] implodes, crushing itself into dust!</B></span>")
-
-	src.remove_artifact_forms()
-
-	src.ArtifactDeactivated()
-
-	ArtifactLogs(usr, null, src, "destroyed", null, 0)
-
-	artifact_controls.artifacts -= src
-
-	qdel(src)
-	return
-
-/obj/proc/ArtifactDevelopFault(var/faultprob)
-	// This proc is used for randomly giving an artifact a fault. It's usually used in the New() proc of an artifact so that
-	// newly spawned artifacts have a chance of being faulty by default, though this can also be called whenever an artifact is
-	// damaged or otherwise poorly handled, so you could potentially turn a good artifact into a dangerous piece of shit if you
-	// abuse it too much.
-	// I'm probably going to change this one up to use a list of fault datum rather than some kind of variable, that way multiple
-	// faults can be on one artifact.
-	if (!isnum(faultprob))
-		return
-	if (!src.ArtifactSanityCheck())
-		return
-	var/datum/artifact/A = src.artifact
-
-	if (A.artitype.name == "eldritch")
-		faultprob *= 2 // eldritch artifacts fucking hate you and are twice as likely to go faulty
-	faultprob = clamp(faultprob, 0, 100)
-
-	if (prob(faultprob) && length(A.fault_types))
-		var/new_fault = weighted_pick(A.fault_types)
-		if (ispath(new_fault))
-			var/datum/artifact_fault/F = new new_fault(A)
-			F.holder = A
-			A.faults += F
 
 // Added. Very little related to artifacts was logged (Convair880).
 /proc/ArtifactLogs(var/mob/user, var/mob/target, var/obj/O, var/type_of_action, var/special_addendum, var/trigger_alert = 0)
@@ -580,5 +504,3 @@
 
 	if (trigger_alert)
 		message_admins("An artifact ([A.type_name]) was [type_of_action] [special_addendum ? "([special_addendum])" : ""] at [log_loc(O)]. Last touched by: [key_name(O.fingerprintslast)]")
-
-	return

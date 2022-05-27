@@ -203,6 +203,7 @@ var/datum/artifact_controller/artifact_controls
 
 // Origins
 
+ABSTRACT_TYPE(/datum/artifact_origin)
 /datum/artifact_origin
 	var/type_name = "bad artifact code"
 	var/name = "unknown"
@@ -216,8 +217,13 @@ var/datum/artifact_controller/artifact_controls
 	var/fx_green_max = 255
 	var/fx_blue_min = 0
 	var/fx_blue_max = 255
-	var/nofx = 0 // If set to 1, does not apply an overlay but a flat icon_state change.
-	var/scramblechance = 10 //probability to have "fake" artifact with altered appearance
+	/// If set to TRUE, does not apply an overlay but a flat icon_state change.
+	var/nofx = FALSE
+	/// Probability to have "fake" artifact with altered appearance
+	var/scramblechance = 10
+	/// Message displayed when this artifact is destroyed. Is later suffixed with the artifact name and wrapped in html tags (i.e. don't include them here)
+	var/destruction_message = "Someone fucked up! Thank you for destroying this unholy artifact!"
+
 	var/list/activation_sounds = list()
 	var/list/instrument_sounds = list()
 	var/list/fault_types = list("all")
@@ -243,9 +249,21 @@ var/datum/artifact_controller/artifact_controls
 		return "unknown object"
 
 
+
 /datum/artifact_origin/ancient
 	type_name = "Silicon"
 	name = "ancient"
+	impact_reaction_one = 1
+	impact_reaction_two = 0.5
+	heat_reaction_one = 1.5
+	fx_red_min = 50
+	fx_red_max = 255
+	fx_green_min = 50
+	fx_green_max = 255
+	fx_blue_min = 50
+	fx_blue_max = 255
+	destruction_message = "sparks and sputters violently before falling apart!"
+
 	fault_types = list(
 		/datum/artifact_fault/burn = 10,
 		/datum/artifact_fault/irradiate = 10,
@@ -258,15 +276,6 @@ var/datum/artifact_controller/artifact_controls
 		"sound/musical_instruments/artifact/Artifact_Ancient_2.ogg",
 		"sound/musical_instruments/artifact/Artifact_Ancient_3.ogg",
 		"sound/musical_instruments/artifact/Artifact_Ancient_4.ogg")
-	impact_reaction_one = 1
-	impact_reaction_two = 0.5
-	heat_reaction_one = 1.5
-	fx_red_min = 50
-	fx_red_max = 255
-	fx_green_min = 50
-	fx_green_max = 255
-	fx_blue_min = 50
-	fx_blue_max = 255
 	adjectives = list("dark","cold","smooth","angular","humming","sharp-edged","droning")
 	nouns_large = list("monolith","slab","obelisk","pylon","menhir","machine","structure")
 	nouns_small = list("implement","device","instrument","apparatus","appliance","mechanism","tool")
@@ -289,6 +298,17 @@ var/datum/artifact_controller/artifact_controls
 /datum/artifact_origin/martian
 	type_name = "Martian"
 	name = "martian"
+	impact_reaction_one = 1
+	impact_reaction_two = 0
+	heat_reaction_one = 0.99
+	fx_red_min = 50
+	fx_red_max = 90
+	fx_green_min = 70
+	fx_green_max = 120
+	fx_blue_min = 50
+	fx_blue_max = 90
+	destruction_message = "bursts open, and rapidly liquefies!"
+
 	fault_types = list(
 		/datum/artifact_fault/shutdown = 10,
 		/datum/artifact_fault/zap = 5,
@@ -303,22 +323,13 @@ var/datum/artifact_controller/artifact_controls
 		"sound/musical_instruments/artifact/Artifact_Martian_2.ogg",
 		"sound/musical_instruments/artifact/Artifact_Martian_3.ogg",
 		"sound/musical_instruments/artifact/Artifact_Martian_4.ogg")
-	impact_reaction_one = 1
-	impact_reaction_two = 0
-	heat_reaction_one = 0.99
-	fx_red_min = 50
-	fx_red_max = 90
-	fx_green_min = 70
-	fx_green_max = 120
-	fx_blue_min = 50
-	fx_blue_max = 90
 	adjectives = list("squishy","gooey","clammy","quivering","twitching","pulpy","fleshy")
 	nouns_large = list("mass","pile","heap","glob","mound","clump","bulk")
 	nouns_small = list("lump","chunk","cluster","clod","nugget","giblet","organ")
 	touch_descriptors = list("It feels warm.","It feels gross.","You can feel a faint pulsing.")
-	var/list/prefix = list("cardio","neuro","physio","morpho","brachio","bronchi","dermo","ossu")
-	var/list/thingy = list("cystic","genetic","metabolic","static","vascular","muscular")
-	var/list/action = list("stimulator","suppressor","regenerator","depressor","mutator")
+	var/static/list/prefix = list("cardio","neuro","physio","morpho","brachio","bronchi","dermo","ossu")
+	var/static/list/thingy = list("cystic","genetic","metabolic","static","vascular","muscular")
+	var/static/list/action = list("stimulator","suppressor","regenerator","depressor","mutator")
 
 	post_setup(obj/artifact)
 		. = ..()
@@ -369,6 +380,17 @@ var/datum/artifact_controller/artifact_controls
 /datum/artifact_origin/wizard
 	type_name = "Wizard"
 	name = "wizard"
+	impact_reaction_one = 8
+	impact_reaction_two = 6
+	heat_reaction_one = 0.75
+	fx_red_min = 40
+	fx_red_max = 125
+	fx_green_min = 125
+	fx_green_max = 255
+	fx_blue_min = 125
+	fx_blue_max = 255
+	destruction_message = "shatters and disintegrates!"
+
 	fault_types = list(
 		/datum/artifact_fault/irradiate = 10,
 		/datum/artifact_fault/shutdown = 10,
@@ -386,22 +408,13 @@ var/datum/artifact_controller/artifact_controls
 		"sound/musical_instruments/artifact/Artifact_Wizard_2.ogg",
 		"sound/musical_instruments/artifact/Artifact_Wizard_3.ogg",
 		"sound/musical_instruments/artifact/Artifact_Wizard_4.ogg")
-	impact_reaction_one = 8
-	impact_reaction_two = 6
-	heat_reaction_one = 0.75
-	fx_red_min = 40
-	fx_red_max = 125
-	fx_green_min = 125
-	fx_green_max = 255
-	fx_blue_min = 125
-	fx_blue_max = 255
 	adjectives = list("ornate","regal","imposing","fancy","elaborate","elegant","ostentatious")
 	nouns_large = list("jewel","crystal","sculpture","statue","brazier","ornament","edifice")
 	nouns_small = list("wand","scepter","staff","rod","cane","crozier","trophy")
 	touch_descriptors = list("It feels warm.","It feels smooth.","It is suprisingly pleasant to touch.")
-	var/list/material = list("ebon","ivory","pearl","golden","malachite","diamond","ruby","emerald","sapphire","opal")
-	var/list/object = list("jewel","trophy","favor","boon","token","crown","treasure","sacrament","oath")
-	var/list/aspect = list("wonder","splendor","power","plenty","mystery","glory","majesty","eminence","grace")
+	var/static/list/material = list("ebon","ivory","pearl","golden","malachite","diamond","ruby","emerald","sapphire","opal")
+	var/static/list/object = list("jewel","trophy","favor","boon","token","crown","treasure","sacrament","oath")
+	var/static/list/aspect = list("wonder","splendor","power","plenty","mystery","glory","majesty","eminence","grace")
 
 	post_setup(obj/artifact)
 		. = ..()
@@ -435,6 +448,17 @@ var/datum/artifact_controller/artifact_controls
 /datum/artifact_origin/eldritch
 	type_name = "Eldritch"
 	name = "eldritch"
+	impact_reaction_one = 0.5
+	impact_reaction_two = 0
+	heat_reaction_one = 0.25
+	fx_red_min = 40
+	fx_red_max = 255
+	fx_green_min = 40
+	fx_green_max = 255
+	fx_blue_min = 40
+	fx_blue_max = 255
+	destruction_message = "warps in on itself and vanishes!"
+
 	activation_sounds = list('sound/machines/ArtifactEld1.ogg','sound/machines/ArtifactEld2.ogg')
 	instrument_sounds = list("sound/musical_instruments/artifact/Artifact_Eldritch_1.ogg",
 		"sound/musical_instruments/artifact/Artifact_Eldritch_2.ogg",
@@ -453,28 +477,19 @@ var/datum/artifact_controller/artifact_controls
 		/datum/artifact_fault/grow = 5,
 		/datum/artifact_fault/shrink = 5,
 		/datum/artifact_fault/messager/emoji = 3)
-	impact_reaction_one = 0.5
-	impact_reaction_two = 0
-	heat_reaction_one = 0.25
-	fx_red_min = 40
-	fx_red_max = 255
-	fx_green_min = 40
-	fx_green_max = 255
-	fx_blue_min = 40
-	fx_blue_max = 255
 	adjectives = list("creepy","unnerving","ominous","threatening","horrid","evil-looking","lurid")
 	nouns_large = list("edifice","effigy","statue","idol","sculpture","stele","artifact")
 	nouns_small = list("spike","needle","thorns","relic","carving","figurine","item")
 	touch_descriptors = list("It feels cold.","It feels gross.","Touching it makes you feel uneasy.")
-	var/list/general_adjectives = list("dark","cold","horrid","foul","sinister","cruel","rancid","demonic")
-	var/list/object_nouns = list("hand","eye","finger","blood","breath","thorns","mantle","skin","bane","scourge","wrath",
+	var/static/list/general_adjectives = list("dark","cold","horrid","foul","sinister","cruel","rancid","demonic")
+	var/static/list/object_nouns = list("hand","eye","finger","blood","breath","thorns","mantle","skin","bane","scourge","wrath",
 	"favor","will","tentacles","mandible","fangs","maw","flesh","ichor","teeth","heart")
-	var/list/people = list("master","lord","king","queen","lady","mother","father","master","beast","brute","tyrant")
-	var/list/person_adjectives = list("dread","great","old","ancient","vile","wicked","majestic","vast","mighty",
+	var/static/list/people = list("master","lord","king","queen","lady","mother","father","master","beast","brute","tyrant")
+	var/static/list/person_adjectives = list("dread","great","old","ancient","vile","wicked","majestic","vast","mighty",
 	"evil","heartless","fierce","ferocious")
-	var/list/horror_name_start = list("trog","yogg","ta","y","has","shub","az","cth","cha","ul","xel","og","flu","wrk")
-	var/list/horror_name_mid = list("sog","ran","gon","ni","a","hul","ttur","ay","o","lo","ncac","sin","fel","di")
-	var/list/horror_name_end = list("dyte","oth","tula","olac","tur","bburath","thoth","hu","dha","aoth","tath","goth","ter")
+	var/static/list/horror_name_start = list("trog","yogg","ta","y","has","shub","az","cth","cha","ul","xel","og","flu","wrk")
+	var/static/list/horror_name_mid = list("sog","ran","gon","ni","a","hul","ttur","ay","o","lo","ncac","sin","fel","di")
+	var/static/list/horror_name_end = list("dyte","oth","tula","olac","tur","bburath","thoth","hu","dha","aoth","tath","goth","ter")
 
 	generate_name()
 		var/the_horror = src.horror_name()
@@ -511,6 +526,17 @@ var/datum/artifact_controller/artifact_controls
 /datum/artifact_origin/precursor
 	type_name = "Precursor"
 	name = "precursor"
+	impact_reaction_one = 2
+	impact_reaction_two = 10
+	heat_reaction_one = 2
+	fx_red_min = 155
+	fx_red_max = 255
+	fx_green_min = 155
+	fx_green_max = 255
+	fx_blue_min = 155
+	fx_blue_max = 255
+	destruction_message = "implodes, crushing itself into dust!"
+
 	activation_sounds = list('sound/machines/ArtifactPre1.ogg')
 	instrument_sounds = list("sound/musical_instruments/artifact/Artifact_Precursor_1.ogg",
 		"sound/musical_instruments/artifact/Artifact_Precursor_2.ogg",
@@ -527,23 +553,14 @@ var/datum/artifact_controller/artifact_controls
 		/datum/artifact_fault/warp = 10,
 		/datum/artifact_fault/messager/what_people_said = 10,
 		/datum/artifact_fault/poison = 2)
-	impact_reaction_one = 2
-	impact_reaction_two = 10
-	heat_reaction_one = 2
-	fx_red_min = 155
-	fx_red_max = 255
-	fx_green_min = 155
-	fx_green_max = 255
-	fx_blue_min = 155
-	fx_blue_max = 255
 	adjectives = list("quirky","metallic","janky","bulky","chunky","cumbersome","unwieldy")
 	nouns_large = list("contraption","machine","object","mechanism","artifact","machinery","structure")
 	nouns_small = list("widget","thingy","device","appliance","mechanism","accessory","gizmo")
 	touch_descriptors = list("It feels warm.","It feels cold.","It is suprisingly pleasant to touch.",
 	"You can feel a faint pulsing.")
-	var/list/prefixes = list("meta","poly","anti","hyper","hypo","nano","mega","infra","ultra","trans","micro","macro")
-	var/list/particles = list("quark","tachyon","neutron","positron","photon","neutrino","lepton","baryon","atom","molecule")
-	var/list/verber = list("stabilizer","synchroniser","generator","coupler","fuser","linker","materializer")
+	var/static/list/prefixes = list("meta","poly","anti","hyper","hypo","nano","mega","infra","ultra","trans","micro","macro")
+	var/static/list/particles = list("quark","tachyon","neutron","positron","photon","neutrino","lepton","baryon","atom","molecule")
+	var/static/list/verber = list("stabilizer","synchroniser","generator","coupler","fuser","linker","materializer")
 
 	post_setup(obj/artifact)
 		. = ..()
