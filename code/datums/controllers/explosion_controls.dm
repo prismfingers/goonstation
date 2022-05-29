@@ -21,6 +21,9 @@ var/datum/explosion_controller/explosions
 				fprint = source.fingerprintslast
 			while(!istype(A, /turf))
 				if(!istype(A, /mob) && A != source)
+					// Yes, this sucks
+					// but I'm not dealing with the million non-parent-calling overrides
+					SEND_SIGNAL(A, COMSIG_ATOM_EX_ACT, severity)
 					A.ex_act(severity, fprint, power)
 				A = A.loc
 		if (!istype(epicenter, /turf))
@@ -55,8 +58,6 @@ var/datum/explosion_controller/explosions
 			//boutput(world, "P1 [p]")
 			if (p >= 6)
 				for (var/mob/M in T)
-					// Yes, this sucks
-					// but I'm not dealing with the million non-parent-calling overrides
 					SEND_SIGNAL(M, COMSIG_ATOM_EX_ACT, 1)
 					M.ex_act(1, last_touched, p)
 			else if (p > 3)
@@ -123,6 +124,7 @@ var/datum/explosion_controller/explosions
 					continue // they can break even on severity 3
 				else if(istype(T, /turf/simulated))
 					severity = max(severity, 3)
+			SEND_SIGNAL(T, COMSIG_EX_ACT, severity)
 			T.ex_act(severity, last_touched)
 #endif
 		LAGCHECK(LAG_HIGH)
