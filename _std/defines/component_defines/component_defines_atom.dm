@@ -39,6 +39,8 @@
 	#define COMSIG_ATTACKBY "attackby"
 	/// Attacking without an item in-hand (attacker)
 	#define COMSIG_ATTACKHAND "attackhand"
+	/// Atom is hit by a blob attack (attack power)
+	#define COMSIG_ATOM_BLOB_ACT "atom_blob_act"
 
 // ---- atom/movable signals ----
 

@@ -1364,6 +1364,8 @@
 /////////////////////////
 
 /atom/proc/blob_act(var/power)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(COMSIG_ATOM_BLOB_ACT, power)
 	return
 
 /turf/proc/get_object_for_blob_to_attack()
