@@ -25,7 +25,9 @@ TYPEINFO(/datum/component/artifact)
 	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(A.validtypes))
 	src.artifact.artitype = real_origin
 
-	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING. .proc/artifact_destroyed)
+	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
 
 
 	if (scramble_appearance)
@@ -152,4 +154,9 @@ TYPEINFO(/datum/component/artifact)
 		qdel(src.artifact_atom)
 
 /datum/component/artifact/proc/artifact_activated()
+
+/datum/component/artifact/proc/artifact_blob_act()
+
+/datum/component/artifact/proc/artifact_ex_act()
+
 
