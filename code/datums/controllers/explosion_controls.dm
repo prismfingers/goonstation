@@ -55,12 +55,17 @@ var/datum/explosion_controller/explosions
 			//boutput(world, "P1 [p]")
 			if (p >= 6)
 				for (var/mob/M in T)
+					// Yes, this sucks
+					// but I'm not dealing with the million non-parent-calling overrides
+					SEND_SIGNAL(M, COMSIG_ATOM_EX_ACT, 1)
 					M.ex_act(1, last_touched, p)
 			else if (p > 3)
 				for (var/mob/M in T)
+					SEND_SIGNAL(M, COMSIG_ATOM_EX_ACT, 2)
 					M.ex_act(2, last_touched, p)
 			else
 				for (var/mob/M in T)
+					SEND_SIGNAL(M, COMSIG_ATOM_EX_ACT, 3)
 					M.ex_act(3, last_touched, p)
 
 		LAGCHECK(LAG_HIGH)
@@ -73,6 +78,7 @@ var/datum/explosion_controller/explosions
 				for (var/obj/O in T)
 					if(istype(O, /obj/overlay) || next_turf_safe && istype(O, /obj/window))
 						continue
+					SEND_SIGNAL(O, COMSIG_ATOM_EX_ACT, 1)
 					O.ex_act(1, last_touched, p)
 					if (istype(O, /obj/cable)) // these two are hacky, newcables should relieve the need for this
 						needrebuild = 1
@@ -80,6 +86,7 @@ var/datum/explosion_controller/explosions
 				for (var/obj/O in T)
 					if(istype(O, /obj/overlay) || next_turf_safe && istype(O, /obj/window))
 						continue
+					SEND_SIGNAL(O, COMSIG_ATOM_EX_ACT, 2)
 					O.ex_act(2, last_touched, p)
 					if (istype(O, /obj/cable))
 						needrebuild = 1
@@ -87,6 +94,7 @@ var/datum/explosion_controller/explosions
 				for (var/obj/O in T)
 					if(istype(O, /obj/overlay) || next_turf_safe && istype(O, /obj/window))
 						continue
+					SEND_SIGNAL(O, COMSIG_ATOM_EX_ACT, 3)
 					O.ex_act(3, last_touched, p)
 
 		LAGCHECK(LAG_HIGH)
