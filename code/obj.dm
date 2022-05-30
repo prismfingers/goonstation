@@ -561,4 +561,4 @@
 		if(!src.anchored && !src.throwing)
 			src.throw_at(get_edge_target_turf(src,get_dir(AM, src)), 10, 1)
 		else if(AM.throwforce >= 80 && !isrestrictedz(src.z))
-			src.meteorhit(AM)
+			src.MeteorHit(AM)

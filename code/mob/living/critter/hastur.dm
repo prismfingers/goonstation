@@ -299,7 +299,7 @@ var/HasturPresent = 0
 				var/turf/src_turf = O.loc
 				for(var/obj/machinery/vehicle/A in src_turf)
 					if(A == O || A == user) continue
-					A.meteorhit(O)
+					A.MeteorHit(O)
 				for(var/obj/grille/A in src_turf)
 					if(A == O || A == user) continue
 					A.damage_blunt(10)
@@ -314,13 +314,13 @@ var/HasturPresent = 0
 						M.visible_message("<span class='alert'>[M] gets stabbed by a sharp, spiked tentacle!</span>")
 						random_brute_damage(M, rand(10,20),1)
 					else
-						M.meteorhit(O)
+						M.MeteorHit(O)
 				for(var/turf/T in src_turf)
 					if(T == O) continue
-					T.meteorhit(O)
+					T.MeteorHit(O)
 				for(var/obj/machinery/colosseum_putt/A in src_turf)
 					if (A == O || A == user) continue
-					A.meteorhit(O)
+					A.MeteorHit(O)
 
 			sleep(0.7 SECONDS)
 			for (var/obj/O in affected)
@@ -369,7 +369,7 @@ var/HasturPresent = 0
 				var/turf/src_turf = O.loc
 				for(var/obj/machinery/vehicle/A in src_turf)
 					if(A == O || A == user) continue
-					A.meteorhit(O)
+					A.MeteorHit(O)
 				for(var/obj/grille/A in src_turf)
 					if(A == O || A == user) continue
 					A.damage_blunt(10)
@@ -387,13 +387,13 @@ var/HasturPresent = 0
 
 
 					else
-						M.meteorhit(O)
+						M.MeteorHit(O)
 				for(var/turf/T in src_turf)
 					if(T == O) continue
-					T.meteorhit(O)
+					T.MeteorHit(O)
 				for(var/obj/machinery/colosseum_putt/A in src_turf)
 					if (A == O || A == user) continue
-					A.meteorhit(O)
+					A.MeteorHit(O)
 
 			sleep(0.7 SECONDS)
 			for (var/obj/O in affected)

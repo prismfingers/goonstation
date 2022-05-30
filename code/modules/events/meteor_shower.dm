@@ -219,7 +219,7 @@ var/global/meteor_shower_active = 0
 	bump(atom/A)
 		SPAWN(0)
 			if (A)
-				A.meteorhit(src)
+				A.MeteorHit(src)
 				if (sound_impact)
 					playsound(src.loc, sound_impact, 40, 1)
 			if (--src.hits <= 0)
@@ -271,7 +271,7 @@ var/global/meteor_shower_active = 0
 		for(var/turf/simulated/S in range(1,src))
 			if(!S.density) continue
 			hit_object = 1
-			S.meteorhit(src)
+			S.MeteorHit(src)
 
 		for(var/mob/M in range(1,src))
 			if(M == src) continue //Just to make sure
@@ -280,14 +280,14 @@ var/global/meteor_shower_active = 0
 			hit_object = 1
 			hits -= 5
 			step(M,get_dir(src,M))
-			M.meteorhit(src)
+			M.MeteorHit(src)
 
 		for(var/obj/O in range(1,src))
 			if (O == src) continue
 			if (!O.density) continue
 			hit_object = 1
 			hits--
-			O.meteorhit(src)
+			O.MeteorHit(src)
 			if (O && !O.anchored)
 				step(O,get_dir(src,O))
 

@@ -72,7 +72,7 @@ ABSTRACT_TYPE(/obj/vehicle)
 
 	meteorhit()
 		if (src.rider && ismob(src.rider))
-			src.rider.meteorhit()
+			src.rider.MeteorHit()
 			src.eject_rider()
 		return
 

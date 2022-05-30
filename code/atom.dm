@@ -267,9 +267,16 @@
 /atom/proc/demag(var/mob/user) //hail satan full of grace
 	return 0
 
-/atom/proc/meteorhit(obj/meteor as obj)
+/// Call this
+/atom/proc/MeteorHit(obj/meteor)
+	SHOULD_NOT_OVERRIDE(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_METEORHIT)
+	src.meteorhit(meteor)
+
+// Override this
+/atom/proc/meteorhit(obj/meteor)
+	PROTECTED_PROC(TRUE)
 	qdel(src)
-	return
 
 /atom/proc/allow_drop()
 	return 1

@@ -45,6 +45,8 @@
 	#define COMSIG_ATOM_EX_ACT "atom_ex_act"
 	/// Atom is hit by an EMP
 	#define COMSIG_ATOM_EMP_ACT "atom_emp_act"
+	/// Atom is hit by a meteor or similar (railgun, very heavy obj)
+	#define COMSIG_ATOM_METEORHIT "atom_meteorhit"
 
 // ---- atom/movable signals ----
 

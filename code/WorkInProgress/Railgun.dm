@@ -42,7 +42,7 @@
 			var/turf/src_turf = O.loc
 			for(var/atom/A in src_turf)
 				if(A == O || A == user) continue
-				A.meteorhit(O)
+				A.MeteorHit(O)
 //			var/turf/T = O.loc
 //			for(var/atom/A in T.contents)
 //				boutput(src, "There is a [A.name] at this location.")

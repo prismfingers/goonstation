@@ -42,11 +42,11 @@
 					var/obj/grille/G = AM
 					G.damage_blunt(30)
 				else if(istype(AM, /obj/table))
-					AM.meteorhit()
+					AM.MeteorHit()
 				else if(istype(AM, /obj/foamedmetal))
 					AM.dispose()
 				else
-					AM.meteorhit()
+					AM.MeteorHit()
 				playsound(src.loc, 'sound/effects/exlow.ogg', 70,1)
 				src.visible_message("<span class='alert'><B>[src]</B> smashes into \the [AM]!</span>")
 		..()

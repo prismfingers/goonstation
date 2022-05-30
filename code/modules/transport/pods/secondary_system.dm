@@ -823,7 +823,7 @@
 	var/tempstate = ship.icon_state
 	ship.icon_state = "flaming"
 	if(!istype(A, /obj/critter/gunbot/drone))
-		A.meteorhit(ship)
+		A.MeteorHit(ship)
 	playsound(ship.loc, "sound/impact_sounds/Generic_Hit_Heavy_1.ogg", 40, 1)
 	ship.icon_state = tempstate
 	crashhits --
@@ -882,10 +882,10 @@
 			O.throw_at(target, 4, 2)
 			O.anchored = 0
 			if (istype(O, /obj/machinery/vehicle))
-				A.meteorhit(src)
+				A.MeteorHit(src)
 				crashhits -= 3
 			if (istype(O, /obj/rack) || istype(O, /obj/table))
-				A.meteorhit(src)
+				A.MeteorHit(src)
 			if (istype(O, /obj/storage/closet) || istype(O, /obj/storage/secure/closet))
 				O:dump_contents()
 				qdel(O)

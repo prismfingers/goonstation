@@ -483,7 +483,7 @@ proc/generate_space_color()
 	. = ..()
 	if(src.density)
 		if(AM.throwforce >= 80)
-			src.meteorhit(AM)
+			src.MeteorHit(AM)
 		. = 'sound/impact_sounds/Generic_Stab_1.ogg'
 
 /turf/proc/levelupdate()

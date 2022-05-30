@@ -455,7 +455,7 @@ ABSTRACT_TYPE(/mob/living/critter/aquatic)
 			var/obj/grille/G = AM
 			G.damage_blunt(30)
 		else if(istype(AM, /obj/machinery/vehicle/tank) || istype(AM, /obj/table))
-			AM.meteorhit()
+			AM.MeteorHit()
 		else if(istype(AM, /obj/foamedmetal))
 			AM.dispose()
 		playsound(src.loc, 'sound/effects/exlow.ogg', 70,1)

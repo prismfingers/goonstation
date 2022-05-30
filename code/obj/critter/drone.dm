@@ -75,11 +75,11 @@
 				else if(istype(AM,/obj/grille))
 					AM:damage_blunt(30)
 				else if(istype(AM, /obj/table))
-					AM.meteorhit()
+					AM.MeteorHit()
 				else if(istype(AM, /obj/foamedmetal))
 					AM.dispose()
 				else
-					AM.meteorhit()
+					AM.MeteorHit()
 
 				if(smashed_shit)
 					playsound(src.loc, 'sound/effects/exlow.ogg', 70,1)
@@ -607,19 +607,19 @@
 					var/turf/src_turf = O.loc
 					for(var/obj/machinery/vehicle/A in src_turf)
 						if(A == O || A == user) continue
-						A.meteorhit(O)
+						A.MeteorHit(O)
 					for(var/mob/living/M in src_turf)
 						if(M == O || M == user) continue
-						M.meteorhit(O)
+						M.MeteorHit(O)
 					for(var/turf/T in src_turf)
 						if(T == O) continue
-						T.meteorhit(O)
+						T.MeteorHit(O)
 					for(var/obj/machinery/colosseum_putt/A in src_turf)
 						if (A == O || A == user) continue
-						A.meteorhit(O)
+						A.MeteorHit(O)
 					for (var/obj/machinery/cruiser/C in src_turf)
 						if (C == O || C == user) continue
-						C.meteorhit(O)
+						C.MeteorHit(O)
 
 		//			var/turf/T = O.loc
 		//			for(var/atom/A in T.contents)

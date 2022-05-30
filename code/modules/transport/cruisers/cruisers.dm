@@ -346,7 +346,7 @@
 		..(O)
 		if(ramming)
 			ramming--
-			O.meteorhit(src)
+			O.MeteorHit(src)
 			if(istype(O, /atom/movable))
 				if(!O:anchored)
 					step(O,dir)
