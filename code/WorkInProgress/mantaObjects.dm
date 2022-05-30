@@ -65,13 +65,13 @@ var/obj/manta_speed_lever/mantaLever = null
 	req_access = list(access_heads)
 
 	New()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
 		mantaLever = src
 		UpdateIcon()
 		..()
 //This crap is here so nothing can destroy it.
 	hitby(atom/movable/AM, datum/thrown_thing/thr)
 		SHOULD_CALL_PARENT(FALSE)
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()

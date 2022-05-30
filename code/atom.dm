@@ -246,9 +246,10 @@
 	return
 
 /atom/proc/reagent_act(var/reagent_id,var/volume)
-	if (!istext(reagent_id) || !isnum(volume) || volume < 1)
-		return 1
-	return 0
+	SHOULD_CALL_PARENT(TRUE)
+	if (volume < 1 || HAS_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE))
+		return TRUE
+	return FALSE
 
 /// Call this
 /atom/proc/EmpAct()

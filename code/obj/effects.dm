@@ -11,6 +11,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	flags = TABLEPASS
 	desc = null
 
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
+
 	track_blood()
 		src.tracked_blood = null
 		return
@@ -19,7 +23,6 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	attack_hand()
 	hitby()
 		SHOULD_CALL_PARENT(FALSE)
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()

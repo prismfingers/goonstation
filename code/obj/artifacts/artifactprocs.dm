@@ -152,18 +152,6 @@
 		src.UpdateOverlays(null, "activated")
 	A.effect_deactivate(src)
 
-/obj/proc/Artifact_emp_act()
-	if (!src.ArtifactSanityCheck())
-		return
-	src.ArtifactStimulus("elec", 800)
-	src.ArtifactStimulus("radiate", 3)
-
-/obj/proc/Artifact_blob_act(var/power)
-	if (!src.ArtifactSanityCheck())
-		return
-	src.ArtifactStimulus("force", power)
-	src.ArtifactStimulus("carbtouch", 1)
-
 
 /obj/proc/Artifact_reagent_act(var/reagent_id, var/volume)
 	if (!src.ArtifactSanityCheck())
@@ -512,3 +500,5 @@
 /obj/proc/ArtifactDevelopFault()
 /obj/proc/ArtifactSanityCheck()
 /obj/proc/ArtifactDestroyed()
+/obj/proc/Artifact_emp_act()
+/obj/proc/Artifact_blob_act(var/power)

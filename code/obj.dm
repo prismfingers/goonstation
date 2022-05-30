@@ -115,7 +115,6 @@
 			if(3.0)
 				changeHealth(-40)
 				return
-			else
 
 	onMaterialChanged()
 		..()

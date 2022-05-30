@@ -1602,7 +1602,7 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 			qdel(src)
 
 	reagent_act(id, volume)
-		if (disposed)
+		if (disposed || ..())
 			return
 		if (id == "water")
 			if (on_fire)

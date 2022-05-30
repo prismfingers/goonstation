@@ -11,11 +11,14 @@
 	heat_capacity = 0
 	explosion_resistance = 8
 
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
+
 	attackby()
 	attack_hand()
 	hitby()
 		. = ..()
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()
@@ -46,9 +49,12 @@
 	heat_capacity = 0
 	turf_flags = MOB_STEP
 
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
+
 	hitby()
 		. = ..()
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()
@@ -65,9 +71,12 @@
 	icon = 'icons/turf/shuttle.dmi'
 	turf_flags = MOB_STEP
 
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
+
 	hitby()
 		. = ..()
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()
@@ -98,11 +107,14 @@
 /obj/indestructible/
 	anchored = 2
 
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
+
 	attackby()
 	attack_hand()
 	hitby()
 		. = ..()
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()
@@ -170,11 +182,14 @@
 	/turf/simulated/wall/false_wall, /obj/machinery/door, /obj/window, /obj/wingrille_spawn, /turf/simulated/wall/auto/shuttle, /obj/indestructible/shuttle_corner)
 	connects_with_overlay = list(/turf/simulated/wall/auto/supernorn/wood, /turf/simulated/wall/false_wall/reinforced, /obj/machinery/door, /obj/window, /obj/wingrille_spawn)
 
+	New()
+		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
+
 	attackby()
 	attack_hand()
 	hitby()
 		. = ..()
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()

@@ -795,6 +795,7 @@
 
 	New()
 		..()
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
 		SPAWN(1 DECI SECOND)
 			ini_dir = 5//gurgle
 			set_dir(5)//grumble
@@ -816,7 +817,6 @@
 	attackby()
 	hitby()
 		SHOULD_CALL_PARENT(FALSE)
-	reagent_act()
 	bullet_act()
 	ex_act()
 	blob_act()

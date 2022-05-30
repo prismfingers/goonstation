@@ -370,6 +370,7 @@
 		..()
 		START_TRACKING
 		src.add_filter("frame", 1, outline_filter(2, "#ccaa00"))
+		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
 
 	init_canvas()
 		if(isnull(src.id))
@@ -401,8 +402,6 @@
 	attack_hand(mob/user)
 		pop_open_a_browser_box(user)
 
-	reagent_act()
-		return
 	ex_act(severity)
 		return
 
