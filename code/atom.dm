@@ -247,6 +247,7 @@
 
 /atom/proc/reagent_act(var/reagent_id,var/volume)
 	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_REAGENT_ACT, reagent_id, volume)
 	if (volume < 1 || HAS_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE))
 		return TRUE
 	return FALSE
@@ -875,6 +876,7 @@
 //Return an atom if you want to make the projectile's effects affect that instead.
 
 /atom/proc/bullet_act(var/obj/projectile/P)
+	SHOULD_CALL_PARENT(TRUE)
 	if(src.material) src.material.triggerOnBullet(src, src, P)
 	return
 

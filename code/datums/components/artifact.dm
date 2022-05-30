@@ -28,6 +28,9 @@ TYPEINFO(/datum/component/artifact)
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_REAGENT_ACT, .proc/artifact_reagent_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_METEORHIT, .proc/artifact_meteorhit)
 
 
 	if (scramble_appearance)
@@ -180,6 +183,9 @@ TYPEINFO(/datum/component/artifact)
 /datum/component/artifact/proc/artifact_emp_act()
 	src.artifact_stimulus("elec", 800)
 	src.artifact_stimulus("radiate", 3)
+
+/datum/component/artifact/proc/artifact_meteorhit()
+	src.artifact_stimulus("force", 100)
 
 /datum/component/artifact/proc/artifact_reagent_act(var/reagent_id, var/volume)
 	switch(reagent_id)
