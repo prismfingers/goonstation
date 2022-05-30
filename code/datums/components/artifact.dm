@@ -93,6 +93,12 @@ TYPEINFO(/datum/component/artifact)
 				valid_triggers -= selection
 
 
+		artifact_controls.artifacts += src
+
+/datum/component/artifact/UnregisterFromParent()
+	artifact_controls.artifacts -= src
+
+
 /datum/component/artifact/proc/maybe_develop_fault(var/faultprob)
 	// This proc is used for randomly giving an artifact a fault. It's usually used in the New() proc of an artifact so that
 	// newly spawned artifacts have a chance of being faulty by default, though this can also be called whenever an artifact is
@@ -160,6 +166,16 @@ TYPEINFO(/datum/component/artifact)
 	src.artifact_stimulus("carbtouch", 1)
 
 /datum/component/artifact/proc/artifact_ex_act(var/severity)
+	switch(severity)
+		if(1.0)
+			src.ArtifactStimulus("force", 200)
+			src.ArtifactStimulus("heat", 500)
+		if(2.0)
+			src.ArtifactStimulus("force", 75)
+			src.ArtifactStimulus("heat", 450)
+		if(3.0)
+			src.ArtifactStimulus("force", 25)
+			src.ArtifactStimulus("heat", 380)
 
 /datum/component/artifact/proc/artifact_emp_act()
 	src.artifact_stimulus("elec", 800)

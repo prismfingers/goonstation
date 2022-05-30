@@ -178,7 +178,6 @@
 			if(3.0)
 				src.ArtifactStimulus("force", 25)
 				src.ArtifactStimulus("heat", 380)
-		return
 
 	reagent_act(reagent_id,volume)
 		if (..())
