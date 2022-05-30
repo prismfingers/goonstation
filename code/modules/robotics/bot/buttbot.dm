@@ -103,9 +103,6 @@
 		else
 			src.butt_fluff = BUTT_FLESH
 
-/obj/machinery/bot/buttbot/emp_act()
-	src.emag_act()
-
 /// Makes the buttbot mill around aimlessly, or chase people if emagged
 /obj/machinery/bot/buttbot/proc/scoot()
 	if(moving) return

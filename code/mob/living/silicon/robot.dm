@@ -960,10 +960,12 @@
 			return 0
 
 	emp_act()
+		. = ..()
 		vision.noise(60)
 		boutput(src, "<span class='alert'><B>*BZZZT*</B></span>")
 		for (var/obj/item/parts/robot_parts/RP in src.contents)
-			if (RP.ropart_take_damage(0,10) == 1) src.compborg_lose_limb(RP)
+			if (RP.ropart_take_damage(0,10))
+				src.compborg_lose_limb(RP)
 
 	meteorhit(obj/O as obj)
 		src.visible_message("<font color=red><b>[src]</b> is struck by [O]!</font>")

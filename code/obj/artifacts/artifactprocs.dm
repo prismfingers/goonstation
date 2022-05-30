@@ -164,6 +164,7 @@
 	src.ArtifactStimulus("force", power)
 	src.ArtifactStimulus("carbtouch", 1)
 
+
 /obj/proc/Artifact_reagent_act(var/reagent_id, var/volume)
 	if (!src.ArtifactSanityCheck())
 		return
@@ -504,3 +505,10 @@
 
 	if (trigger_alert)
 		message_admins("An artifact ([A.type_name]) was [type_of_action] [special_addendum ? "([special_addendum])" : ""] at [log_loc(O)]. Last touched by: [key_name(O.fingerprintslast)]")
+
+
+
+// DONE
+/obj/proc/ArtifactDevelopFault()
+/obj/proc/ArtifactSanityCheck()
+/obj/proc/ArtifactDestroyed()

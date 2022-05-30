@@ -124,7 +124,7 @@ var/datum/explosion_controller/explosions
 					continue // they can break even on severity 3
 				else if(istype(T, /turf/simulated))
 					severity = max(severity, 3)
-			SEND_SIGNAL(T, COMSIG_EX_ACT, severity)
+			SEND_SIGNAL(T, COMSIG_ATOM_EX_ACT, severity)
 			T.ex_act(severity, last_touched)
 #endif
 		LAGCHECK(LAG_HIGH)

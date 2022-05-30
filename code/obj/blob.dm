@@ -187,19 +187,19 @@
 	proc/attack(var/turf/T)
 		particleMaster.SpawnSystem(new /datum/particleSystem/blobattack(T,overmind.color))
 		if (T?.density)
-			SEND_SIGNAL(T, COMSIG_ATOM_BLOB_ACT, power) // Yes, this sucks. Better than refactoring everything that overrides blob_act without a parent call though ahahaha
+			SEND_SIGNAL(T, COMSIG_ATOM_BLOB_ACT, overmind.attack_power * 20) // Yes, this sucks. Better than refactoring everything that overrides blob_act without a parent call though ahahaha
 			T.blob_act(overmind.attack_power * 20)
 			T.material?.triggerOnBlobHit(T, overmind.attack_power * 20)
 
 		else
 			for (var/mob/M in T.contents)
-				SEND_SIGNAL(M, COMSIG_ATOM_BLOB_ACT, power)
+				SEND_SIGNAL(M, COMSIG_ATOM_BLOB_ACT, overmind.attack_power * 20)
 				M.blob_act(overmind.attack_power * 20)
 				if(isliving(M))
 					var/mob/living/L = M
 					L.was_harmed(src)
 			for (var/obj/O in T.contents)
-				SEND_SIGNAL(O, COMSIG_ATOM_BLOB_ACT, power)
+				SEND_SIGNAL(O, COMSIG_ATOM_BLOB_ACT, overmind.attack_power * 20)
 				O.blob_act(overmind.attack_power * 20)
 				O.material?.triggerOnBlobHit(O, overmind.attack_power * 20)
 

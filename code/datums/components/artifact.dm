@@ -155,8 +155,14 @@ TYPEINFO(/datum/component/artifact)
 
 /datum/component/artifact/proc/artifact_activated()
 
-/datum/component/artifact/proc/artifact_blob_act()
+/datum/component/artifact/proc/artifact_blob_act(var/power)
+	src.artifact_stimulus("force", power)
+	src.artifact_stimulus("carbtouch", 1)
 
-/datum/component/artifact/proc/artifact_ex_act()
+/datum/component/artifact/proc/artifact_ex_act(var/severity)
+
+/datum/component/artifact/proc/artifact_emp_act()
+
+/datum/component/artifact/proc/artifact_stimulus()
 
 

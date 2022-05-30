@@ -43,6 +43,8 @@
 	#define COMSIG_ATOM_BLOB_ACT "atom_blob_act"
 	/// Atom is hit by an explosion (severity (1-3)) [not called when ex_act is called from somewhere other than explosions- you fucks]
 	#define COMSIG_ATOM_EX_ACT "atom_ex_act"
+	/// Atom is hit by an EMP
+	#define COMSIG_ATOM_EMP_ACT "atom_emp_act"
 
 // ---- atom/movable signals ----
 

@@ -1403,7 +1403,6 @@
 		if(!src.on || prob(10))
 			return
 
-		src.emagged = 1
 		src.visible_message("<span class='alert'><b>[src.name]</b> buzzes oddly!</span>")
 		qdel(src.model_task)
 		src.model_task = new /datum/computer/file/guardbot_task/security/crazy
@@ -1419,11 +1418,7 @@
 			src.obeygunlaw = 0
 			src.set_emotion("look")
 
-		if(istype(src.budgun, /obj/item/gun/energy/lawbringer))
-			BeTheLaw(src.emagged, 0, src.lawbringer_alwaysbigshot)
-		if(istype(src.budgun, /obj/item/gun/energy/egun))
-			CheckSafety(src.budgun, 1)
-		return
+		return ..() //emag
 
 	explode(var/allow_big_explosion=1)
 		if(src.exploding) return
