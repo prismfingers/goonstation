@@ -48,7 +48,7 @@
 				var/i = 0
 				for (var/atom/O in tile.contents)
 					if (istype(O,/obj/item/device/radio))
-						O.emp_act()
+						O.EmpAct()
 					i++
 					if (i > 20)
 						break

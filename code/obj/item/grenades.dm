@@ -555,7 +555,7 @@ ABSTRACT_TYPE(/obj/item/old_grenade/spawner)
 				for (var/atom/O in tile.contents)
 					var/area/t = get_area(O)
 					if(t?.sanctuary) continue
-					O.emp_act()
+					O.EmpAct()
 
 			qdel(grenade)
 		else

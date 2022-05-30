@@ -2357,7 +2357,7 @@
 	var/list/L = src.get_all_items_on_mob()
 	if (length(L))
 		for (var/obj/O in L)
-			O.emp_act()
+			O.EmpAct()
 	boutput(src, "<span class='alert'><B>BZZZT</B></span>")
 
 /mob/living/carbon/human/verb/consume(mob/M as mob in oview(0))

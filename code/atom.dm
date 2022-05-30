@@ -250,7 +250,15 @@
 		return 1
 	return 0
 
+/// Call this
+/atom/proc/EmpAct()
+	SHOULD_NOT_OVERRIDE(TRUE)
+	SEND_SIGNAL(src, COMSIG_ATOM_EMP_ACT)
+	src.EmpAct()
+
+/// Override this
 /atom/proc/emp_act()
+	PROTECTED_PROC(TRUE)
 	return
 
 /atom/proc/emag_act(var/mob/user, var/obj/item/card/emag/E) //This is gonna be fun!

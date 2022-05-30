@@ -31,9 +31,9 @@
   for (var/mob/M in all_viewers(world.view-1, T))
     if (!isliving(M))
       continue
-    M.emp_act()
+    M.EmpAct()
   for (var/obj/machinery/M in range(world.view-1, T))
-    M.emp_act()
+    M.EmpAct()
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // Bholerip (rip floors & walls to pieces) /////////////////////////////////////////////

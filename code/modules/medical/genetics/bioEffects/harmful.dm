@@ -711,7 +711,7 @@
 			//maybe have this only emp some things on the tile.
 			if(istype(T))
 				for (var/atom/O in T.contents)
-					O.emp_act()
+					O.EmpAct()
 
 /datum/bioEffect/fitness_debuff
 	name = "Physically Unfit"

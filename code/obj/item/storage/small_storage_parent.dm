@@ -76,7 +76,7 @@
 			for (var/atom/A in src.contents)
 				if (isitem(A))
 					var/obj/item/I = A
-					I.emp_act()
+					I.EmpAct()
 		return
 
 	proc/make_my_stuff() // use this rather than overriding the container's New()

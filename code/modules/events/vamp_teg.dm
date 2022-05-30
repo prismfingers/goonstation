@@ -323,7 +323,7 @@ datum/teg_transformation/vampire
 			if(probmult(33))
 				var/list/stationAreas = get_accessible_station_areas()
 				var/area/A = stationAreas[pick(stationAreas)]
-				A?.area_apc?.emp_act()
+				A?.area_apc?.EmpAct()
 
 		checkhealth()
 		return TRUE

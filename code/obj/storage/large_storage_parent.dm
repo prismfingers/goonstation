@@ -167,10 +167,10 @@
 			for (var/atom/A in src.contents)
 				if (ismob(A))
 					var/mob/M = A
-					M.emp_act()
+					M.EmpAct()
 				if (isitem(A))
 					var/obj/item/I = A
-					I.emp_act()
+					I.EmpAct()
 
 	alter_health()
 		. = get_turf(src)
