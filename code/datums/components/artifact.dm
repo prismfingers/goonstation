@@ -162,6 +162,8 @@ TYPEINFO(/datum/component/artifact)
 /datum/component/artifact/proc/artifact_ex_act(var/severity)
 
 /datum/component/artifact/proc/artifact_emp_act()
+	src.artifact_stimulus("elec", 800)
+	src.artifact_stimulus("radiate", 3)
 
 /datum/component/artifact/proc/artifact_stimulus()
 
