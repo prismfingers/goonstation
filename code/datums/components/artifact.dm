@@ -5,7 +5,7 @@ TYPEINFO(/datum/component/artifact)
 	)
 
 /datum/component/artifact
-	dupe_mode = COMPONENT_DUPE_UNIQUE // change this to allowed if we want to do multi-artifacts for. whatever goddamn reason
+	dupe_mode = ALLOWED // I'm adding multi artifacts and nobody can stop me
 	/// atom typed version of parent
 	var/atom/movable/artifact_atom
 	/// Actual artifact datum
@@ -25,6 +25,7 @@ TYPEINFO(/datum/component/artifact)
 	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(A.validtypes))
 	src.artifact.artitype = real_origin
 
+	// Signal stuff
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
@@ -33,8 +34,8 @@ TYPEINFO(/datum/component/artifact)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_METEORHIT, .proc/artifact_meteorhit)
 
 
+	// Make this appear like an artifact
 	if (scramble_appearance)
-		// Make this appear like an artifact
 
 		// Origin we appear as- small chance to be different from the actual origin
 		var/datum/artifact_origin/appearance_origin = artifact_controls.get_origin_from_string(AO.name)
@@ -48,6 +49,7 @@ TYPEINFO(/datum/component/artifact)
 				all_origin_names += O.name
 			appearance_origin = artifact_controls.get_origin_from_string(pick(all_origin_names))
 
+		// Artifact-ize name
 		var/name1 = pick(appearance_origin.adjectives)
 		var/name2 = "thingy"
 		if (isitem(src.parent))
@@ -60,6 +62,7 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.desc = "You have no idea what this thing is!"
 		artifact.touch_descriptors |= real_origin.touch_descriptors
 
+		//Artifact-ize sprite
 		src.icon_state = appearance_origin.name + "-[rand(1, appearance_origin.max_sprites)]"
 		if (isitem(src))
 			var/obj/item/I = src.artifact_atom
@@ -79,34 +82,38 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact.used_names[real_origin.type_name] = A.internal_name
 		src.artifact.nofx = real_origin.nofx
 
+		// Low chance to start with a fault
 		src.maybe_develop_fault(10)
 
+		// Activate automatically if we do that
 		if (src.artifact.automatic_activation)
 			src.artifact_activated()
 
-		var/list/valid_triggers = A.validtriggers
-		var/trigger_amount = rand(A.min_triggers,A.max_triggers)
-		var/selection = null
-		while (trigger_amount > 0)
-			trigger_amount--
-			selection = pick(valid_triggers)
-			if (ispath(selection))
-				var/datum/artifact_trigger/AT = new selection
-				A.triggers += AT
-				valid_triggers -= selection
+		// Generate activation triggers
+		if (!src.artifact.automatic_activation)
+			var/list/valid_triggers = A.validtriggers
+			var/trigger_amount = rand(A.min_triggers,A.max_triggers)
+			var/selection = null
+			while (trigger_amount > 0)
+				trigger_amount--
+				selection = pick(valid_triggers)
+				if (ispath(selection))
+					var/datum/artifact_trigger/AT = new selection
+					A.triggers += AT
+					valid_triggers -= selection
 
 
+		// Finally, add to artifact controller so we can track it
 		artifact_controls.artifacts += src
 
 /datum/component/artifact/UnregisterFromParent()
 	artifact_controls.artifacts -= src
 
-
+/**
+ * Proc called to possibly give an artifact a fault, depending on probability. Called in New() with a low probability, and also whenever you
+ * damage an artifact too much.
+ */
 /datum/component/artifact/proc/maybe_develop_fault(var/faultprob)
-	// This proc is used for randomly giving an artifact a fault. It's usually used in the New() proc of an artifact so that
-	// newly spawned artifacts have a chance of being faulty by default, though this can also be called whenever an artifact is
-	// damaged or otherwise poorly handled, so you could potentially turn a good artifact into a dangerous piece of shit if you
-	// abuse it too much.
 
 	if (src.artifact.artitype.name == "eldritch")
 		faultprob *= 2 // eldritch artifacts fucking hate you and are twice as likely to go faulty
@@ -121,7 +128,7 @@ TYPEINFO(/datum/component/artifact)
 		else
 			stack_trace("Didn't get a path from fault_types. Got \[[new_fault]\] instead.")
 
-/// Called before the parent atom is deleted.
+/// Called before the parent atom is deleted
 /datum/component/artifact/proc/artifact_destroyed()
 	var/turf/T = get_turf(src)
 	if (istype(T, /turf/))
@@ -129,8 +136,6 @@ TYPEINFO(/datum/component/artifact)
 
 	src.remove_artifact_forms()
 	src.artifact_deactivated()
-
-	//ArtifactLogs(usr, null, src, "destroyed", null, 0)
 
 	artifact_controls.artifacts -= src.artifact_atom
 
@@ -147,7 +152,7 @@ TYPEINFO(/datum/component/artifact)
 	if (src.artifact.activ_text)
 		var/turf/T = get_turf(src.artifact_atom)
 		if (T)
-			T.visible_message("<b>[src.artifact_atom] [src.artifact.activ_text]</b>") //ZeWaka: Fix for null.visible_message()
+			T.visible_message("<b>[src.artifact_atom] [src.artifact.activ_text]</b>")
 	src.artifact.activated = TRUE
 	if (src.artifact.nofx)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state + "fx"
@@ -162,8 +167,10 @@ TYPEINFO(/datum/component/artifact)
 	if (src.artifact_atom.health <= 0)
 		qdel(src.artifact_atom)
 
+/// Called when this artifact is activated, and starts doing its effects
 /datum/component/artifact/proc/artifact_activated()
 
+/// Called when a blob hits this artifact
 /datum/component/artifact/proc/artifact_blob_act(var/power)
 	src.artifact_stimulus("force", power)
 	src.artifact_stimulus("carbtouch", 1)
@@ -180,13 +187,16 @@ TYPEINFO(/datum/component/artifact)
 			src.artifact_stimulus("force", 25)
 			src.artifact_stimulus("heat", 380)
 
+/// Called when this artifact is hit by an EMP
 /datum/component/artifact/proc/artifact_emp_act()
 	src.artifact_stimulus("elec", 800)
 	src.artifact_stimulus("radiate", 3)
 
+/// Called when a meteor or other very heavy thing (high throwforce object, certain critters) impacts this artifact
 /datum/component/artifact/proc/artifact_meteorhit()
 	src.artifact_stimulus("force", 100)
 
+/// Called when a reagent is applied to an artifact, such as via smoke or beaker splash.
 /datum/component/artifact/proc/artifact_reagent_act(var/reagent_id, var/volume)
 	switch(reagent_id)
 		if("porktonium")
@@ -235,7 +245,88 @@ TYPEINFO(/datum/component/artifact)
 					random_strength = 1
 			src.artifact_stimulus(random_stimulus, random_strength)
 
+/**
+ * Proc which handles artifacts recieving stimuli, and doing things with those stimuli (usually either breaking or activating).
+ * stimtype: type of stimulus
+ */
+/datum/component/artifact/proc/artifact_stimulus(var/stimtype, var/strength)
+	// This is what will be used for most of the testing equipment stuff. Stimtype is what kind of stimulus the artifact is being
+	// exposed to (such as brute force, high temperatures, electricity, etc) and strength is how powerful the stimulus is. This
+	// one here is intended as a master proc with individual items calling back to this one and then rolling their own version of
+	// it alongside this. This one mainly deals with accidentally damaging an artifact due to hitting it with a poor choice of
+	// stimulus, such as hitting crystals with brute force and so forth.
+	if (!stimtype)
+		return
+	if (!src.ArtifactSanityCheck())
+		return
+	var/turf/T = get_turf(src)
 
-/datum/component/artifact/proc/artifact_stimulus()
+	var/datum/artifact/A = src.artifact
+	if(!istype(A) || !A.artitype)
+		return
+
+	// Possible stimuli = force, elec, radiate, heat
+	switch(A.artitype.name)
+		if("martian") // biotech, so anything that'd probably kill a living thing works on them too
+			if(stimtype == "force")
+				if (strength >= 30)
+					T.visible_message("<span class='alert'>[src] bruises from the impact!</span>")
+					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_3.ogg", 100, 1)
+					ArtifactDevelopFault(33)
+					src.ArtifactTakeDamage(strength / 1.5)
+			if(stimtype == "elec")
+				if (strength >= 3000) // max you can get from the electrobox is 5000
+					if (prob(10))
+						T.visible_message("<span class='alert'>[src] seems to quiver in pain!</span>")
+					src.ArtifactTakeDamage(strength / 1000)
+			if(stimtype == "radiate")
+				if (strength >= 6)
+					ArtifactDevelopFault(50)
+					if (strength >= 9)
+						ArtifactDevelopFault(75)
+					src.ArtifactTakeDamage(strength * 1.25)
+		if("wizard") // these are big crystals, thus you probably shouldn't smack them around too hard!
+			if(stimtype == "force")
+				if (strength >= 20)
+					T.visible_message("<span class='alert'>[src] cracks and splinters!</span>")
+					playsound(src.loc, "sound/impact_sounds/Glass_Shards_Hit_1.ogg", 100, 1)
+					ArtifactDevelopFault(80)
+					src.ArtifactTakeDamage(strength * 1.5)
+
+	if (!src || !A)
+		return
+
+	if (!A.activated)
+		for (var/datum/artifact_trigger/AT in A.triggers)
+			if (A.activated)
+				break
+			if (AT.stimulus_required == stimtype)
+				if (AT.do_amount_check)
+					if (AT.stimulus_type == ">=" && strength >= AT.stimulus_amount)
+						src.ArtifactActivated()
+					else if (AT.stimulus_type == "<=" && strength <= AT.stimulus_amount)
+						src.ArtifactActivated()
+					else if (AT.stimulus_type == "==" && strength == AT.stimulus_amount)
+						src.ArtifactActivated()
+					else
+						if (istext(A.hint_text))
+							if (strength >= AT.stimulus_amount - AT.hint_range && strength <= AT.stimulus_amount + AT.hint_range)
+								if (prob(AT.hint_prob))
+									T.visible_message("<b>[src]</b> [A.hint_text]")
+				else
+					src.ArtifactActivated()
+
+
+/// Removes all artifact forms attached to this and makes them fall to the floor
+/// Because artifacts often like to disappear in mysterious ways
+/datum/component/artifact/proc/remove_artifact_forms()
+	var/removed = 0
+	for(var/obj/item/sticker/postit/artifact_paper/AP in src.artifact_atom.vis_contents)
+		AP.remove_from_attached()
+		removed++
+	if(removed == 1)
+		src.visible_message("The artifact form that was attached falls to the ground.")
+	else if(removed > 1)
+		src.visible_message("All the artifact forms that were attached fall to the ground.")
 
 

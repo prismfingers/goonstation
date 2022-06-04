@@ -479,22 +479,6 @@
 	else if(removed > 1)
 		src.visible_message("All the artifact forms that were attached fall to the ground.")
 
-// Added. Very little related to artifacts was logged (Convair880).
-/proc/ArtifactLogs(var/mob/user, var/mob/target, var/obj/O, var/type_of_action, var/special_addendum, var/trigger_alert = 0)
-	if (!O || !istype(O.artifact, /datum/artifact) || !type_of_action)
-		return
-
-	var/datum/artifact/A = O.artifact
-
-	if ((target && ismob(target)) && type_of_action == "weapon")
-		logTheThing("combat", user, target, "attacks [constructTarget(target,"combat")] with an active artifact ([A.type_name])[special_addendum ? ", [special_addendum]" : ""] at [log_loc(target)].")
-	else
-		logTheThing(type_of_action == "detonated" ? "bombing" : "station", user, target, "an artifact ([A.type_name]) was [type_of_action] [special_addendum ? "([special_addendum])" : ""] at [target && isturf(target) ? "[log_loc(target)]" : "[log_loc(O)]"].[type_of_action == "detonated" ? " Last touched by: [O.fingerprintslast ? "[O.fingerprintslast]" : "*null*"]" : ""]")
-
-	if (trigger_alert)
-		message_admins("An artifact ([A.type_name]) was [type_of_action] [special_addendum ? "([special_addendum])" : ""] at [log_loc(O)]. Last touched by: [key_name(O.fingerprintslast)]")
-
-
 
 // DONE
 /obj/proc/ArtifactDevelopFault()
