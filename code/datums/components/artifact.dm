@@ -1,7 +1,7 @@
 TYPEINFO(/datum/component/artifact)
 	initialization_args = list(
 		ARG_INFO("artifact_type", DATA_INPUT_TYPE, "What type of artifact should this component correspond to", /datum/artifact)
-		ARG_INFO("scramble_appearance", DAATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", null)
+		ARG_INFO("scramble_appearance", DATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", null)
 	)
 
 /datum/component/artifact
@@ -26,6 +26,7 @@ TYPEINFO(/datum/component/artifact)
 	src.artifact.artitype = real_origin
 
 	// Signal stuff
+	RegisterSignal(src.artifact_atom, COMSIG_ATTACKBY, .proc/artifact_attackby)
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
@@ -98,8 +99,8 @@ TYPEINFO(/datum/component/artifact)
 				trigger_amount--
 				selection = pick(valid_triggers)
 				if (ispath(selection))
-					var/datum/artifact_trigger/AT = new selection
-					A.triggers += AT
+					var/datum/artifact_trigger/trigger = new selection
+					A.triggers += trigger
 					valid_triggers -= selection
 
 
@@ -128,6 +129,13 @@ TYPEINFO(/datum/component/artifact)
 		else
 			stack_trace("Didn't get a path from fault_types. Got \[[new_fault]\] instead.")
 
+/datum/component/artifact/proc/take_damage(var/damage)
+	src.artifact.health -= damage
+	src.artifact.health = min(A.health, 100)
+
+	if (src.artifact.health <= 0)
+		qdel(src.artifact_atom)
+
 /// Called before the parent atom is deleted
 /datum/component/artifact/proc/artifact_destroyed()
 	var/turf/T = get_turf(src)
@@ -139,8 +147,34 @@ TYPEINFO(/datum/component/artifact)
 
 	artifact_controls.artifacts -= src.artifact_atom
 
+// This is for a tool/item artifact that you can use. If it has a fault, whoever is using it is basically rolling the dice
+// every time the thing is used (a check to see if rand(1,faultcount) hits 1 most of the time) and if they're unlucky, the
+// thing will deliver it's payload onto them.
+// There's also no reason this can't be used whoever the artifact is being used *ON*, also!
+// The cosmetic source is just to specify where the effect comes from in the visual message.
+// So that you can make it come from something like a forcefield or bullet instead of the artifact itself!
+/**
+ * Activate an artifact fault, triggered ON the user. Handheld artifacts can activate a fault on the user or the target of something.
+ * cosmeticSource is for messages; set it to something artifact adjacent to make the effect come from a forcefield, bullet, etc instead.
+ */
+/datum/component/artifact/proc/artifact_fault_used(mob/user, atom/cosmeticSource)
+
+	if (!length(src.artifact.faults))
+		return FAULT_RESULT_INVALID // no faults, so dont waste any more time
+	if (!cosmeticSource)
+		cosmeticSource = src
+	var/halt = FALSE
+	for (var/datum/artifact_fault/F in src.artifact.faults)
+		if (prob(F.trigger_prob))
+			if (F.halt_loop)
+				halt = TRUE
+			F.deploy(src, user, cosmeticSource)
+		if (halt)
+			return FAULT_RESULT_STOP
+	return FAULT_RESULT_SUCCESS
+
 /// Called when this artifact is activated
-/datum/component/artifact/artifact_activated()
+/datum/component/artifact/proc/artifact_activated()
 	if (src.artifact.activated)
 		return TRUE
 	if (src.artifact.triggers.len < 1 && !A.automatic_activation)
@@ -158,17 +192,180 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state + "fx"
 	else
 		src.UpdateOverlays(src.artifact.fx_image, "activated")
-	src.artifact.effect_activate(src)
+	src.artifact.effect_activate(src.artifact_atom)
 
-/datum/component/artifact/proc/artifact_take_damage(var/dmg_amount)
-	src.artifact_atom.health -= dmg_amount
-	src.artifact_atom.health = clamp(artifact_atom.health, 0, 100)
+/// Called when this artifact is deactivated, whether automatically or through an activator key
+/datum/component/artifact/proc/artifact_deactivated()
+	if (!src.artifact.activated) // do not deactivate if already deactivated
+		return
+	if (A.deact_sound)
+		playsound(src.artifact_atom.loc, A.deact_sound, 100, 1)
+	if (A.deact_text)
+		var/turf/T = get_turf(src.artifact_atom)
+		T.visible_message("<b>[src] [src.artifact.deact_text]</b>")
+	src.artifact.activated = FALSE
+	if (src.artifact.nofx)
+		src.artifact_atom.icon_state = src.artifact_atom.icon_state - "fx"
+	else
+		src.artifact_atom.UpdateOverlays(null, "activated")
+	src.artifact.effect_deactivate(src.artifact_atom)
 
-	if (src.artifact_atom.health <= 0)
-		qdel(src.artifact_atom)
 
-/// Called when this artifact is activated, and starts doing its effects
-/datum/component/artifact/proc/artifact_activated()
+/// Called when someone pokes this artifact
+/datum/component/artifact/proc/artifact_touched(mob/user)
+	if (!in_interact_range(get_turf(src.artifact_atom), user))
+		return
+	if (isAI(user))
+		return
+	if (isobserver(user))
+		return
+
+	if (ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/parts/arm = H.hand ? H.limbs.l_arm : H.limbs.r_arm
+		if(istype(arm, /obj/item/parts/robot_parts))
+			src.artifact_stimulus("silitouch", 1)
+		else
+			src.artifact_stimulus("carbtouch", 1)
+	else if (iscarbon(user))
+		src.artifact_stimulus("carbtouch", 1)
+	else if (issilicon(user))
+		src.artifact_stimulus("silitouch", 1)
+	src.artifact_stimulus("force", 1)
+	user.visible_message("<b>[user.name]</b> touches \the [src.artifact_atom].")
+	if (istype(src.artifact, /datum/artifact))
+		if (length(src.artifact.touch_descriptors))
+			boutput(user, "[pick(src.artifact.touch_descriptors)]")
+		else
+			boutput(user, "You can't really tell how it feels.")
+	if (src.artifact.activated)
+		src.artifact.effect_touch(src, user)
+
+/// Called when someone hits this with an item
+/datum/component/artifact/proc/artifact_attackby(var/artifact_atom, var/obj/item/I, var/mob/attacker)
+
+	. = FALSE
+
+	if (isrobot(user))
+		src.artifact_stimulus("silitouch", 1)
+
+	//// ---- BEGIN SHIT I AM NOT FIXING RN ----
+	if (istype(W,/obj/item/artifact/activator_key))
+		var/obj/item/artifact/activator_key/ACT = W
+		if (!src.ArtifactSanityCheck())
+			return
+		if (!W.ArtifactSanityCheck())
+			return
+		var/datum/artifact/A = src.artifact
+		var/datum/artifact/activator_key/K = ACT.artifact
+
+		if (K.activated)
+			if (K.universal || A.artitype == K.artitype)
+				if (K.activator && !A.activated)
+					src.ArtifactActivated()
+					if(K.corrupting && A.faults.len < 10) // there's only so much corrupting you can do ok
+						for(var/i=1,i<rand(1,3),i++)
+							src.ArtifactDevelopFault(100)
+				else if (A.activated)
+					src.ArtifactDeactivated()
+	//// ---- END SHIT ----
+
+	if (isweldingtool(I))
+		if (W:try_weld(user, 0, -1, 0, 1))
+			src.artifact_stimulus("heat", 800)
+			src.visible_message("<span class='alert'>[user.name] burns the artifact with [W]!</span>")
+			return
+
+	if (istype(I, /obj/item/device/light/zippo))
+		var/obj/item/device/light/zippo/ZIP = W
+		if (ZIP.on)
+			src.artifact_stimulus("heat", 400)
+			src.visible_message("<span class='alert'>[user.name] burns the artifact with [ZIP]!</span>")
+			return
+
+	if(istype(I, /obj/item/device/igniter))
+		src.artifact_stimulus("elec", 700)
+		src.artifact_stimulus("heat", 385)
+		src.visible_message("<span class='alert'>[user.name] sparks against \the [src] with \the [igniter]!</span>")
+
+	if (istype(i, /obj/item/robodefibrillator))
+		var/obj/item/robodefibrillator/R = I
+		if (R.do_the_shocky_thing(user))
+			src.artifact_stimulus("elec", 2500)
+			src.visible_message("<span class='alert'>[user.name] shocks \the [src] with \the [R]!</span>")
+			return
+
+	if(istype(I, /obj/item/baton))
+		var/obj/item/baton/BAT = i
+		if (BAT.can_stun(1, user))
+			src.artifact_stimulus("force", BAT.force)
+			src.artifact_stimulus("elec", 1500)
+			playsound(src.loc, "sound/impact_sounds/Energy_Hit_3.ogg", 100, 1)
+			src.visible_message("<span class='alert'>[user.name] zaps the artifact with [BAT]!</span>")
+			BAT.process_charges(-1, user)
+			return
+
+	if(istype(I, /obj/item/device/flyswatter))
+		src.artifact_stimulus("elec", 1500)
+		src.visible_message("<span class='alert'>[user.name] shocks \the [src] with \the [swatter]!</span>")
+		return
+
+	if(ispulsingtool(W))
+		src.artifact_stimulus("elec", 1000)
+		src.visible_message("<span class='alert'>[user.name] shocks \the [src] with \the [W]!</span>")
+		return
+
+	if (istype(W,/obj/item/parts/robot_parts))
+		var/obj/item/parts/robot_parts/THISPART = W
+		src.visible_message("<b>[user.name]</b> presses \the [THISPART] against \the [src].</span>")
+		src.artifact_stimulus("silitouch", 1)
+		return
+
+	if (istype(W, /obj/item/parts/human_parts))
+		var/obj/item/parts/human_parts/THISPART = W
+		src.visible_message("<b>[user.name]</b> smooshes \the [THISPART] against \the [src].</span>")
+		src.artifact_stimulus("carbtouch", 1)
+		return 0
+
+	if (istype(W, /obj/item/grab))
+		var/obj/item/grab/grabobj = W
+		if (ismob(grabobj.affecting))
+			if (grabobj.state < GRAB_STRONG)
+				// Not a strong grip so just smoosh em into it
+				// generally speaking only humans and the like can be grabbed so whatev
+				if (istype(grabobj.affecting, /mob/living/carbon))
+					src.visible_message("<b>[user]</b> gently presses [grabobj.affecting] against \the [src].")
+					src.artifact_stimulus("carbtouch", 1)
+				return
+
+			var/mob/M = GRAB.affecting
+			var/mob/A = GRAB.assailant
+			if (BOUNDS_DIST(src.loc, M.loc) > 0)
+				return
+			src.visible_message("<strong class='combat'>[A] shoves [M] against \the [src]!</strong>")
+			logTheThing("combat", A, M, "forces [constructTarget(M,"combat")] to touch \an ([src.type]) artifact at [log_loc(src)].")
+			src.ArtifactTouched(M)
+			return
+
+	if (istype(W, /obj/item/circuitboard))
+		var/obj/item/circuitboard/board = W
+		src.visible_message("<b>[user.name]</b> offers the [board] to the artifact.</span>")
+		src.artifact_stimulus("data", 1)
+		return
+
+	if (istype(W, /obj/item/disk/data))
+		var/obj/item/disk/data/datadisk = W
+		src.visible_message("<b>[user.name]</b> offers the [datadisk] to the artifact.</span>")
+		src.artifact_stimulus("data", 1)
+		return
+
+	if (W.force)
+		src.artifact_stimulus("force", W.force)
+
+	// TODO refactor this shit into a usable state
+	src.ArtifactHitWith(W, user)
+	return TRUE
+
 
 /// Called when a blob hits this artifact
 /datum/component/artifact/proc/artifact_blob_act(var/power)
@@ -226,9 +423,9 @@ TYPEINFO(/datum/component/artifact)
 		if("voltagen","energydrink")
 			src.artifact_stimulus("elec", volume * 50)
 		if("acid","acetic_acid")
-			src.ArtifactTakeDamage(volume * 2)
+			src.artifact_take_damage(volume * 2)
 		if("pacid","clacid","nitric_acid")
-			src.ArtifactTakeDamage(volume * 10)
+			src.artifact_take_damage(volume * 10)
 		if("george_melonium")
 			var/random_stimulus = pick("heat","force","radiate","elec", "carbtouch", "silitouch")
 			var/random_strength = 0
@@ -250,68 +447,52 @@ TYPEINFO(/datum/component/artifact)
  * stimtype: type of stimulus
  */
 /datum/component/artifact/proc/artifact_stimulus(var/stimtype, var/strength)
-	// This is what will be used for most of the testing equipment stuff. Stimtype is what kind of stimulus the artifact is being
-	// exposed to (such as brute force, high temperatures, electricity, etc) and strength is how powerful the stimulus is. This
-	// one here is intended as a master proc with individual items calling back to this one and then rolling their own version of
-	// it alongside this. This one mainly deals with accidentally damaging an artifact due to hitting it with a poor choice of
-	// stimulus, such as hitting crystals with brute force and so forth.
-	if (!stimtype)
-		return
-	if (!src.ArtifactSanityCheck())
-		return
-	var/turf/T = get_turf(src)
-
-	var/datum/artifact/A = src.artifact
-	if(!istype(A) || !A.artitype)
-		return
+	if (!stimtype || !strength)
+		stack_trace("artifact_stimulus on component/artifact called without a specified [stimtype ? "strength" : "stimulus"]. Parent atom: \ref[src.parent]")
+	var/turf/T = get_turf(src.artifact_atom)
 
 	// Possible stimuli = force, elec, radiate, heat
-	switch(A.artitype.name)
+	switch(src.artifact.artitype.name)
 		if("martian") // biotech, so anything that'd probably kill a living thing works on them too
 			if(stimtype == "force")
 				if (strength >= 30)
 					T.visible_message("<span class='alert'>[src] bruises from the impact!</span>")
 					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_3.ogg", 100, 1)
 					ArtifactDevelopFault(33)
-					src.ArtifactTakeDamage(strength / 1.5)
+					src.artifact_take_damage(strength / 1.5)
 			if(stimtype == "elec")
 				if (strength >= 3000) // max you can get from the electrobox is 5000
-					if (prob(10))
-						T.visible_message("<span class='alert'>[src] seems to quiver in pain!</span>")
-					src.ArtifactTakeDamage(strength / 1000)
+					T.visible_message("<span class='alert'>[src] seems to quiver in pain!</span>")
+					src.artifact_take_damage(strength / 1000)
 			if(stimtype == "radiate")
 				if (strength >= 6)
-					ArtifactDevelopFault(50)
-					if (strength >= 9)
-						ArtifactDevelopFault(75)
-					src.ArtifactTakeDamage(strength * 1.25)
+					artifact_develop_fault(strength * 10 - 20) // 40% at 6, 80% at 10
+					src.artifact_take_damage(strength * 1.25)
 		if("wizard") // these are big crystals, thus you probably shouldn't smack them around too hard!
 			if(stimtype == "force")
 				if (strength >= 20)
 					T.visible_message("<span class='alert'>[src] cracks and splinters!</span>")
 					playsound(src.loc, "sound/impact_sounds/Glass_Shards_Hit_1.ogg", 100, 1)
 					ArtifactDevelopFault(80)
-					src.ArtifactTakeDamage(strength * 1.5)
+					src.artifact_take_damage(strength * 1.5)
 
 	if (!src || !A)
 		return
 
 	if (!A.activated)
-		for (var/datum/artifact_trigger/AT in A.triggers)
-			if (A.activated)
-				break
-			if (AT.stimulus_required == stimtype)
-				if (AT.do_amount_check)
-					if (AT.stimulus_type == ">=" && strength >= AT.stimulus_amount)
+		for (var/datum/artifact_trigger/trigger in src.artifact.triggers)
+			if (trigger.stimulus_required == stimtype)
+				if (trigger.do_amount_check)
+					if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_GEQ && strength >= trigger.stimulus_amount)
 						src.ArtifactActivated()
-					else if (AT.stimulus_type == "<=" && strength <= AT.stimulus_amount)
+					else if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_EXACT && strength <= trigger.stimulus_amount)
 						src.ArtifactActivated()
-					else if (AT.stimulus_type == "==" && strength == AT.stimulus_amount)
+					else if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_LEQ && strength == trigger.stimulus_amount)
 						src.ArtifactActivated()
 					else
 						if (istext(A.hint_text))
-							if (strength >= AT.stimulus_amount - AT.hint_range && strength <= AT.stimulus_amount + AT.hint_range)
-								if (prob(AT.hint_prob))
+							if (strength >= trigger.stimulus_amount - trigger.hint_range && strength <= trigger.stimulus_amount + trigger.hint_range)
+								if (prob(trigger.hint_prob))
 									T.visible_message("<b>[src]</b> [A.hint_text]")
 				else
 					src.ArtifactActivated()
@@ -328,5 +509,3 @@ TYPEINFO(/datum/component/artifact)
 		src.visible_message("The artifact form that was attached falls to the ground.")
 	else if(removed > 1)
 		src.visible_message("All the artifact forms that were attached fall to the ground.")
-
-

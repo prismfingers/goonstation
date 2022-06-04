@@ -1,4 +1,4 @@
-// File for artifact stimuli. Add a define here if you create a new one.
+// Artifact stimuli. Add a define here if you create a new one.
 #define ARTIFACT_SIMULUS_ELECTRICAL "electric"
 #define ARTIFACT_STIMULUS_RADIOACTIVE "radioactive"
 #define ARTIFACT_STIMULUS_FORCE "force"
@@ -6,3 +6,13 @@
 #define ARTIFACT_STIMULUS_SILICON_TOUCH "silitouch"
 #define ARTIFACT_STIMULUS_CARBON_TOUCH "carbtouch"
 #define ARTIFACT_STIMULUS_DATA "data"
+
+// Stimulus requirement types
+#define ARTIFACT_STIMULUS_AMOUNT_GEQ "greater than or equal to"
+#define ARTIFACT_STIMULUS_AMOUNT_EXACT "equal to"
+#define ARTIFACT_STIMULUS_AMOUNT_LEQ "less than or equal to"
+
+// Results returned from artifact_fault_used
+#define FAULT_RESULT_SUCCESS 0 //! everything's cool!
+#define FAULT_RESULT_STOP	1  //! we gotta stop, artifact was destroyed or deactivated
+#define FAULT_RESULT_INVALID 2 //! artifact can't do faults

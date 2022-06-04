@@ -716,7 +716,7 @@
 ///wrapper proc for /atom/proc/attackby so that signals are always sent. Call this, but do not override it.
 /atom/proc/Attackby(obj/item/W, mob/user, params, is_special = 0)
 	SHOULD_NOT_OVERRIDE(1)
-	if(SEND_SIGNAL(src,COMSIG_ATTACKBY,W,user, params, is_special))
+	if(SEND_SIGNAL(src, COMSIG_ATTACKBY, W, user, params, is_special))
 		return
 	src.attackby(W, user, params, is_special)
 
