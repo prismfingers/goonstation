@@ -1,7 +1,7 @@
 TYPEINFO(/datum/component/artifact)
 	initialization_args = list(
 		ARG_INFO("artifact_type", DATA_INPUT_TYPE, "What type of artifact should this component correspond to", /datum/artifact),
-		ARG_INFO("scramble_appearance", DATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", null),
+		ARG_INFO("scramble_appearance", DATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", TRUE),
 		ARG_INFO("forceartiorigin", DATA_INPUT_TEXT, "Should we force this artifact to be a specific origin? Warning: will potentially create unusual artifacts if a type is also specified.", null)
 	)
 
@@ -123,7 +123,7 @@ TYPEINFO(/datum/component/artifact)
 
 		// Finally, add to artifact controller so we can track it and run the artifact's setup
 		artifact_controls.artifacts += src.artifact_atom
-		src.artifact.post_setup
+		src.artifact.post_setup()
 
 /datum/component/artifact/UnregisterFromParent()
 	artifact_controls.artifacts -= src.artifact_atom
@@ -565,7 +565,7 @@ TYPEINFO(/datum/component/artifact)
 
 
 // Not part of the component but I'm putting it here anyways
-/// Spawn an artifact somewhere.
+/// Spawn an artifact somewhere. Used by the game to spawn artifacts as the round starts.
 /proc/Artifact_Spawn(var/atom/T, var/forceartiorigin, var/datum/artifact/forceartitype = null)
 	if (!T)
 		return

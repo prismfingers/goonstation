@@ -162,7 +162,9 @@ ABSTRACT_TYPE(/datum/artifact/)
 			ArtifactLogs(user, T, O, "used", "triggering its effect on target turf", 0)
 		return 0
 
+	/// Effect when the artifact is attacked by something
 	proc/effect_attacked_by(obj/item/I, mob/user)
+		return
 
 	/// Gets the trigger instance of this name if the artifact has that trigger.
 	proc/get_trigger_by_string(var/string)

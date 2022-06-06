@@ -49,8 +49,6 @@
 			else
 				contextLayout = new /datum/contextLayout/newinstrumental(KeyOffset = key_offset)
 
-			//src.contextActions = childrentypesof(/datum/contextAction/vehicle)
-
 			for(var/datum/contextAction/C as anything in src.contextActions)
 				C.dispose()
 			src.contextActions = list()
@@ -95,7 +93,7 @@
 
 	proc/play(var/mob/user)
 		if (pick_random_note && length(sounds_instrument))
-			play_note(rand(1,sounds_instrument.len),user)
+			play_note(rand(1, length(sounds_instrument)), user)
 		if(length(contextActions))
 			user.showContextActions(contextActions, src)
 
