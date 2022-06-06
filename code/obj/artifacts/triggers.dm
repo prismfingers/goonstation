@@ -6,9 +6,8 @@ ABSTRACT_TYPE(/datum/artifact_trigger/)
 	var/stimulus_required = null
 	var/do_amount_check = 1
 	var/stimulus_amount = null
-	var/stimulus_type = ">="
+	var/stimulus_type = ARTIFACT_STIMULUS_AMOUNT_GEQ
 	var/hint_range = 0
-	var/hint_prob = 33
 	var/used = 1
 
 /datum/artifact_trigger/carbon_touch
@@ -27,7 +26,6 @@ ABSTRACT_TYPE(/datum/artifact_trigger/)
 	type_name = "Physical Force"
 	stimulus_required = "force"
 	hint_range = 20
-	hint_prob = 75
 
 	New()
 		..()
@@ -56,31 +54,27 @@ ABSTRACT_TYPE(/datum/artifact_trigger/)
 	type_name = "Radiation"
 	stimulus_required = "radiate"
 	hint_range = 2
-	hint_prob = 75
 
 	New()
 		..()
-		stimulus_type = pick(">=","<=")
+		stimulus_type = pick(ARTIFACT_STIMULUS_AMOUNT_GEQ, ARTIFACT_STIMULUS_AMOUNT_LEQ)
 		stimulus_amount = rand(1,10)
 
 /datum/artifact_trigger/electric
 	type_name = "Electricity"
 	stimulus_required = "elec"
 	hint_range = 500
-	hint_prob = 66
 
 	New()
 		..()
-		stimulus_type = pick(">=","<=")
+		stimulus_type = pick(ARTIFACT_STIMULUS_AMOUNT_GEQ, ARTIFACT_STIMULUS_AMOUNT_LEQ)
 		stimulus_amount = rand(5,5000)
 
 /datum/artifact_trigger/reagent
 	type_name = "Chemicals"
 	stimulus_required = "reagent"
 	// can just use the above var as the required reagent field really
-	stimulus_type = ">="
 	hint_range = 50
-	hint_prob = 100
 	used = 0
 
 	New()

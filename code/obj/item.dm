@@ -1004,26 +1004,15 @@
 				src.material.triggerTemp(src ,7500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 7500)
 				src.combust()
-			if (src.artifact)
-				if (!src.ArtifactSanityCheck()) return
-				src.ArtifactStimulus("force", 75)
-				src.ArtifactStimulus("heat", 450)
 		if (3.0)
 			if (src.material)
 				src.material.triggerTemp(src, 3500)
 			if (src.burn_possible && !src.burning && src.burn_point <= 3500)
 				src.combust()
-			if (src.artifact)
-				if (!src.ArtifactSanityCheck()) return
-				src.ArtifactStimulus("force", 25)
-				src.ArtifactStimulus("heat", 380)
 		else
 	return ..()
 
 /obj/item/blob_act(var/power)
-	if (src.artifact)
-		if (!src.ArtifactSanityCheck()) return
-		src.Artifact_blob_act(power)
 	return
 
 //nah
@@ -1164,10 +1153,6 @@
 			bible.hud.remove_item(src)
 	user.put_in_hand_or_drop(src)
 
-	if (src.artifact)
-		if (src.ArtifactSanityCheck())
-			src.ArtifactTouched(user)
-
 	if (hide_attack != 1)
 		if (pickup_sfx)
 			playsound(oldloc_sfx, pickup_sfx, 56, vary=0.2)
@@ -1259,9 +1244,6 @@
 	if (prob(stam_crit_pow) && !M.check_block()?.can_block(src.hit_type, 0))
 		msgs.stamina_crit = 1
 		msgs.played_sound = pick(sounds_punch)
-		//moved to item_attack_message
-		//msgs.visible_message_target("<span class='alert'><B><I>... and lands a devastating hit!</B></I></span>")
-
 	msgs.played_sound = src.hitsound
 
 	var/power = src.force + src.getProperty("searing")

@@ -82,7 +82,7 @@
 	blob_act(var/power)
 		return
 	bullet_act()
-		return
+		SHOULD_CALL_PARENT(FALSE)
 
 /turf/unsimulated/wall/adaptive/wizard_window
 	icon = 'icons/turf/adventure.dmi'

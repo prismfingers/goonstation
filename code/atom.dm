@@ -876,10 +876,7 @@
 //Return an atom if you want to make the projectile's effects affect that instead.
 
 /atom/proc/bullet_act(var/obj/projectile/P)
-	SHOULD_CALL_PARENT(TRUE)
 	if(src.material) src.material.triggerOnBullet(src, src, P)
-	return
-
 
 /**
   * this handles RL_Lighting for luminous atoms and some child types override it for extra stuff

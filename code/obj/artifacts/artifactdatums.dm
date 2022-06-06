@@ -142,33 +142,27 @@ ABSTRACT_TYPE(/datum/artifact/)
 
 	/// What the artifact does if touched while activated.
 	proc/effect_touch(var/obj/O,var/mob/living/user)
-		if (!O || !user)
-			return 1
 		O.add_fingerprint(user)
 		return 0
 
 	/// What the artifact does when it is activated and you smack a person with it.
-	/// Only called in /obj/item/artifact/melee_weapon so far.
+	/// Only used by /obj/item/artifact/melee_weapon so far.
 	proc/effect_melee_attack(var/obj/O,var/mob/living/user,var/mob/living/target)
-		if (!O || !user || !target)
-			return 1
 		O.add_fingerprint(user)
 		ArtifactLogs(user, target, O, "weapon", null, 0)
-		return 0
+		return FALSE
 
 	/// What the artifact does after you clicked some tile with it when activated.
 	/// Basically like afterattack() for activated artifacts.
 	proc/effect_click_tile(var/obj/O,var/mob/living/user,var/turf/T)
-		if (!O || !user || !T)
-			return 1
 		if (!user.in_real_view_range(T))
-			return 1
-		else if (!user.client && get_dist(T,user) > world.view) // idk, SOMEhow someone would find a way
 			return 1
 		O.add_fingerprint(user)
 		if (!istype(O, /obj/item/artifact/attack_wand)) // Special log handling required there.
 			ArtifactLogs(user, T, O, "used", "triggering its effect on target turf", 0)
 		return 0
+
+	proc/effect_attacked_by(obj/item/I, mob/user)
 
 	/// Gets the trigger instance of this name if the artifact has that trigger.
 	proc/get_trigger_by_string(var/string)

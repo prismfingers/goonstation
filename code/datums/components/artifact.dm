@@ -1,18 +1,25 @@
 TYPEINFO(/datum/component/artifact)
 	initialization_args = list(
-		ARG_INFO("artifact_type", DATA_INPUT_TYPE, "What type of artifact should this component correspond to", /datum/artifact)
-		ARG_INFO("scramble_appearance", DATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", null)
+		ARG_INFO("artifact_type", DATA_INPUT_TYPE, "What type of artifact should this component correspond to", /datum/artifact),
+		ARG_INFO("scramble_appearance", DATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", null),
+		ARG_INFO("forceartiorigin", DATA_INPUT_TEXT, "Should we force this artifact to be a specific origin? Warning: will potentially create unusual artifacts if a type is also specified.", null)
 	)
 
+/**
+ * A component to interface between movable atoms which are "artifacts" and their actual artifact datums.
+ * Individual artifact behaviors are handled in the artifact datum, but operations such as appearance setup, preocessing stimuli,
+ * adding and activating faults, and activating and deactivating the artifact are all handled here.
+ */
 /datum/component/artifact
-	dupe_mode = ALLOWED // I'm adding multi artifacts and nobody can stop me
-	/// atom typed version of parent
+	dupe_mode = COMPONENT_DUPE_ALLOWED // I'm adding multi artifacts and nobody can stop me
+	/// atom typed version of parent, traditionally /obj. The actual, on-map object which people interact with.
 	var/atom/movable/artifact_atom
-	/// Actual artifact datum
+	/// Artifact datum, which handles all artifact behavior behind the scenes.
 	var/datum/artifact/artifact
 
 
-/datum/component/artifact/Initialize(var/artifact_type, var/scramble_appearance)
+/datum/component/artifact/Initialize(var/artifact_type, var/scramble_appearance, var/forceartiorigin)
+
 	if (!istype(parent, /atom/movable)) // No turf artifacts fuck you
 		return COMPONENT_INCOMPATIBLE
 	if (!ispath(artifact_type))
@@ -20,35 +27,45 @@ TYPEINFO(/datum/component/artifact)
 
 	src.artifact_atom = src.parent
 	src.artifact = new artifact_type()
+	src.artifact.holder = src.artifact_atom
+
+	// Signal stuff
+	// attack_x (people poking/hitting artifact)
+	RegisterSignal(src.artifact_atom, COMSIG_ATTACKBY, .proc/artifact_attackby)
+	RegisterSignal(src.artifact_atom, COMSIG_ATTACKHAND, .proc/artifact_attackhand)
+
+	// etc_act (artifact being acted on by explosions, blob, meteor, etc)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_HITBBY_PROJ, .proc/artifact_bullet_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_REAGENT_ACT, .proc/artifact_reagent_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_METEORHIT, .proc/artifact_meteorhit)
+
+	// Misc
+	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
+
+	// Clean up artifact/drop stuff on parent deletion
+	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
+
+	// Stuff only relevant to artifact items
+	if (isitem(src.artifact_atom))
+		RegisterSignal(src.artifact_atom, COMSIG_ITEM_ATTACK_PRE, .proc/artifact_attack)
 
 	// Setup actual origin
 	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(A.validtypes))
 	src.artifact.artitype = real_origin
 
-	// Signal stuff
-	RegisterSignal(src.artifact_atom, COMSIG_ATTACKBY, .proc/artifact_attackby)
-	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_REAGENT_ACT, .proc/artifact_reagent_act)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_METEORHIT, .proc/artifact_meteorhit)
-
-
 	// Make this appear like an artifact
 	if (scramble_appearance)
 
 		// Origin we appear as- small chance to be different from the actual origin
-		var/datum/artifact_origin/appearance_origin = artifact_controls.get_origin_from_string(AO.name)
+		var/datum/artifact_origin/appearance_origin = real_origin
 		if (prob(real_origin.scramblechance))
 			appearance_origin = null
 
 		// If we nulled the appearance, pick a random one
 		if (!istype(appearance_origin, /datum/artifact_origin/))
-			var/list/all_origin_names = list()
-			for (var/datum/artifact_origin/O in artifact_controls.artifact_origins)
-				all_origin_names += O.name
-			appearance_origin = artifact_controls.get_origin_from_string(pick(all_origin_names))
+			appearance_origin = artifact_controls.get_origin_from_string(pick(artifact_controls.artifact_origin_names))
 
 		// Artifact-ize name
 		var/name1 = pick(appearance_origin.adjectives)
@@ -60,7 +77,7 @@ TYPEINFO(/datum/component/artifact)
 
 		src.artifact_atom.name = "[name1] [name2]"
 		src.artifact_atom.real_name = "[name1] [name2]"
-		src.artifact_atom.desc = "You have no idea what this thing is!"
+		src.artifact_atom.desc = "You have no idea what this thing is!<br>[src.artifact.examine_hint]"
 		artifact.touch_descriptors |= real_origin.touch_descriptors
 
 		//Artifact-ize sprite
@@ -104,11 +121,12 @@ TYPEINFO(/datum/component/artifact)
 					valid_triggers -= selection
 
 
-		// Finally, add to artifact controller so we can track it
-		artifact_controls.artifacts += src
+		// Finally, add to artifact controller so we can track it and run the artifact's setup
+		artifact_controls.artifacts += src.artifact_atom
+		src.artifact.post_setup
 
 /datum/component/artifact/UnregisterFromParent()
-	artifact_controls.artifacts -= src
+	artifact_controls.artifacts -= src.artifact_atom
 
 /**
  * Proc called to possibly give an artifact a fault, depending on probability. Called in New() with a low probability, and also whenever you
@@ -129,15 +147,20 @@ TYPEINFO(/datum/component/artifact)
 		else
 			stack_trace("Didn't get a path from fault_types. Got \[[new_fault]\] instead.")
 
-/datum/component/artifact/proc/take_damage(var/damage)
+/datum/component/artifact/proc/artifact_mob_flip_inside(mob/flipper)
+	src.ArtifactTakeDamage(rand(5, 20))
+	flipper.visible_message("<span class='alert'>\the [src.artifact_atom] seems to be a bit more damaged!</span>")
+
+/datum/component/artifact/proc/artifact_take_damage(var/damage)
 	src.artifact.health -= damage
 	src.artifact.health = min(A.health, 100)
 
 	if (src.artifact.health <= 0)
 		qdel(src.artifact_atom)
 
-/// Called before the parent atom is deleted
+/// Called before the parent atom is deleted. DO NOT CALL THIS SHIT JUST DELETE THE THING PARENT ATOM
 /datum/component/artifact/proc/artifact_destroyed()
+
 	var/turf/T = get_turf(src)
 	if (istype(T, /turf/))
 		T.visible_message("<span class='alert><b>[src] [src.artifact.artitype.destruction_message]</b></span>")
@@ -146,6 +169,8 @@ TYPEINFO(/datum/component/artifact)
 	src.artifact_deactivated()
 
 	artifact_controls.artifacts -= src.artifact_atom
+
+	qdel(src.artifact)
 
 // This is for a tool/item artifact that you can use. If it has a fault, whoever is using it is basically rolling the dice
 // every time the thing is used (a check to see if rand(1,faultcount) hits 1 most of the time) and if they're unlucky, the
@@ -211,8 +236,16 @@ TYPEINFO(/datum/component/artifact)
 	src.artifact.effect_deactivate(src.artifact_atom)
 
 
-/// Called when someone pokes this artifact
-/datum/component/artifact/proc/artifact_touched(mob/user)
+/// Called when someone hits another mob with this artifact (only relevant to artifact items)
+/datum/component/artifact/proc/artifact_attack(obj/item/weapon, mob/target, mob/user)
+	if (src.artifact.activated)
+		src.ArtifactFaultUsed(user)
+		src.ArtifactFaultUsed(M)
+		src.artifact.effect_melee_attack(weapon, user, target)
+
+/// Called when someone pokes this artifact, or is shoved into it
+/datum/component/artifact/proc/artifact_attack_hand(mob/user)
+	user.lastattacked = src.artifact_atom // no spam
 	if (!in_interact_range(get_turf(src.artifact_atom), user))
 		return
 	if (isAI(user))
@@ -245,6 +278,7 @@ TYPEINFO(/datum/component/artifact)
 /datum/component/artifact/proc/artifact_attackby(var/artifact_atom, var/obj/item/I, var/mob/attacker)
 
 	. = FALSE
+	attacker.lastattacked = src.artifact_atom // no spam
 
 	if (isrobot(user))
 		src.artifact_stimulus("silitouch", 1)
@@ -362,8 +396,7 @@ TYPEINFO(/datum/component/artifact)
 	if (W.force)
 		src.artifact_stimulus("force", W.force)
 
-	// TODO refactor this shit into a usable state
-	src.ArtifactHitWith(W, user)
+	src.artifact.effect_attacked_by(W, user)
 	return TRUE
 
 
@@ -372,6 +405,7 @@ TYPEINFO(/datum/component/artifact)
 	src.artifact_stimulus("force", power)
 	src.artifact_stimulus("carbtouch", 1)
 
+/// Called when an explosion hits this artifact
 /datum/component/artifact/proc/artifact_ex_act(var/severity)
 	switch(severity)
 		if(1.0)
@@ -383,6 +417,26 @@ TYPEINFO(/datum/component/artifact)
 		if(3.0)
 			src.artifact_stimulus("force", 25)
 			src.artifact_stimulus("heat", 380)
+
+/// Called when a projectile impacts this artifact
+/datum/component/artifact/proc/artifact_bullet_act(obj/projectile/shot)
+	switch (shot.proj_data.damage_type)
+		if(D_KINETIC,D_PIERCING,D_SLASHING)
+			var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.loc
+			I?.impactpad_senseforce_shot(src, P)
+			src.ArtifactStimulus("force", shot.power)
+		if(D_ENERGY)
+			src.ArtifactStimulus("elec", shot.power * 10)
+		if(D_BURNING)
+			src.ArtifactStimulus("heat", 310 + (shot.power * 5))
+		if(D_RADIOACTIVE)
+			src.ArtifactStimulus("radiate", shot.power)
+
+/// Called when this artifact is hit by a thrown movable
+/datum/component/artifact/proc/artifact_hitby(atom/movable/AM, datum/thrown_thing/thr)
+	src.ArtifactStimulus("force", AM.throwforce)
+	var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.contents
+	pad?.impactpad_senseforce(src.artifact_atom, AM)
 
 /// Called when this artifact is hit by an EMP
 /datum/component/artifact/proc/artifact_emp_act()
@@ -492,8 +546,7 @@ TYPEINFO(/datum/component/artifact)
 					else
 						if (istext(A.hint_text))
 							if (strength >= trigger.stimulus_amount - trigger.hint_range && strength <= trigger.stimulus_amount + trigger.hint_range)
-								if (prob(trigger.hint_prob))
-									T.visible_message("<b>[src]</b> [A.hint_text]")
+								T.visible_message("<b>[src]</b> [A.hint_text]")
 				else
 					src.ArtifactActivated()
 
@@ -509,3 +562,35 @@ TYPEINFO(/datum/component/artifact)
 		src.visible_message("The artifact form that was attached falls to the ground.")
 	else if(removed > 1)
 		src.visible_message("All the artifact forms that were attached fall to the ground.")
+
+
+// Not part of the component but I'm putting it here anyways
+/// Spawn an artifact somewhere.
+/proc/Artifact_Spawn(var/atom/T, var/forceartiorigin, var/datum/artifact/forceartitype = null)
+	if (!T)
+		return
+
+	var/list/artifactweights
+	if(forceartiorigin)
+		artifactweights = artifact_controls.artifact_rarities[forceartiorigin]
+	else
+		artifactweights = artifact_controls.artifact_rarities["all"]
+
+	var/datum/artifact/picked
+	if(forceartitype)
+		picked = forceartitype
+	else
+		if (artifactweights.len == 0)
+			return
+		picked = weighted_pick(artifactweights)
+
+	var/type = null
+	if(ispath(picked,/datum/artifact/))
+		type = initial(picked.associated_object)	// artifact type
+	else
+		return
+
+	if (istext(forceartiorigin))
+		new type(T,forceartiorigin)
+	else
+		new type(T)

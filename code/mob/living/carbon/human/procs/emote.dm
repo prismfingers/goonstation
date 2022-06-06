@@ -1704,6 +1704,7 @@
 					//		animate(transform = turn(GetPooledMatrix(), -360), time = 1, loop = -1)
 					if (isobj(src.loc))
 						var/obj/container = src.loc
+						SEND_SIGNAL(container, COMSIG_OBJ_FLIP_INSIDE, src)
 						container.mob_flip_inside(src)
 
 					if (!iswrestler(src))

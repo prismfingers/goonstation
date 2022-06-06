@@ -17,8 +17,6 @@
 
 	attackby()
 	attack_hand()
-	hitby()
-		. = ..()
 	bullet_act()
 	ex_act()
 	blob_act()
@@ -53,9 +51,8 @@
 		..()
 		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
 
-	hitby()
-		. = ..()
 	bullet_act()
+		SHOULD_CALL_PARENT(FALSE)
 	ex_act()
 	blob_act()
 	meteorhit()
@@ -75,9 +72,8 @@
 		..()
 		APPLY_ATOM_PROPERTY(src, PROP_ATOM_REAGENT_ACT_IMMUNE, src)
 
-	hitby()
-		. = ..()
 	bullet_act()
+		SHOULD_CALL_PARENT(FALSE)
 	ex_act()
 	blob_act()
 	meteorhit()
@@ -113,8 +109,6 @@
 
 	attackby()
 	attack_hand()
-	hitby()
-		. = ..()
 	bullet_act()
 	ex_act()
 	blob_act()

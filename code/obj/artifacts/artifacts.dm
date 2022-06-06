@@ -21,30 +21,7 @@
 		SPAWN(0)
 			src.ArtifactSetup()
 
-	disposing()
-		artifact_controls.artifacts -= src
-		..()
-
-	UpdateName()
-		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
-
-	attack_hand(mob/user)
-		user.lastattacked = src
-		src.ArtifactTouched(user)
-		return
-
-	attack_ai(mob/user as mob)
-		return attack_hand(user)
-
-	attackby(obj/item/W, mob/user)
-		user.lastattacked = src
-		if (src.Artifact_attackby(W,user))
-			..()
-
-	meteorhit(obj/O as obj)
-		src.ArtifactStimulus("force", 60)
-		..()
-
+	// TODO
 	examine()
 		. = list("You have no idea what this thing is!")
 		if (!src.ArtifactSanityCheck())
@@ -52,59 +29,6 @@
 		var/datum/artifact/A = src.artifact
 		if (istext(A.examine_hint))
 			. += A.examine_hint
-
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
-				src.ArtifactStimulus("force", 200)
-				src.ArtifactStimulus("heat", 500)
-			if(2.0)
-				src.ArtifactStimulus("force", 75)
-				src.ArtifactStimulus("heat", 450)
-			if(3.0)
-				src.ArtifactStimulus("force", 25)
-				src.ArtifactStimulus("heat", 380)
-		return
-
-	reagent_act(reagent_id,volume)
-		if (..())
-			return
-		src.Artifact_reagent_act(reagent_id, volume)
-		return
-
-	emp_act()
-		src.Artifact_emp_act()
-
-	blob_act(var/power)
-		src.Artifact_blob_act(power)
-
-	bullet_act(var/obj/projectile/P)
-		if(src.material) src.material.triggerOnBullet(src, src, P)
-
-		switch (P.proj_data.damage_type)
-			if(D_KINETIC,D_PIERCING,D_SLASHING)
-				for (var/obj/machinery/networked/test_apparatus/impact_pad/I in src.loc.contents)
-					I.impactpad_senseforce_shot(src, P)
-				src.ArtifactStimulus("force", P.power)
-			if(D_ENERGY)
-				src.ArtifactStimulus("elec", P.power * 10)
-			if(D_BURNING)
-				src.ArtifactStimulus("heat", 310 + (P.power * 5))
-			if(D_RADIOACTIVE)
-				src.ArtifactStimulus("radiate", P.power)
-		..()
-
-	hitby(atom/movable/M, datum/thrown_thing/thr)
-		if (isitem(M))
-			var/obj/item/ITM = M
-			for (var/obj/machinery/networked/test_apparatus/impact_pad/I in src.loc.contents)
-				I.impactpad_senseforce(src, ITM)
-		..()
-
-	mob_flip_inside(mob/user)
-		. = ..()
-		src.ArtifactTakeDamage(rand(5,20))
-		boutput(user, "<span class='alert'>It seems to be a bit more damaged!</span>")
 
 /obj/machinery/artifact
 	name = "artifact large art piece"
@@ -128,10 +52,6 @@
 		SPAWN(0)
 			src.ArtifactSetup()
 
-	disposing()
-		artifact_controls.artifacts -= src
-		..()
-
 	examine()
 		. = list("You have no idea what this thing is!")
 		if (!src.ArtifactSanityCheck())
@@ -139,9 +59,6 @@
 		var/datum/artifact/A = src.artifact
 		if (istext(A.examine_hint))
 			. += A.examine_hint
-
-	UpdateName()
-		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
 
 	process()
 		..()
@@ -151,60 +68,6 @@
 
 		if (A.activated)
 			A.effect_process(src)
-
-	attack_hand(mob/user)
-		src.ArtifactTouched(user)
-		return
-
-	attack_ai(mob/user as mob)
-		return attack_hand(user)
-
-	attackby(obj/item/W, mob/user)
-		if (src.Artifact_attackby(W,user))
-			..()
-
-	meteorhit(obj/O as obj)
-		src.ArtifactStimulus("force", 60)
-		..()
-
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
-				src.ArtifactStimulus("force", 200)
-				src.ArtifactStimulus("heat", 500)
-			if(2.0)
-				src.ArtifactStimulus("force", 75)
-				src.ArtifactStimulus("heat", 450)
-			if(3.0)
-				src.ArtifactStimulus("force", 25)
-				src.ArtifactStimulus("heat", 380)
-
-	reagent_act(reagent_id,volume)
-		if (..())
-			return
-		src.Artifact_reagent_act(reagent_id, volume)
-		return
-
-	emp_act()
-		src.Artifact_emp_act()
-
-	blob_act(var/power)
-		src.Artifact_blob_act(power)
-
-	bullet_act(var/obj/projectile/P)
-		switch (P.proj_data.damage_type)
-			if(D_KINETIC,D_PIERCING,D_SLASHING)
-				src.ArtifactStimulus("force", P.power)
-				if (istype(src.loc,/turf/))
-					for (var/obj/machinery/networked/test_apparatus/impact_pad/I in src.loc.contents)
-						I.impactpad_senseforce_shot(src, P)
-			if(D_ENERGY)
-				src.ArtifactStimulus("elec", P.power * 10)
-			if(D_BURNING)
-				src.ArtifactStimulus("heat", 310 + (P.power * 5))
-			if(D_RADIOACTIVE)
-				src.ArtifactStimulus("radiate", P.power)
-		..()
 
 	hitby(atom/movable/M, datum/thrown_thing/thr)
 		if (isitem(M))
@@ -232,42 +95,7 @@
 		SPAWN(0)
 			src.ArtifactSetup()
 
-	disposing()
-		artifact_controls.artifacts -= src
-		..()
 
-	examine()
-		. = list("You have no idea what this thing is!")
-		if (!src.ArtifactSanityCheck())
-			return
-		var/datum/artifact/A = src.artifact
-		if (istext(A.examine_hint))
-			. += A.examine_hint
-
-	UpdateName()
-		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
-
-	attackby(obj/item/W, mob/user)
-		if (src.Artifact_attackby(W,user))
-			..()
-
-//ex_act is handled by the item parent
-
-	emp_act()
-		src.Artifact_emp_act()
-
-	reagent_act(reagent_id,volume)
-		if (..())
-			return
-		src.Artifact_reagent_act(reagent_id, volume)
-		return
-
-	hitby(atom/movable/M, datum/thrown_thing/thr)
-		if (isitem(M))
-			var/obj/item/ITM = M
-			for (var/obj/machinery/networked/test_apparatus/impact_pad/I in src.loc.contents)
-				I.impactpad_senseforce(src, ITM)
-		..()
 
 /obj/artifact_spawner
 	// pretty much entirely for debugging/gimmick use

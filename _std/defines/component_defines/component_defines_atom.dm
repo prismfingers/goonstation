@@ -47,6 +47,8 @@
 	#define COMSIG_ATOM_EMP_ACT "atom_emp_act"
 	/// Atom is hit by a meteor or similar (railgun, very heavy obj)
 	#define COMSIG_ATOM_METEORHIT "atom_meteorhit"
+	/// Atom has reagents applied to it (reagent ID, volume)
+	#define COMSIG_ATOM_REAGENT_ACT "atom_reagent_act"
 
 // ---- atom/movable signals ----
 
@@ -76,9 +78,12 @@
 
 // ---- obj signals ----
 
+	/// Called when a mob flips while being inside this obj's contents (flipping)
+	#define COMSIG_OBJ_FLIP_INSIDE "obj_flip_inside"
+
 // ---- obj/critter signals ----
 
-	// When an obj/critter dies
+	/// When an obj/critter dies
 	#define COMSIG_OBJ_CRITTER_DEATH "obj_critter_death"
 
 // ---- obj/storage signals ----
@@ -103,7 +108,7 @@
 	#define COMSIG_ITEM_PICKUP "itm_pickup"
 	/// When an item is picked dropped (user)
 	#define COMSIG_ITEM_DROPPED "itm_drop"
-	/// When an item is used to attack a mob
+	/// After an item is used to attack a mob (target mob, user mob)
 	#define COMSIG_ITEM_ATTACK_POST "itm_atk_post"
 	/// Just before an item is eaten
 	#define COMSIG_ITEM_CONSUMED_PRE "itm_atk_consumed_pre"
@@ -113,7 +118,7 @@
 	#define COMSIG_ITEM_CONSUMED_PARTIAL "itm_atk_consumed_partial"
 	/// After we've consumed an item
 	#define COMSIG_ITEM_CONSUMED_ALL "itm_atk_consumed_all"
-	/// When an item is used to attack a mob before it actually hurts the mob
+	/// When an item is used to attack a mob before it actually hurts the mob (target mob, user mob)
 	#define COMSIG_ITEM_ATTACK_PRE "itm_atk_pre"
 	/// When an item is used in-hand
 	#define COMSIG_ITEM_ATTACK_SELF "itm_atk_self"

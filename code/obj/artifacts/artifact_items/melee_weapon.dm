@@ -1,19 +1,6 @@
 /obj/item/artifact/melee_weapon
 	name = "artifact melee weapon"
-	artifact = 1
 	associated_datum = /datum/artifact/melee
-	click_delay = COMBAT_CLICK_DELAY
-
-	attack(mob/M, mob/user)
-		if (!src.ArtifactSanityCheck())
-			return
-		var/datum/artifact/A = src.artifact
-		if (A.activated)
-			A.effect_melee_attack(src,user,M)
-			src.ArtifactFaultUsed(user)
-			src.ArtifactFaultUsed(M)
-		else
-			..()
 
 /datum/artifact/melee
 	associated_object = /obj/item/artifact/melee_weapon

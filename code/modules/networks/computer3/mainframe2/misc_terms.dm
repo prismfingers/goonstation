@@ -3938,10 +3938,10 @@
 						src.impactpad_senseforce_shot(I, P)
 				return
 
-	proc/impactpad_senseforce(var/obj/I, var/obj/item/M)
+	proc/impactpad_senseforce(var/obj/I, var/atom/movable/AM)
 		if (istype(I.artifact,/datum/artifact/))
 			var/datum/artifact/ARTDATA = I.artifact
-			var/stimforce = M.throwforce
+			var/stimforce = AM.throwforce
 			src.sensed[1] = stimforce * ARTDATA.react_mpct[1]
 			src.sensed[2] = stimforce * ARTDATA.react_mpct[2]
 			if (src.sensed[2] != 0 && length(ARTDATA.faults))
