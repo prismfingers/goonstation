@@ -410,6 +410,7 @@
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/throwforce = 1
+	var/real_name = null
 
 	/// Temporary value to smuggle newloc to Uncross during Move-related procs
 	var/tmp/atom/movement_newloc = null

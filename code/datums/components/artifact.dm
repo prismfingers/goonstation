@@ -32,18 +32,18 @@ TYPEINFO(/datum/component/artifact)
 	// Signal stuff
 	// attack_x (people poking/hitting artifact)
 	RegisterSignal(src.artifact_atom, COMSIG_ATTACKBY, .proc/artifact_attackby)
-	RegisterSignal(src.artifact_atom, COMSIG_ATTACKHAND, .proc/artifact_attackhand)
+	RegisterSignal(src.artifact_atom, COMSIG_ATTACKHAND, .proc/artifact_attack_hand)
 
 	// etc_act (artifact being acted on by explosions, blob, meteor, etc)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_BLOB_ACT, .proc/artifact_blob_act)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EX_ACT, .proc/artifact_ex_act)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_HITBBY_PROJ, .proc/artifact_bullet_act)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_HITBY_PROJ, .proc/artifact_bullet_act)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_REAGENT_ACT, .proc/artifact_reagent_act)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_METEORHIT, .proc/artifact_meteorhit)
 
 	// Misc
 	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
-	RegisterSignal(src.artifact_atom, COMSIG_ATOM_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
+	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
 
 	// Clean up artifact/drop stuff on parent deletion
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
@@ -53,7 +53,7 @@ TYPEINFO(/datum/component/artifact)
 		RegisterSignal(src.artifact_atom, COMSIG_ITEM_ATTACK_PRE, .proc/artifact_attack)
 
 	// Setup actual origin
-	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(A.validtypes))
+	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(src.artifact.validtypes))
 	src.artifact.artitype = real_origin
 
 	// Make this appear like an artifact
@@ -77,7 +77,8 @@ TYPEINFO(/datum/component/artifact)
 			name2 = pick(appearance_origin.nouns_large)
 
 		src.artifact_atom.name = "[name1] [name2]"
-		src.artifact_atom.real_name = "[name1] [name2]"
+		if (ismob)
+			src.artifact_atom.real_name = "[name1] [name2]"
 		src.artifact_atom.desc = "You have no idea what this thing is!<br>[src.artifact.examine_hint]"
 		artifact.touch_descriptors |= real_origin.touch_descriptors
 

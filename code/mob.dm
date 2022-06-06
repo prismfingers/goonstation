@@ -67,7 +67,6 @@
 	var/ear_damage = null
 	var/ear_disability = null
 	var/stuttering = null
-	var/real_name = null
 	var/blinded = null
 	var/druggy = 0
 	var/sleeping = 0.0

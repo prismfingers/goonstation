@@ -1,5 +1,4 @@
 /obj
-	var/real_name = null
 	var/real_desc = null
 	var/m_amt = 0	// metal
 	var/g_amt = 0	// glass
