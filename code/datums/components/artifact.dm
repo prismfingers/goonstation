@@ -77,13 +77,12 @@ TYPEINFO(/datum/component/artifact)
 			name2 = pick(appearance_origin.nouns_large)
 
 		src.artifact_atom.name = "[name1] [name2]"
-		if (ismob)
-			src.artifact_atom.real_name = "[name1] [name2]"
+		src.artifact_atom.real_name = "[name1] [name2]"
 		src.artifact_atom.desc = "You have no idea what this thing is!<br>[src.artifact.examine_hint]"
 		artifact.touch_descriptors |= real_origin.touch_descriptors
 
 		//Artifact-ize sprite
-		src.icon_state = appearance_origin.name + "-[rand(1, appearance_origin.max_sprites)]"
+		src.artifact_atom.icon_state = appearance_origin.name + "-[rand(1, appearance_origin.max_sprites)]"
 		if (isitem(src))
 			var/obj/item/I = src.artifact_atom
 			I.item_state = appearance_origin.name
@@ -97,9 +96,9 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact.react_mpct[2] = real_origin.impact_reaction_two
 		src.artifact.react_heat[1] = real_origin.heat_reaction_one
 		src.artifact.activ_sound = pick(real_origin.activation_sounds)
-		src.artifact.fault_types |= real_origin.fault_types - A.fault_blacklist
+		src.artifact.fault_types |= real_origin.fault_types - src.artifact.fault_blacklist
 		src.artifact.internal_name = real_origin.generate_name()
-		src.artifact.used_names[real_origin.type_name] = A.internal_name
+		src.artifact.used_names[real_origin.type_name] = src.artifact.internal_name
 		src.artifact.nofx = real_origin.nofx
 
 		// Low chance to start with a fault
@@ -111,15 +110,15 @@ TYPEINFO(/datum/component/artifact)
 
 		// Generate activation triggers
 		if (!src.artifact.automatic_activation)
-			var/list/valid_triggers = A.validtriggers
-			var/trigger_amount = rand(A.min_triggers,A.max_triggers)
+			var/list/valid_triggers = src.artifact.validtriggers
+			var/trigger_amount = rand(src.artifact.min_triggers, src.artifact.max_triggers)
 			var/selection = null
 			while (trigger_amount > 0)
 				trigger_amount--
 				selection = pick(valid_triggers)
 				if (ispath(selection))
 					var/datum/artifact_trigger/trigger = new selection
-					A.triggers += trigger
+					src.artifact.triggers += trigger
 					valid_triggers -= selection
 
 
