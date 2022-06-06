@@ -69,6 +69,11 @@
 	/// when an atom hits something when being thrown (thrown_atom, hit_target, /datum/thrown_thing)
 	#define COMSIG_MOVABLE_HIT_THROWN "mov_hit_thrown"
 
+	// ---- artifacts ----
+
+	/// Send to an artifact atom to trigger faults on that atom. Does nothing to non-artifacts (user, cosmetic origin)
+	#define COMSIG_ARTIFACT_FAULT_USED "artifact_fault_used"
+
 	// ---- complex ----
 
 	/// when the outermost movable in the .loc chain changes (thing, old_outermost_movable, new_outermost_movable)

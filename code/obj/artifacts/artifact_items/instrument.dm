@@ -1,6 +1,6 @@
 /obj/item/instrument/artifact
 	name = "artifact instrument"
-    sounds_instrument = list()
+	sounds_instrument = list()
 	volume = 50
 	randomized_pitch = TRUE
 	desc_verb = list("plays", "makes", "causes")
@@ -10,7 +10,6 @@
 	New(var/loc, var/forceartiorigin)
 		..()
 		src.AddComponent(/datum/component/artifact, /datum/artifact/instrument, TRUE, forceartiorigin)
-
 
 	play(mob/user)
 		if (!ON_COOLDOWN(src, "artifact instrument spam", 25 SECONDS))

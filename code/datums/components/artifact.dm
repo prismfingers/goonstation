@@ -43,6 +43,7 @@ TYPEINFO(/datum/component/artifact)
 
 	// Misc
 	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
 
 	// Clean up artifact/drop stuff on parent deletion
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)

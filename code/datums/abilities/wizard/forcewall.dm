@@ -108,5 +108,5 @@
 	Bumped(AM)
 		. = ..()
 		if(source && ismob(AM))
-			source.ArtifactFaultUsed(AM)
+			SEND_SIGNAL(source, COMSIG_ARTIFACT_FAULT_USED, AM, src)
 
