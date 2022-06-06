@@ -73,6 +73,12 @@
 
 	/// Send to an artifact atom to trigger faults on that atom. Does nothing to non-artifacts (user, cosmetic origin)
 	#define COMSIG_ARTIFACT_FAULT_USED "artifact_fault_used"
+	/// Send to an artifact atom to apply a stimulus to it (stimulus, amount)
+	#define COMSIG_ARTIFACT_STIMULUS "artifact_stimulus"
+	/// Send to an artifact atom to activate it. Returns FALSE if already activated.
+	#define COMSIG_ARTIFACT_ACTIVATE "artifact_activate"
+	/// Send to an artifact to deactivate it Returns FALSE if already deactivated.
+	#define COMSIG_ARTIFACT_DEACTIVATE "artifact_deactivate"
 
 	// ---- complex ----
 

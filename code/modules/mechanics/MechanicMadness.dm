@@ -2943,12 +2943,6 @@
 			sounds = list('sound/misc/clownstep1.ogg','sound/misc/clownstep2.ogg')
 			volume = 50
 			delay = 5
-		else if (istype(W, /obj/item/artifact/instrument))
-			var/obj/item/artifact/instrument/I = W
-			instrument = I
-			sounds = islist(I.sounds_instrument) ? I.sounds_instrument : list(I.sounds_instrument)
-			volume = I.volume
-			delay = I.spam_timer
 		else // IT DON'T FIT
 			user.show_text("\The [W] isn't compatible with this component.", "red")
 
