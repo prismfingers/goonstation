@@ -16,3 +16,10 @@
 #define FAULT_RESULT_SUCCESS 0 //! everything's cool!
 #define FAULT_RESULT_STOP	1  //! we gotta stop, artifact was destroyed or deactivated
 #define FAULT_RESULT_INVALID 2 //! artifact can't do faults
+
+// Returns for sending the activate/deactivate signal
+#define ARTIFACT_ALREADY_ACTIVATED  (0 << 1)
+#define ARTIFACT_NOW_ACTIVATED 		(1 << 1)
+
+#define ARTIFACT_ALREADY_DEACTIVATED (0 << 1)
+#define ARTIFACT_NOW_DEACTIVATED	 (1 << 1)

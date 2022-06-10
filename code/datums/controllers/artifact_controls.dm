@@ -147,9 +147,7 @@ var/datum/artifact_controller/artifact_controls
 		USR_ADMIN_ONLY
 		if (href_list["Activate"])
 			var/atom/movable/art_atom = locate(href_list["Activate"]) in src.artifacts
-			if (A.activated)
-				SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_ACTIVATE)
-			else
+			if (SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_ACTIVATE) & ARTIFACT_ALREADY_ACTIVATED)
 				SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_DEACTIVATE)
 
 			src.log_me(usr, O, A.activated ? "activates" : "deactivates", 1)
