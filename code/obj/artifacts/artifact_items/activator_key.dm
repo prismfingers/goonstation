@@ -12,13 +12,16 @@
 	automatic_activation = 1
 	react_xray = list(12,80,95,8,"COMPLEX")
 	examine_hint = "It kinda looks like it's supposed to be inserted into something."
-	var/universal = 0 // normally it only activates its own type, but sometimes it can do all
-	var/activator = 1 // can also be a DEactivator key sometimes!
-	var/corrupting = 0 // generates faults in activated artifacts
+	var/universal = FALSE //! Normally it only activates its own type, but sometimes it can do all
+	var/corrupting = FALSE //! Generates faults in activated artifacts
 
 	post_setup()
 		. = ..()
 		if (prob(33))
-			src.universal = 1
+			src.universal = TRUE
 		if (src.artitype.name == "eldritch")
-			corrupting = 1
+			src.corrupting = TRUE
+
+	artifact_after
+
+

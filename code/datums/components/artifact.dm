@@ -297,8 +297,8 @@ TYPEINFO(/datum/component/artifact)
 		var/datum/artifact/activator_key/K = src.artifact
 
 		if (K.activated)
-			if (K.universal || A.artitype == K.artitype)
-				if (K.activator && !A.activated)
+			if (K.universal || src.artifact.artitype == K.artitype)
+				if (K.activator && !src.artifact.activated)
 					src.artifact_activated()
 					if(K.corrupting && src.artifact.faults.len < 10) // there's only so much corrupting you can do ok
 						for(var/i=1, i<rand(1, 3), i++)

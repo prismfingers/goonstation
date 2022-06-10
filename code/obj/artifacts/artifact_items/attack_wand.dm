@@ -20,7 +20,7 @@
 
 			user.lastattacked = src
 			var/turf/U = (istype(target, /atom/movable) ? target.loc : target)
-			A.effect_click_tile(src,user,U)
+			A.effect_afterattack(src,user,U)
 
 /datum/artifact/attack_wand
 	associated_object = /obj/item/artifact/attack_wand
@@ -65,7 +65,7 @@
 		// sonic
 		// yeah, I got nothing
 
-	effect_click_tile(var/obj/O,var/mob/living/user,var/turf/T)
+	effect_afterattack(var/obj/O,var/mob/living/user,var/turf/T)
 		if (..())
 			return
 		if (!ready)

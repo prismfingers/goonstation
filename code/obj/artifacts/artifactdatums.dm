@@ -154,13 +154,11 @@ ABSTRACT_TYPE(/datum/artifact/)
 
 	/// What the artifact does after you clicked some tile with it when activated.
 	/// Basically like afterattack() for activated artifacts.
-	proc/effect_click_tile(var/obj/O,var/mob/living/user,var/turf/T)
-		if (!user.in_real_view_range(T))
-			return 1
+	proc/effect_afterattack(var/obj/O, var/mob/living/user, var/atom/A)
+		if (!user.in_real_view_range(A))
+			return TRUE
 		O.add_fingerprint(user)
-		if (!istype(O, /obj/item/artifact/attack_wand)) // Special log handling required there.
-			ArtifactLogs(user, T, O, "used", "triggering its effect on target turf", 0)
-		return 0
+		return FALSE
 
 	/// Effect when the artifact is attacked by something
 	proc/effect_attacked_by(obj/item/I, mob/user)

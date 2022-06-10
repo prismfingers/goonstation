@@ -11,7 +11,7 @@
 		if (A.activated && target.loc != user)
 			user.lastattacked = src
 			var/turf/T = get_turf(target)
-			A.effect_click_tile(src,user,T)
+			A.effect_afterattack(src,user,T)
 			src.ArtifactFaultUsed(user)
 
 /datum/artifact/wallwand
@@ -38,7 +38,7 @@
 		src.icon_state = pick("shieldsparkles","empdisable","greenglow","enshield","energyorb","forcewall","meteor_shield")
 		src.wand_sound = pick('sound/effects/mag_forcewall.ogg','sound/effects/mag_golem.ogg','sound/effects/mag_iceburstlaunch.ogg','sound/effects/bamf.ogg','sound/weapons/ACgun2.ogg')
 
-	effect_click_tile(var/obj/O,var/mob/living/user,var/turf/T)
+	effect_afterattack(var/obj/O,var/mob/living/user,var/turf/T)
 		if (..())
 			return
 		if (!T)

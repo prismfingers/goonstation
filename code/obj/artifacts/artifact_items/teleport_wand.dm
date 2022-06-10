@@ -20,7 +20,7 @@
 		//var/turf/T = get_turf(target)
 		if (A.activated)
 			if (A.can_teleport_here(U,user))
-				A.effect_click_tile(src,user,U)
+				A.effect_afterattack(src,user,U)
 			else
 				boutput(user, "<b>[src]</b> [A.error_phrase]")
 
@@ -52,7 +52,7 @@
 		if (prob(5))
 			cooldown_delay = 0
 
-	effect_click_tile(var/obj/O,var/mob/living/user,var/turf/T)
+	effect_afterattack(var/obj/O,var/mob/living/user,var/turf/T)
 		if (..())
 			return
 		if (on_cooldown)
