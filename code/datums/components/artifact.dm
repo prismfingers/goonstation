@@ -291,22 +291,6 @@ TYPEINFO(/datum/component/artifact)
 	if (isrobot(attacker))
 		src.artifact_stimulus("silitouch", 1)
 
-	//// ---- BEGIN SHIT I AM NOT FIXING RN ----
-	if (istype(I, /obj/item/artifact/activator_key))
-		var/obj/item/artifact/activator_key/ACT = I
-		var/datum/artifact/activator_key/K = src.artifact
-
-		if (K.activated)
-			if (K.universal || src.artifact.artitype == K.artitype)
-				if (K.activator && !src.artifact.activated)
-					src.artifact_activated()
-					if(K.corrupting && src.artifact.faults.len < 10) // there's only so much corrupting you can do ok
-						for(var/i=1, i<rand(1, 3), i++)
-							src.ArtifactDevelopFault(100)
-				else if (src.artifact.activated)
-					src.artifact_deactivated()
-	//// ---- END SHIT ----
-
 	if (isweldingtool(I))
 		if (I:try_weld(attacker, 0, -1, FALSE, TRUE))
 			src.artifact_stimulus("heat", 800)
