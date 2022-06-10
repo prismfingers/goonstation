@@ -45,7 +45,7 @@
 	#define COMSIG_ATOM_EX_ACT "atom_ex_act"
 	/// Atom is hit by an EMP
 	#define COMSIG_ATOM_EMP_ACT "atom_emp_act"
-	/// Atom is hit by a meteor or similar (railgun, very heavy obj)
+	/// Atom is hit by a meteor or similar, such as a railgun or very heavy obj
 	#define COMSIG_ATOM_METEORHIT "atom_meteorhit"
 	/// Atom has reagents applied to it (reagent ID, volume)
 	#define COMSIG_ATOM_REAGENT_ACT "atom_reagent_act"
@@ -73,6 +73,8 @@
 
 	/// Send to an artifact atom to trigger faults on that atom. Does nothing to non-artifacts (user, cosmetic origin)
 	#define COMSIG_ARTIFACT_FAULT_USED "artifact_fault_used"
+	/// Send to an artifact to develop a fault with the passed probability, or omit the probability for a 100% chance (fault probability)
+	#define COMSIG_ARTIFACT_DEVELOP_FAULT "artifact_develop_fault"
 	/// Send to an artifact atom to apply a stimulus to it (stimulus, amount)
 	#define COMSIG_ARTIFACT_STIMULUS "artifact_stimulus"
 	/// Send to an artifact atom to activate it. Returns FALSE if already activated.
