@@ -146,46 +146,33 @@ var/datum/artifact_controller/artifact_controls
 	Topic(href, href_list[])
 		USR_ADMIN_ONLY
 		if (href_list["Activate"])
-			var/obj/O = locate(href_list["Activate"]) in src.artifacts
-			if (!istype(O,/obj/))
-				return
-			if (!istype(O.artifact,/datum/artifact/))
-				return
-			var/datum/artifact/A = O.artifact
+			var/atom/movable/art_atom = locate(href_list["Activate"]) in src.artifacts
 			if (A.activated)
-				O.ArtifactDeactivated()
+				SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_ACTIVATE)
 			else
-				O.ArtifactActivated()
+				SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_DEACTIVATE)
 
 			src.log_me(usr, O, A.activated ? "activates" : "deactivates", 1)
 
 		else if (href_list["Jumpto"])
-			var/obj/O = locate(href_list["Jumpto"]) in src.artifacts
-			if (!istype(O,/obj/))
-				return
-			var/turf/T = O.loc
+			var/atom/movable/art_atom = locate(href_list["Jumpto"]) in src.artifacts
+			var/turf/T = art_atom.loc
 			usr.set_loc(T)
 
 			src.log_me(usr, O, "jumps to", 0)
 
 		else if (href_list["Get"])
-			var/obj/O = locate(href_list["Get"]) in src.artifacts
-			if (!istype(O,/obj/))
-				return
+			var/atom/movable/art_atom = locate(href_list["Get"]) in src.artifacts
 			var/turf/T = usr.loc
-			O.set_loc(T)
+			art_atom.set_loc(T)
 
-			src.log_me(usr, O, "teleports", 0)
+			src.log_me(usr, art_atom, "teleports", 0)
 
 		else if (href_list["Destroy"])
-			var/obj/O = locate(href_list["Destroy"]) in src.artifacts
-			if (!istype(O,/obj/))
-				return
-			if (!istype(O.artifact,/datum/artifact/))
-				return
+			var/atom/movable/art_atom = locate(href_list["Destroy"]) in src.artifacts
 
-			src.log_me(usr, O, "destroys", 1)
-			O.ArtifactDestroyed()
+			src.log_me(usr, art_atom, "destroys", 1)
+			qdel(O)
 
 		else if (href_list["Spawnnew"])
 			var/turf/T = get_turf(usr)

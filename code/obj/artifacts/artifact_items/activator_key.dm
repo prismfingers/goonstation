@@ -22,7 +22,7 @@
 		if (src.artitype.name == "eldritch")
 			src.corrupting = TRUE
 
-	effect_afterattack(obj/O, mob/living/user, atom/A)
+	effect_afterattack(mob/living/user, atom/A)
 		if (..()) // range check
 			return
 
@@ -32,16 +32,13 @@
 		*   a Good Way That Works later.
 		*	No but seriously though these used to be dummy objects basically. Artifacts just typechecked and then activated when slapped with one.
 		*/
-		var/list/artifact_comps = holder.GetComponents(/datum/component/artifact)
+		var/list/artifact_comps = A.GetComponents(/datum/component/artifact)
 		for (var/datum/component/artifact/comp in artifact_comps)
 			if (comp.artifact.activated)
 				comp.artifact_deactivated()
 			else
 				comp.artifact_activated()
 
-		if(src.corrupting && length(src.faults) < 10) // there's only so much corrupting you can do ok
-			for(var/i = 1, i < rand(1, 3), i++)
-				SEND_SIGNAL(comp, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)
-
-
-
+			if(src.corrupting && length(src.faults) < 10) // there's only so much corrupting you can do ok
+				for(var/i = 1, i < rand(1, 3), i++)
+					SEND_SIGNAL(A, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)

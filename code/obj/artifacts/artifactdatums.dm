@@ -154,7 +154,7 @@ ABSTRACT_TYPE(/datum/artifact/)
 
 	/// What the artifact does after you clicked some tile with it when activated.
 	/// Basically like afterattack() for activated artifacts.
-	proc/effect_afterattack(obj/O, mob/living/user, atom/A)
+	proc/effect_afterattack(mob/living/user, atom/A)
 		if (!user.in_real_view_range(A))
 			return TRUE
 		O.add_fingerprint(user)

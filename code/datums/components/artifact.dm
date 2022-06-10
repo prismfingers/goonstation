@@ -42,10 +42,13 @@ TYPEINFO(/datum/component/artifact)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_METEORHIT, .proc/artifact_meteorhit)
 
 	// Misc
-	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
-	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EXAMINE, .proc/examine_hint)
+	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
+
+	// Artifact specific
+	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
 	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_DEVELOP_FAULT, .proc/maybe_develop_fault)
+	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_ACTIVATE, .proc/artifact_activated)
 
 	// Clean up artifact/drop stuff on parent deletion
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
@@ -204,7 +207,7 @@ TYPEINFO(/datum/component/artifact)
 			return FAULT_RESULT_STOP
 	return FAULT_RESULT_SUCCESS
 
-/// Called when this artifact is activated
+/// Called to activate this artifact and start applying whatever effects it has
 /datum/component/artifact/proc/artifact_activated()
 	if (src.artifact.activated)
 		return TRUE
@@ -225,7 +228,7 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.UpdateOverlays(src.artifact.fx_image, "activated")
 	src.artifact.effect_activate(src.artifact_atom)
 
-/// Called when this artifact is deactivated, whether automatically or through an activator key
+/// Called to deactivate this artifact, whether automatically or through an activator key
 /datum/component/artifact/proc/artifact_deactivated()
 	if (!src.artifact.activated) // do not deactivate if already deactivated
 		return
@@ -294,7 +297,7 @@ TYPEINFO(/datum/component/artifact)
 	if (isweldingtool(I))
 		if (I:try_weld(attacker, 0, -1, FALSE, TRUE))
 			src.artifact_stimulus("heat", 800)
-			src.visible_message("<span class='alert'>[attacker] burns \the [src.artifact_atom] with [I]!</span>")
+			src.artifact_atom.visible_message("<span class='alert'>[attacker] burns \the [src.artifact_atom] with [I]!</span>")
 			return
 
 	if (istype(I, /obj/item/device/light/zippo))
@@ -307,7 +310,7 @@ TYPEINFO(/datum/component/artifact)
 	if(istype(I, /obj/item/device/igniter))
 		src.artifact_stimulus("elec", 700)
 		src.artifact_stimulus("heat", 385)
-		src.artifact_atom.visible_message("<span class='alert'>[attacker] sparks against \the [src.artifact_atom] with \the [igniter]!</span>")
+		src.artifact_atom.visible_message("<span class='alert'>[attacker] sparks against \the [src.artifact_atom] with \the [I]!</span>")
 
 	if (istype(I, /obj/item/robodefibrillator))
 		var/obj/item/robodefibrillator/R = I
@@ -333,7 +336,7 @@ TYPEINFO(/datum/component/artifact)
 
 	if(ispulsingtool(I))
 		src.artifact_stimulus("elec", 1000)
-		src.visible_message("<span class='alert'>[attacker] shocks \the [src.artifact_atom] with \the [I]!</span>")
+		src.artifact_atom.visible_message("<span class='alert'>[attacker] shocks \the [src.artifact_atom] with \the [I]!</span>")
 		return
 
 	if (istype(I,/obj/item/parts/robot_parts))
@@ -408,7 +411,7 @@ TYPEINFO(/datum/component/artifact)
 	switch (shot.proj_data.damage_type)
 		if(D_KINETIC,D_PIERCING,D_SLASHING)
 			var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.loc
-			I?.impactpad_senseforce_shot(src, P)
+			pad?.impactpad_senseforce_shot(src, pad)
 			src.artifact_stimulus("force", shot.power)
 		if(D_ENERGY)
 			src.artifact_stimulus("elec", shot.power * 10)
@@ -447,8 +450,8 @@ TYPEINFO(/datum/component/artifact)
 		if("uranium","polonium")
 			src.artifact_stimulus("radiate", round(volume / 2))
 		if("dna_mutagen","mutagen","omega_mutagen")
-			if (A.artitype.name == "martian")
-				ArtifactDevelopFault(80)
+			if (src.artifact.artitype.name == "martian")
+				src.maybe_develop_fault(faultprob = 80)
 		if("phlogiston","el_diablo","thermite","thalmerite","argine")
 			src.artifact_stimulus("heat", 310 + (volume * 5))
 		if("napalm_goo","kerosene","ghostchilijuice")
@@ -496,8 +499,8 @@ TYPEINFO(/datum/component/artifact)
 			if(stimtype == "force")
 				if (strength >= 30)
 					T.visible_message("<span class='alert'>[src] bruises from the impact!</span>")
-					playsound(src.loc, "sound/impact_sounds/Slimy_Hit_3.ogg", 100, 1)
-					ArtifactDevelopFault(33)
+					playsound(src.artifact_atom.loc, "sound/impact_sounds/Slimy_Hit_3.ogg", 100, 1)
+					src.maybe_develop_fault(faultprob = 33)
 					src.artifact_take_damage(strength / 1.5)
 			if(stimtype == "elec")
 				if (strength >= 3000) // max you can get from the electrobox is 5000
@@ -505,22 +508,20 @@ TYPEINFO(/datum/component/artifact)
 					src.artifact_take_damage(strength / 1000)
 			if(stimtype == "radiate")
 				if (strength >= 6)
-					artifact_develop_fault(strength * 10 - 20) // 40% at 6, 80% at 10
+					src.maybe_develop_fault(faultprob = strength * 10 - 20) // 40% at 6, 80% at 10
 					src.artifact_take_damage(strength * 1.25)
 		if("wizard") // these are big crystals, thus you probably shouldn't smack them around too hard!
 			if(stimtype == "force")
 				if (strength >= 20)
 					T.visible_message("<span class='alert'>[src] cracks and splinters!</span>")
-					playsound(src.loc, "sound/impact_sounds/Glass_Shards_Hit_1.ogg", 100, 1)
-					ArtifactDevelopFault(80)
+					playsound(src.artifact_atom.loc, "sound/impact_sounds/Glass_Shards_Hit_1.ogg", 100, 1)
+					src.maybe_develop_fault(faultprob = 80)
 					src.artifact_take_damage(strength * 1.5)
 
-	if (!src || !A)
-		return
-
-	if (!A.activated)
+	if (!src.artifact.activated)
 		for (var/datum/artifact_trigger/trigger in src.artifact.triggers)
 			if (trigger.stimulus_required == stimtype)
+				// We need to check the amount of stimulus, might not activate if too low/high (e.g. rads)
 				if (trigger.do_amount_check)
 					if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_GEQ && strength >= trigger.stimulus_amount)
 						src.artifact_activated()
@@ -529,9 +530,10 @@ TYPEINFO(/datum/component/artifact)
 					else if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_LEQ && strength == trigger.stimulus_amount)
 						src.artifact_activated()
 					else
-						if (istext(A.hint_text))
+						if (istext(src.artifact.hint_text))
 							if (strength >= trigger.stimulus_amount - trigger.hint_range && strength <= trigger.stimulus_amount + trigger.hint_range)
-								T.visible_message("<b>[src]</b> [A.hint_text]")
+								T.visible_message("<b>[src.artifact_atom]</b> [src.artifact.hint_text]")
+				// We don't care about stimulus amount at all (e.g. carbon touch)
 				else
 					src.artifact_activated()
 
@@ -544,9 +546,9 @@ TYPEINFO(/datum/component/artifact)
 		AP.remove_from_attached()
 		removed++
 	if(removed == 1)
-		src.visible_message("The artifact form that was attached falls to the ground.")
+		src.artifact_atom.visible_message("The artifact form that was attached falls to the ground.")
 	else if(removed > 1)
-		src.visible_message("All the artifact forms that were attached fall to the ground.")
+		src.artifact_atom.visible_message("All the artifact forms that were attached fall to the ground.")
 
 
 // Not part of the component but I'm putting it here anyways

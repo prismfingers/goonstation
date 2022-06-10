@@ -8,10 +8,8 @@
 	pixelaction(atom/target, params, mob/user, reach)
 		..()
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+	afterattack(atom/target, mob/user)
 		if (user.equipped() == src)
-			if (!src.ArtifactSanityCheck())
-				return
 			var/datum/artifact/attack_wand/A = src.artifact
 			if (!istype(A))
 				return
@@ -20,7 +18,7 @@
 
 			user.lastattacked = src
 			var/turf/U = (istype(target, /atom/movable) ? target.loc : target)
-			A.effect_afterattack(src,user,U)
+			A.effect_afterattack(user, U)
 
 /datum/artifact/attack_wand
 	associated_object = /obj/item/artifact/attack_wand
@@ -65,17 +63,17 @@
 		// sonic
 		// yeah, I got nothing
 
-	effect_afterattack(var/obj/O,var/mob/living/user,var/turf/T)
+	effect_afterattack(mob/living/user, atom/A)
 		if (..())
 			return
 		if (!ready)
 			return
 
-		ready = 0
+		ready = FALSE
 		SPAWN(cooldown)
-			if (O.loc == user)
-				boutput(user, "<b>[O]</b> [recharge_phrase]")
-			ready = 1
+			if (holder?.loc == user)
+				boutput(user, "<b>[holder]</b> [recharge_phrase]")
+			ready = TRUE
 
 		var/curAttack = attack_type
 		if(attack_type == "all")

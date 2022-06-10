@@ -52,17 +52,17 @@
 		if (prob(5))
 			cooldown_delay = 0
 
-	effect_afterattack(var/obj/O,var/mob/living/user,var/turf/T)
+	effect_afterattack(mob/living/user, turf/T)
 		if (..())
 			return
 		if (on_cooldown)
 			return
 
-		on_cooldown = 1
+		on_cooldown = TRUE
 		SPAWN(cooldown_delay)
-			if (O.loc == user)
-				boutput(user, "<b>[O]</b> [recharge_phrase]")
-			on_cooldown = 0
+			if (src.holder?.loc == user)
+				boutput(user, "<b>[src.holder]</b> [recharge_phrase]")
+			src.on_cooldown = FALSE
 
 		user.set_loc(T)
 

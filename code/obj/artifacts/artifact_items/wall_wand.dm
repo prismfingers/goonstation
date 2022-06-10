@@ -5,13 +5,11 @@
 	associated_datum = /datum/artifact/wallwand
 
 	afterattack(atom/target, mob/user , flag)
-		if (!src.ArtifactSanityCheck())
-			return
 		var/datum/artifact/A = src.artifact
 		if (A.activated && target.loc != user)
 			user.lastattacked = src
 			var/turf/T = get_turf(target)
-			A.effect_afterattack(src,user,T)
+			A.effect_afterattack(user, T)
 			src.ArtifactFaultUsed(user)
 
 /datum/artifact/wallwand
@@ -38,9 +36,10 @@
 		src.icon_state = pick("shieldsparkles","empdisable","greenglow","enshield","energyorb","forcewall","meteor_shield")
 		src.wand_sound = pick('sound/effects/mag_forcewall.ogg','sound/effects/mag_golem.ogg','sound/effects/mag_iceburstlaunch.ogg','sound/effects/bamf.ogg','sound/weapons/ACgun2.ogg')
 
-	effect_afterattack(var/obj/O,var/mob/living/user,var/turf/T)
+	effect_afterattack(mob/living/user, atom/A)
 		if (..())
 			return
+		var/turf/T = get_turf(A)
 		if (!T)
 			return
 		var/wallloc
