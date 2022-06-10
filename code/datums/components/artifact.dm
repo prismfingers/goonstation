@@ -379,7 +379,7 @@ TYPEINFO(/datum/component/artifact)
 			var/mob/A = G.assailant
 			src.artifact_atom.visible_message("<strong class='combat'>[A] shoves [M] against \the [src.artifact_atom]!</strong>")
 			logTheThing("combat", A, M, "forces [constructTarget(M,"combat")] to touch \an ([src.type]) artifact at [log_loc(src)].")
-			src.artifact_touched(M)
+			src.artifact_attack_hand(M)
 			return
 
 	if (istype(I, /obj/item/circuitboard))
@@ -425,17 +425,17 @@ TYPEINFO(/datum/component/artifact)
 		if(D_KINETIC,D_PIERCING,D_SLASHING)
 			var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.loc
 			I?.impactpad_senseforce_shot(src, P)
-			src.ArtifactStimulus("force", shot.power)
+			src.artifact_stimulus("force", shot.power)
 		if(D_ENERGY)
-			src.ArtifactStimulus("elec", shot.power * 10)
+			src.artifact_stimulus("elec", shot.power * 10)
 		if(D_BURNING)
-			src.ArtifactStimulus("heat", 310 + (shot.power * 5))
+			src.artifact_stimulus("heat", 310 + (shot.power * 5))
 		if(D_RADIOACTIVE)
-			src.ArtifactStimulus("radiate", shot.power)
+			src.artifact_stimulus("radiate", shot.power)
 
 /// Called when this artifact is hit by a thrown movable
 /datum/component/artifact/proc/artifact_hitby(atom/movable/AM, datum/thrown_thing/thr)
-	src.ArtifactStimulus("force", AM.throwforce)
+	src.artifact_stimulus("force", AM.throwforce)
 	var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.contents
 	pad?.impactpad_senseforce(src.artifact_atom, AM)
 
