@@ -22,6 +22,27 @@
 		if (src.artitype.name == "eldritch")
 			src.corrupting = TRUE
 
-	artifact_after
+	effect_afterattack(obj/O, mob/living/user, atom/A)
+		if (..()) // range check
+			return
+
+		/* Let's chat.
+		*	Yes, this is awful. But the previous implementation (basically handling activator key behavior in the attackby() of artifacts.
+		*	with the proc defined on /obj.) was even more awful and this is already a large refactor so I'm going with a way that Works, and I'll find
+		*   a Good Way That Works later.
+		*	No but seriously though these used to be dummy objects basically. Artifacts just typechecked and then activated when slapped with one.
+		*/
+		var/list/artifact_comps = holder.GetComponents(/datum/component/artifact)
+		for (var/datum/component/artifact/comp in artifact_comps)
+			if (comp.artifact.activated)
+				comp.artifact_deactivated()
+			else
+				comp.artifact_activated()
+
+			if (src.corrupting)
+				if(K.corrupting && src.artifact.faults.len < 10) // there's only so much corrupting you can do ok
+					for(var/i = 1, i < rand(1, 3), i++)
+						SEND_SIGNAL(comp, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)
+
 
 

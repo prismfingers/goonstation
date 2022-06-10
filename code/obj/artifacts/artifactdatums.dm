@@ -147,14 +147,14 @@ ABSTRACT_TYPE(/datum/artifact/)
 
 	/// What the artifact does when it is activated and you smack a person with it.
 	/// Only used by /obj/item/artifact/melee_weapon so far.
-	proc/effect_melee_attack(var/obj/O,var/mob/living/user,var/mob/living/target)
+	proc/effect_melee_attack(obj/O, mob/living/user, mob/living/target)
 		O.add_fingerprint(user)
 		ArtifactLogs(user, target, O, "weapon", null, 0)
 		return FALSE
 
 	/// What the artifact does after you clicked some tile with it when activated.
 	/// Basically like afterattack() for activated artifacts.
-	proc/effect_afterattack(var/obj/O, var/mob/living/user, var/atom/A)
+	proc/effect_afterattack(obj/O, mob/living/user, atom/A)
 		if (!user.in_real_view_range(A))
 			return TRUE
 		O.add_fingerprint(user)
