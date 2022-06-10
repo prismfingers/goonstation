@@ -27,22 +27,25 @@
 		src.field_radius = rand(4,9) // well radius
 		src.gravity_type = rand(0,1) // 0 for pull, 1 for push
 
-	effect_process(var/obj/O)
+	effect_process()
 		if (..())
 			return
-		for (var/obj/V in orange(src.field_radius,get_turf(O)))
-			if (V.anchored)
+		for (var/obj/affecting in orange(src.field_radius, get_turf(src.holder)))
+			if (affecting.anchored)
 				continue
 
 			if (src.gravity_type)
-				step_away(V,O)
+				step_away(affecting, src.holder)
 			else
-				step_towards(V,O)
-		for (var/mob/living/M in orange(src.field_radius,get_turf(O)))
+				step_towards(affecting, src.holder)
+		for (var/mob/living/M in orange(src.field_radius, get_turf(src.holder)))
+			if (isintangible(M))
+				return
+
 			if (src.gravity_type)
-				step_away(M,O)
+				step_away(M, src.holder)
 			else
-				step_towards(M,O)
-			if(O.ArtifactFaultUsed(M) == FAULT_RESULT_STOP)
+				step_towards(M, src.holder)
+			if(SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_FAULT_USED, M) & FAULT_RESULT_STOP)
 				break
 

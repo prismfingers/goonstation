@@ -135,9 +135,7 @@ ABSTRACT_TYPE(/datum/artifact/)
 		return 0
 
 	/// What activated artifact machines do each processing tick.
-	proc/effect_process(var/obj/O)
-		if (!O)
-			return 1
+	proc/effect_process()
 		return 0
 
 	/// What the artifact does if touched while activated.

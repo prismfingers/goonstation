@@ -13,9 +13,9 @@
 #define ARTIFACT_STIMULUS_AMOUNT_LEQ "less than or equal to"
 
 // Results returned from artifact_fault_used
-#define FAULT_RESULT_SUCCESS 0 //! everything's cool!
-#define FAULT_RESULT_STOP	1  //! we gotta stop, artifact was destroyed or deactivated
-#define FAULT_RESULT_INVALID 2 //! artifact can't do faults
+#define FAULT_RESULT_SUCCESS (0 << 1) //! everything's cool!
+#define FAULT_RESULT_STOP	(1 << 1)  //! we gotta stop, artifact was destroyed or deactivated
+#define FAULT_RESULT_INVALID (1 << 2) //! artifact can't do faults
 
 // Returns for sending the activate/deactivate signal
 /// Attempted to activate artifact, artifact was already activated
