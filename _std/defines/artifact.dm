@@ -18,8 +18,12 @@
 #define FAULT_RESULT_INVALID 2 //! artifact can't do faults
 
 // Returns for sending the activate/deactivate signal
+/// Attempted to activate artifact, artifact was already activated
 #define ARTIFACT_ALREADY_ACTIVATED  (0 << 1)
+/// Attempted to activate artifact, artifact was activated successfully
 #define ARTIFACT_NOW_ACTIVATED 		(1 << 1)
 
+/// Attempted to activate artifact, artifact was already deactivated
 #define ARTIFACT_ALREADY_DEACTIVATED (0 << 1)
+/// Attempted to activate artifact, artifact was activated successfully
 #define ARTIFACT_NOW_DEACTIVATED	 (1 << 1)

@@ -149,8 +149,9 @@ var/datum/artifact_controller/artifact_controls
 			var/atom/movable/art_atom = locate(href_list["Activate"]) in src.artifacts
 			if (SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_ACTIVATE) & ARTIFACT_ALREADY_ACTIVATED)
 				SEND_SIGNAL(art_atom, COMSIG_ARTIFACT_DEACTIVATE)
-
-			src.log_me(usr, O, A.activated ? "activates" : "deactivates", 1)
+				src.log_me(usr, art_atom, "deactivates", TRUE)
+			else
+				src.log_me(usr, art_atom, "activates", TRUE)
 
 		else if (href_list["Jumpto"])
 			var/atom/movable/art_atom = locate(href_list["Jumpto"]) in src.artifacts
