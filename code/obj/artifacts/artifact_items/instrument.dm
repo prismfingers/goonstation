@@ -13,7 +13,7 @@
 
 	play(mob/user)
 		if (!ON_COOLDOWN(src, "artifact instrument spam", 25 SECONDS))
-			src.ArtifactFaultUsed(user)
+			SEND_SIGNAL(src, COMSIG_ARTIFACT_FAULT_USED, user)
 			show_play_message(user)
 			playsound(src, islist(src.sounds_instrument) ? pick(src.sounds_instrument) : src.sounds_instrument, src.volume, src.randomized_pitch)
 
@@ -28,6 +28,6 @@
 
 	post_setup()
 		..()
-		var/obj/item/artifact_item = src.holder
-		artifact_atom.sounds_instrument = src.artitype.instrument_sounds
+		var/obj/item/instrument/artifact_item = src.holder
+		artifact_item.sounds_instrument = src.artitype.instrument_sounds
 

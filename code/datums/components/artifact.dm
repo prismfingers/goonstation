@@ -44,6 +44,8 @@ TYPEINFO(/datum/component/artifact)
 	// Misc
 	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
 	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EXAMINE, .proc/examine_hint)
+	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_DEVELOP_FAULT, .proc/maybe_develop_fault)
 
 	// Clean up artifact/drop stuff on parent deletion
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
@@ -78,7 +80,7 @@ TYPEINFO(/datum/component/artifact)
 
 		src.artifact_atom.name = "[name1] [name2]"
 		src.artifact_atom.real_name = "[name1] [name2]"
-		src.artifact_atom.desc = "You have no idea what this thing is!<br>[src.artifact.examine_hint]"
+		src.artifact_atom.desc = "You have no idea what this thing is!"
 		artifact.touch_descriptors |= real_origin.touch_descriptors
 
 		//Artifact-ize sprite
@@ -102,7 +104,7 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact.nofx = real_origin.nofx
 
 		// Low chance to start with a fault
-		src.maybe_develop_fault(10)
+		src.maybe_develop_fault(src.artifact_atom, 10)
 
 		// Activate automatically if we do that
 		if (src.artifact.automatic_activation)
@@ -128,36 +130,44 @@ TYPEINFO(/datum/component/artifact)
 
 /datum/component/artifact/UnregisterFromParent()
 	artifact_controls.artifacts -= src.artifact_atom
+	UnregisterSignal(artifact_atom, list(COMSIG_ATTACKBY, COMSIG_ATTACKHAND, COMSIG_ATOM_BLOB_ACT,
+											COMSIG_ATOM_EX_ACT, COMSIG_ATOM_HITBY_PROJ, COMSIG_ATOM_REAGENT_ACT,
+											COMSIG_ATOM_METEORHIT, COMSIG_OBJ_FLIP_INSIDE, COMSIG_ARTIFACT_FAULT_USED,
+											COMSIG_ATOM_EXAMINE, COMSIG_PARENT_PRE_DISPOSING, COMSIG_ITEM_ATTACK_PRE))
 
 /**
  * Proc called to possibly give an artifact a fault, depending on probability. Called in New() with a low probability, and also whenever you
  * damage an artifact too much.
  */
-/datum/component/artifact/proc/maybe_develop_fault(var/faultprob)
+/datum/component/artifact/proc/maybe_develop_fault(atom/movable/artifact, faultprob)
 
 	if (src.artifact.artitype.name == "eldritch")
 		faultprob *= 2 // eldritch artifacts fucking hate you and are twice as likely to go faulty
 	faultprob = clamp(faultprob, 0, 100)
 
 	if (prob(faultprob) && length(src.artifact.fault_types))
-		var/new_fault = weighted_pick(arc.artifact.fault_types)
+		var/new_fault = weighted_pick(src.artifact.fault_types)
 		if (ispath(new_fault))
-			var/datum/artifact_fault/F = new new_fault(A)
+			var/datum/artifact_fault/F = new new_fault(src.artifact)
 			F.holder = src.artifact
 			src.artifact.faults += F
 		else
 			stack_trace("Didn't get a path from fault_types. Got \[[new_fault]\] instead.")
 
 /datum/component/artifact/proc/artifact_mob_flip_inside(mob/flipper)
-	src.ArtifactTakeDamage(rand(5, 20))
+	src.artifact_take_damage(rand(5, 20))
 	flipper.visible_message("<span class='alert'>\the [src.artifact_atom] seems to be a bit more damaged!</span>")
 
 /datum/component/artifact/proc/artifact_take_damage(var/damage)
 	src.artifact.health -= damage
-	src.artifact.health = min(A.health, 100)
+	src.artifact.health = min(src.artifact.health, 100)
 
 	if (src.artifact.health <= 0)
 		qdel(src.artifact_atom)
+
+/// Called when we examine the artifact (atom). Appends the artifact (datum) examine hint.
+/datum/component/artifact/proc/examine_hint(atom/movable/artifact, mob/examiner, list/lines)
+	lines += src.artifact.examine_hint
 
 /// Called before the parent atom is deleted. DO NOT CALL THIS SHIT JUST DELETE THE THING PARENT ATOM
 /datum/component/artifact/proc/artifact_destroyed()
@@ -173,28 +183,23 @@ TYPEINFO(/datum/component/artifact)
 
 	qdel(src.artifact)
 
-// This is for a tool/item artifact that you can use. If it has a fault, whoever is using it is basically rolling the dice
-// every time the thing is used (a check to see if rand(1,faultcount) hits 1 most of the time) and if they're unlucky, the
-// thing will deliver it's payload onto them.
-// There's also no reason this can't be used whoever the artifact is being used *ON*, also!
-// The cosmetic source is just to specify where the effect comes from in the visual message.
-// So that you can make it come from something like a forcefield or bullet instead of the artifact itself!
+
 /**
  * Activate an artifact fault, triggered ON the user. Handheld artifacts can activate a fault on the user or the target of something.
  * cosmeticSource is for messages; set it to something artifact adjacent to make the effect come from a forcefield, bullet, etc instead.
  */
-/datum/component/artifact/proc/artifact_fault_used(mob/user, atom/cosmeticSource)
+/datum/component/artifact/proc/artifact_fault_used(atom/movable/artifact, mob/user, atom/cosmeticSource)
 
 	if (!length(src.artifact.faults))
 		return FAULT_RESULT_INVALID // no faults, so dont waste any more time
 	if (!cosmeticSource)
-		cosmeticSource = src
+		cosmeticSource = src.artifact_atom
 	var/halt = FALSE
 	for (var/datum/artifact_fault/F in src.artifact.faults)
 		if (prob(F.trigger_prob))
 			if (F.halt_loop)
 				halt = TRUE
-			F.deploy(src, user, cosmeticSource)
+			F.deploy(src.artifact_atom, user, cosmeticSource)
 		if (halt)
 			return FAULT_RESULT_STOP
 	return FAULT_RESULT_SUCCESS
@@ -203,12 +208,12 @@ TYPEINFO(/datum/component/artifact)
 /datum/component/artifact/proc/artifact_activated()
 	if (src.artifact.activated)
 		return TRUE
-	if (src.artifact.triggers.len < 1 && !A.automatic_activation)
+	if (src.artifact.triggers.len < 1 && !src.artifact.automatic_activation)
 		return TRUE // can't activate these ones at all by design
 	if (!src.artifact.may_activate(src.artifact_atom))
 		return TRUE
 	if (src.artifact.activ_sound)
-		playsound(src.loc, src.artifact.activ_sound, 100, 1)
+		playsound(src.artifact_atom.loc, src.artifact.activ_sound, 100, 1)
 	if (src.artifact.activ_text)
 		var/turf/T = get_turf(src.artifact_atom)
 		if (T)
@@ -217,16 +222,16 @@ TYPEINFO(/datum/component/artifact)
 	if (src.artifact.nofx)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state + "fx"
 	else
-		src.UpdateOverlays(src.artifact.fx_image, "activated")
+		src.artifact_atom.UpdateOverlays(src.artifact.fx_image, "activated")
 	src.artifact.effect_activate(src.artifact_atom)
 
 /// Called when this artifact is deactivated, whether automatically or through an activator key
 /datum/component/artifact/proc/artifact_deactivated()
 	if (!src.artifact.activated) // do not deactivate if already deactivated
 		return
-	if (A.deact_sound)
-		playsound(src.artifact_atom.loc, A.deact_sound, 100, 1)
-	if (A.deact_text)
+	if (src.artifact.deact_sound)
+		playsound(src.artifact_atom.loc, src.artifact.deact_sound, 100, 1)
+	if (src.artifact.deact_text)
 		var/turf/T = get_turf(src.artifact_atom)
 		T.visible_message("<b>[src] [src.artifact.deact_text]</b>")
 	src.artifact.activated = FALSE
@@ -240,8 +245,8 @@ TYPEINFO(/datum/component/artifact)
 /// Called when someone hits another mob with this artifact (only relevant to artifact items)
 /datum/component/artifact/proc/artifact_attack(obj/item/weapon, mob/target, mob/user)
 	if (src.artifact.activated)
-		src.ArtifactFaultUsed(user)
-		src.ArtifactFaultUsed(M)
+		src.artifact_fault_used(user)
+		src.artifact_fault_used(user)
 		src.artifact.effect_melee_attack(weapon, user, target)
 
 /// Called when someone pokes this artifact, or is shoved into it
@@ -275,129 +280,124 @@ TYPEINFO(/datum/component/artifact)
 	if (src.artifact.activated)
 		src.artifact.effect_touch(src, user)
 
+
+// TODO make this use signals on the relevant items.
 /// Called when someone hits this with an item
 /datum/component/artifact/proc/artifact_attackby(var/artifact_atom, var/obj/item/I, var/mob/attacker)
 
 	. = FALSE
 	attacker.lastattacked = src.artifact_atom // no spam
 
-	if (isrobot(user))
+	if (isrobot(attacker))
 		src.artifact_stimulus("silitouch", 1)
 
 	//// ---- BEGIN SHIT I AM NOT FIXING RN ----
-	if (istype(W,/obj/item/artifact/activator_key))
-		var/obj/item/artifact/activator_key/ACT = W
-		if (!src.ArtifactSanityCheck())
-			return
-		if (!W.ArtifactSanityCheck())
-			return
-		var/datum/artifact/A = src.artifact
-		var/datum/artifact/activator_key/K = ACT.artifact
+	if (istype(I, /obj/item/artifact/activator_key))
+		var/obj/item/artifact/activator_key/ACT = I
+		var/datum/artifact/activator_key/K = src.artifact
 
 		if (K.activated)
 			if (K.universal || A.artitype == K.artitype)
 				if (K.activator && !A.activated)
-					src.ArtifactActivated()
-					if(K.corrupting && A.faults.len < 10) // there's only so much corrupting you can do ok
-						for(var/i=1,i<rand(1,3),i++)
+					src.artifact_activated()
+					if(K.corrupting && src.artifact.faults.len < 10) // there's only so much corrupting you can do ok
+						for(var/i=1, i<rand(1, 3), i++)
 							src.ArtifactDevelopFault(100)
-				else if (A.activated)
-					src.ArtifactDeactivated()
+				else if (src.artifact.activated)
+					src.artifact_deactivated()
 	//// ---- END SHIT ----
 
 	if (isweldingtool(I))
-		if (W:try_weld(user, 0, -1, 0, 1))
+		if (I:try_weld(attacker, 0, -1, FALSE, TRUE))
 			src.artifact_stimulus("heat", 800)
-			src.visible_message("<span class='alert'>[user.name] burns the artifact with [W]!</span>")
+			src.visible_message("<span class='alert'>[attacker] burns \the [src.artifact_atom] with [I]!</span>")
 			return
 
 	if (istype(I, /obj/item/device/light/zippo))
-		var/obj/item/device/light/zippo/ZIP = W
+		var/obj/item/device/light/zippo/ZIP = I
 		if (ZIP.on)
 			src.artifact_stimulus("heat", 400)
-			src.visible_message("<span class='alert'>[user.name] burns the artifact with [ZIP]!</span>")
+			src.artifact_atom.visible_message("<span class='alert'>[attacker] burns \the [src.artifact_atom] with [ZIP]!</span>")
 			return
 
 	if(istype(I, /obj/item/device/igniter))
 		src.artifact_stimulus("elec", 700)
 		src.artifact_stimulus("heat", 385)
-		src.visible_message("<span class='alert'>[user.name] sparks against \the [src] with \the [igniter]!</span>")
+		src.artifact_atom.visible_message("<span class='alert'>[attacker] sparks against \the [src.artifact_atom] with \the [igniter]!</span>")
 
-	if (istype(i, /obj/item/robodefibrillator))
+	if (istype(I, /obj/item/robodefibrillator))
 		var/obj/item/robodefibrillator/R = I
-		if (R.do_the_shocky_thing(user))
+		if (R.do_the_shocky_thing(attacker))
 			src.artifact_stimulus("elec", 2500)
-			src.visible_message("<span class='alert'>[user.name] shocks \the [src] with \the [R]!</span>")
+			src.artifact_atom.visible_message("<span class='alert'>[attacker] shocks \the [src] with \the [R]!</span>")
 			return
 
 	if(istype(I, /obj/item/baton))
-		var/obj/item/baton/BAT = i
-		if (BAT.can_stun(1, user))
+		var/obj/item/baton/BAT = I
+		if (BAT.can_stun(1, attacker))
 			src.artifact_stimulus("force", BAT.force)
 			src.artifact_stimulus("elec", 1500)
-			playsound(src.loc, "sound/impact_sounds/Energy_Hit_3.ogg", 100, 1)
-			src.visible_message("<span class='alert'>[user.name] zaps the artifact with [BAT]!</span>")
-			BAT.process_charges(-1, user)
+			playsound(src.artifact_atom.loc, "sound/impact_sounds/Energy_Hit_3.ogg", 100, 1)
+			src.artifact_atom.visible_message("<span class='alert'>[attacker] zaps \the [src.artifact_atom] with [BAT]!</span>")
+			BAT.process_charges(-1,attacker)
 			return
 
 	if(istype(I, /obj/item/device/flyswatter))
 		src.artifact_stimulus("elec", 1500)
-		src.visible_message("<span class='alert'>[user.name] shocks \the [src] with \the [swatter]!</span>")
+		src.artifact_atom.visible_message("<span class='alert'>[attacker] shocks \the [src.artifact_atom] with \the [I]!</span>")
 		return
 
-	if(ispulsingtool(W))
+	if(ispulsingtool(I))
 		src.artifact_stimulus("elec", 1000)
-		src.visible_message("<span class='alert'>[user.name] shocks \the [src] with \the [W]!</span>")
+		src.visible_message("<span class='alert'>[attacker] shocks \the [src.artifact_atom] with \the [I]!</span>")
 		return
 
-	if (istype(W,/obj/item/parts/robot_parts))
-		var/obj/item/parts/robot_parts/THISPART = W
-		src.visible_message("<b>[user.name]</b> presses \the [THISPART] against \the [src].</span>")
+	if (istype(I,/obj/item/parts/robot_parts))
+		var/obj/item/parts/robot_parts/THISPART = I
+		src.artifact_atom.visible_message("<b>[attacker]</b> presses \the [THISPART] against \the [src.artifact_atom].</span>")
 		src.artifact_stimulus("silitouch", 1)
 		return
 
-	if (istype(W, /obj/item/parts/human_parts))
-		var/obj/item/parts/human_parts/THISPART = W
-		src.visible_message("<b>[user.name]</b> smooshes \the [THISPART] against \the [src].</span>")
+	if (istype(I, /obj/item/parts/human_parts))
+		var/obj/item/parts/human_parts/THISPART = I
+		src.artifact_atom.visible_message("<b>[attacker]</b> smooshes \the [THISPART] against \the [src.artifact_atom].</span>")
 		src.artifact_stimulus("carbtouch", 1)
-		return 0
+		return
 
-	if (istype(W, /obj/item/grab))
-		var/obj/item/grab/grabobj = W
-		if (ismob(grabobj.affecting))
-			if (grabobj.state < GRAB_STRONG)
+	if (istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		if (ismob(G.affecting))
+			if (G.state < GRAB_STRONG)
 				// Not a strong grip so just smoosh em into it
 				// generally speaking only humans and the like can be grabbed so whatev
-				if (istype(grabobj.affecting, /mob/living/carbon))
-					src.visible_message("<b>[user]</b> gently presses [grabobj.affecting] against \the [src].")
+				if (istype(G.affecting, /mob/living/carbon))
+					src.artifact_atom.visible_message("<b>[attacker]</b> gently presses [G.affecting] against \the [src].")
 					src.artifact_stimulus("carbtouch", 1)
 				return
 
-			var/mob/M = GRAB.affecting
-			var/mob/A = GRAB.assailant
-			if (BOUNDS_DIST(src.loc, M.loc) > 0)
-				return
-			src.visible_message("<strong class='combat'>[A] shoves [M] against \the [src]!</strong>")
+			var/mob/M = G.affecting
+			var/mob/A = G.assailant
+			src.artifact_atom.visible_message("<strong class='combat'>[A] shoves [M] against \the [src.artifact_atom]!</strong>")
 			logTheThing("combat", A, M, "forces [constructTarget(M,"combat")] to touch \an ([src.type]) artifact at [log_loc(src)].")
-			src.ArtifactTouched(M)
+			src.artifact_touched(M)
 			return
 
-	if (istype(W, /obj/item/circuitboard))
-		var/obj/item/circuitboard/board = W
-		src.visible_message("<b>[user.name]</b> offers the [board] to the artifact.</span>")
+	if (istype(I, /obj/item/circuitboard))
+		var/obj/item/circuitboard/board = I
+		src.artifact_atom.visible_message("<b>[attacker]</b> offers the [board] to \the [src.artifact_atom].</span>")
 		src.artifact_stimulus("data", 1)
 		return
 
-	if (istype(W, /obj/item/disk/data))
-		var/obj/item/disk/data/datadisk = W
-		src.visible_message("<b>[user.name]</b> offers the [datadisk] to the artifact.</span>")
+	if (istype(I, /obj/item/disk/data))
+		var/obj/item/disk/data/datadisk = I
+		src.artifact_atom.visible_message("<b>[attacker]</b> offers the [datadisk] to \the [src.artifact_atom].</span>")
 		src.artifact_stimulus("data", 1)
 		return
 
-	if (W.force)
-		src.artifact_stimulus("force", W.force)
+	if (I.force)
+		src.artifact_stimulus("force", I.force)
 
-	src.artifact.effect_attacked_by(W, user)
+	src.artifact.effect_attacked_by(I, attacker)
 	return TRUE
 
 
@@ -539,17 +539,17 @@ TYPEINFO(/datum/component/artifact)
 			if (trigger.stimulus_required == stimtype)
 				if (trigger.do_amount_check)
 					if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_GEQ && strength >= trigger.stimulus_amount)
-						src.ArtifactActivated()
+						src.artifact_activated()
 					else if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_EXACT && strength <= trigger.stimulus_amount)
-						src.ArtifactActivated()
+						src.artifact_activated()
 					else if (trigger.stimulus_type == ARTIFACT_STIMULUS_AMOUNT_LEQ && strength == trigger.stimulus_amount)
-						src.ArtifactActivated()
+						src.artifact_activated()
 					else
 						if (istext(A.hint_text))
 							if (strength >= trigger.stimulus_amount - trigger.hint_range && strength <= trigger.stimulus_amount + trigger.hint_range)
 								T.visible_message("<b>[src]</b> [A.hint_text]")
 				else
-					src.ArtifactActivated()
+					src.artifact_activated()
 
 
 /// Removes all artifact forms attached to this and makes them fall to the floor
