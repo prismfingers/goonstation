@@ -40,6 +40,6 @@
 				else
 					comp.artifact_activated()
 
-			if(src.corrupting && length(src.faults) < 10) // there's only so much corrupting you can do ok
+			if(src.corrupting && length(comp.artifact.faults) < 10) // there's only so much corrupting you can do ok
 				for(var/i = 1, i < rand(1, 3), i++)
 					SEND_SIGNAL(A, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)

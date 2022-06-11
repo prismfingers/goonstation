@@ -56,6 +56,7 @@ TYPEINFO(/datum/component/artifact)
 	// Stuff only relevant to artifact items
 	if (isitem(src.artifact_atom))
 		RegisterSignal(src.artifact_atom, COMSIG_ITEM_ATTACK_PRE, .proc/artifact_attack)
+		RegisterSignal(src.artifact_atom, COMSIG_ITEM_AFTERATTACK, .proc/artifact_afterattack)
 
 	// Setup actual origin
 	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(src.artifact.validtypes))
@@ -136,7 +137,8 @@ TYPEINFO(/datum/component/artifact)
 	UnregisterSignal(artifact_atom, list(COMSIG_ATTACKBY, COMSIG_ATTACKHAND, COMSIG_ATOM_BLOB_ACT,
 											COMSIG_ATOM_EX_ACT, COMSIG_ATOM_HITBY_PROJ, COMSIG_ATOM_REAGENT_ACT,
 											COMSIG_ATOM_METEORHIT, COMSIG_OBJ_FLIP_INSIDE, COMSIG_ARTIFACT_FAULT_USED,
-											COMSIG_ATOM_EXAMINE, COMSIG_PARENT_PRE_DISPOSING, COMSIG_ITEM_ATTACK_PRE))
+											COMSIG_ATOM_EXAMINE, COMSIG_PARENT_PRE_DISPOSING, COMSIG_ITEM_ATTACK_PRE,
+											COMSIG_ITEM_AFTERATTACK))
 
 /**
  * Proc called to possibly give an artifact a fault, depending on probability. Called in New() with a low probability, and also whenever you
@@ -251,6 +253,11 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_fault_used(user)
 		src.artifact_fault_used(user)
 		src.artifact.effect_melee_attack(weapon, user, target)
+
+/// Called when someone clicks pretty much anything with an artifact. For certain objects (telewands etc), called on ranged clicks too.
+/// Currently just passes the attack to the artifact datum. First two args are unused.
+/datum/component/artifact/proc/artifact_afterattack(artifact, also_the_artifact, atom/target, mob/user)
+	src.artifact.effect_afterattack(user, target)
 
 /// Called when someone pokes this artifact, or is shoved into it
 /datum/component/artifact/proc/artifact_attack_hand(mob/user)

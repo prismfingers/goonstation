@@ -143,4 +143,3 @@
 					R.clear_reagents()
 
 		O.ArtifactFaultUsed(user)
-		return
