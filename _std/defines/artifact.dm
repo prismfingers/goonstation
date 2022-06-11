@@ -22,6 +22,8 @@
 #define ARTIFACT_ALREADY_ACTIVATED  (0 << 1)
 /// Attempted to activate artifact, artifact was activated successfully
 #define ARTIFACT_NOW_ACTIVATED 		(1 << 1)
+/// Artifact is unable to be activated at all
+#define ARTIFACT_CANNOT_ACTIVATE	(2 << 1)
 
 /// Attempted to activate artifact, artifact was already deactivated
 #define ARTIFACT_ALREADY_DEACTIVATED (0 << 1)

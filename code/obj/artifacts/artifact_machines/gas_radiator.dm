@@ -75,7 +75,7 @@
 		src.activ_text = "begins to emit [temp_text] gas!"
 		src.deact_text = "stops emitting [temp_text] gas."
 
-	effect_activate(obj/O)
+	effect_activate()
 		if(..())
 			return
 		ArtifactLogs(usr, null, O, "activated", "making it radiate [temp_text] [gas_type]", 1)
@@ -109,7 +109,7 @@
 			if (L)
 				L.assume_air(gas)
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if(..())
 			return
 		src.gas_amount_current = 0 MOLES

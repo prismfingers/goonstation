@@ -43,19 +43,19 @@
 				if (!O.disposed) //ZeWaka: Fix for null.contents
 					O.ArtifactDeactivated()
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if (..())
 			return
-		if (living && istype(O.loc, /mob/living/object))
-			var/mob/living/object/mob = O.loc
-			mob.visible_message("<span class='alert'>[prisoner.name] is ejected from [mob] and regains control of their body.</span>")
-			mob.death(FALSE)
-		if (prisoner?.loc == O)
-			prisoner.set_loc(get_turf(O))
-			O.visible_message("<span class='alert'><b>[O]</b> releases [prisoner.name] and shuts down!</span>")
+		if (living && istype(src.holder.loc, /mob/living/object))
+			var/mob/living/object/living_obj = src.holder.loc
+			living_obj.visible_message("<span class='alert'>\the [prisoner] is ejected from [living_obj] and regains control of their body.</span>")
+			living_obj.death(FALSE)
+		if (prisoner?.loc == src.holder)
+			prisoner.set_loc(get_turf(src.holder))
+			src.holder.visible_message("<span class='alert'><b>[src.holder]</b> releases [prisoner.name] and shuts down!</span>")
 		else
-			O.visible_message("<span class='alert'><b>[O]</b> shuts down strangely!</span>")
-		for(var/atom/movable/I in (O.contents-O.vis_contents))
+			src.holder.visible_message("<span class='alert'><b>[src.holder]</b> shuts down strangely!</span>")
+		for(var/atom/movable/I in (src.holder.contents - src.holder.vis_contents))
 			I.set_loc(get_turf(O))
 		prisoner = null
 

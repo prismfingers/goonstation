@@ -23,22 +23,21 @@
 		field_time = rand(100,600)
 		max_alpha = rand(200, 255)
 
-	effect_activate(var/obj/O)
+	effect_activate()
 		if (..())
 			return
-		O.visible_message("<span class='alert'><b>[O]</b> emits a wave of absolute darkness!</span>")
-		O.anchored = 1
-		var/turf/T = get_turf(O)
+		O.visible_message("<span class='alert'><b>[src.holder]</b> emits a wave of absolute darkness!</span>")
+		O.anchored = TRUE
+		var/turf/T = get_turf(src.holder)
 		darkfields += new /obj/overlay/darkness_field(T, null, radius = 0.5 + field_radius, max_alpha = max_alpha)
 		darkfields += new /obj/overlay/darkness_field{plane = PLANE_SELFILLUM}(T, null, radius = 0.5 + field_radius, max_alpha = max_alpha)
 		SPAWN(field_time)
-			if (O)
-				O.ArtifactDeactivated()
+			SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_DEACTIVATED)
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if(..())
 			return
-		O.anchored = 0
+		src.holder.anchored = FALSE
 		for(var/obj/overlay/darkness_field/D as anything in darkfields)
 			D.deactivate()
 

@@ -110,9 +110,9 @@
 		else
 			return
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if (..())
 			return
-		for (var/mob/M in O.contents)
-			O.visible_message("<span class='alert'><b>[O]</b> grumbles before releasing [M]!</span>")
-			M.set_loc(get_turf(O))
+		for (var/mob/M in src.holder.contents)
+			src.holder.visible_message("<span class='alert'><b>[O]</b> grumbles before releasing [M]!</span>")
+			M.set_loc(get_turf(src.holder))

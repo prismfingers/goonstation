@@ -29,15 +29,15 @@
 				fire_range = rand(2,6)
 				temperature = rand(4000, 8900) KELVIN
 
-	effect_activate(var/obj/O)
+	effect_activate()
 		if (..())
 			return
-		if (ON_COOLDOWN(O, "heatwave" , recharge_time))
-			O.ArtifactDeactivated()
+		if (ON_COOLDOWN(src.holder, "heatwave" , recharge_time))
+			SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_DEACTIVATE)
 			return
-		var/turf/T = get_turf(O)
-		playsound(O.loc, "sound/effects/mag_fireballlaunch.ogg", 50, 0)
-		T.visible_message("<span class='alert'><b>[O]</b> erupts into a huge column of flames! Holy shit!</span>")
+		var/turf/T = get_turf(src.holder)
+		playsound(src.holder, "sound/effects/mag_fireballlaunch.ogg", 50, 0)
+		src.holder.visible_message("<span class='alert'><b>[src.holder]</b> erupts into a huge column of flames! Holy shit!</span>")
 		fireflash_sm(T, fire_range, temperature, (temperature / fire_range))
 		SPAWN(3 SECONDS)
-			O.ArtifactDeactivated()
+			SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_DEACTIVATE)

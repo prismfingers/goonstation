@@ -119,20 +119,14 @@ ABSTRACT_TYPE(/datum/artifact/)
 		return 1
 
 	/// What the artifact does once when activated.
-	proc/effect_activate(var/obj/O)
-		if (!O)
-			return 1
-		O.add_fingerprint(usr)
+	proc/effect_activate()
 		ArtifactLogs(usr, null, O, "activated", log_addendum, istype(src, /datum/artifact/bomb/) ? 1 : 0)
-		return 0
+		return FALSE
 
 	/// What the artifact does once when deactivated.
-	proc/effect_deactivate(var/obj/O)
-		if (!O)
-			return 1
-		O.add_fingerprint(usr)
+	proc/effect_deactivate()
 		ArtifactLogs(usr, null, O, "deactivated", log_addendum, 0)
-		return 0
+		return FALSE
 
 	/// What activated artifact machines do each processing tick.
 	proc/effect_process()

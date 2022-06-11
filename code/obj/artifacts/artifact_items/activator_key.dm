@@ -35,10 +35,8 @@
 		var/list/artifact_comps = A.GetComponents(/datum/component/artifact)
 		for (var/datum/component/artifact/comp in artifact_comps)
 			if (comp.artifact.artitype.name == src.artitype.name || src.universal)
-				if (comp.artifact.activated)
-					comp.artifact_deactivated()
-				else
-					comp.artifact_activated()
+				if (SEND_SIGNAL(A, COMSIG_ARTIFACT_ACTIVATE) & ARTIFACT_ALREADY_ACTIVATED)
+					SEND_SIGNAL(A, COMSIG_ARTIFACT_DEACTIVATE)
 
 			if(src.corrupting && length(comp.artifact.faults) < 10) // there's only so much corrupting you can do ok
 				for(var/i = 1, i < rand(1, 3), i++)

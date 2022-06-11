@@ -39,23 +39,22 @@
 			return 0
 		return 1
 
-	effect_activate(var/obj/O,var/mob/living/user)
+	effect_activate()
 		if (..())
 			return
-		O.anchored = 1
-		var/turf/Aloc = get_turf(O)
-		for (var/turf/T in range(field_radius,Aloc))
-			if(get_dist(O,T) == field_radius)
-				var/obj/forcefield/wand/FF = new /obj/forcefield/wand(T,0,src.icon_state,O)
+		src.holder.anchored = TRUE
+		var/turf/Aloc = get_turf(src.holder)
+		for (var/turf/T in range(field_radius, Aloc))
+			if(GET_DIST(src.holder, T) == field_radius)
+				var/obj/forcefield/wand/FF = new /obj/forcefield/wand(T, 0, src.icon_state, src.holder)
 				src.forcefields += FF
 		SPAWN(field_time)
-			if (O)
-				O.ArtifactDeactivated()
+			SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_DEACTIVATED)
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if(..())
 			return
-		O.anchored = 0
+		src.holder.anchored = FALSE
 		for (var/obj/forcefield/F in src.forcefields)
 			src.forcefields -= F
 			qdel(F)

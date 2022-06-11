@@ -104,14 +104,14 @@
 				if (!O.disposed)
 					O.ArtifactDeactivated()
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if (..())
 			return
-		if (clone?.loc == O)
-			clone.set_loc(get_turf(O))
-			O.visible_message("<span class='alert'><b>[O]</b> releases [clone.name] and shuts down!</span>")
+		if (clone?.loc == src.holder)
+			clone.set_loc(get_turf(src.holder))
+			O.visible_message("<span class='alert'><b>[src.holder]</b> releases [clone.name] and shuts down!</span>")
 		else
-			O.visible_message("<span class='alert'><b>[O]</b> shuts down strangely!</span>")
-		for(var/atom/movable/I in (O.contents-O.vis_contents))
-			I.set_loc(get_turf(O))
+			O.visible_message("<span class='alert'><b>[src.holder]</b> shuts down strangely!</span>")
+		for(var/atom/movable/I in (src.holder.contents - src.holder.vis_contents)) // avoid dumping artifact forms etc
+			I.set_loc(get_turf(src.holder))
 		clone = null

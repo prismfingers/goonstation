@@ -31,16 +31,14 @@
 	deact_text = "goes dark and quiet."
 	react_xray = list(10,90,90,11,"NONE")
 
-	effect_activate(var/obj/O)
+	effect_activate()
 		if (..())
 			return
-		var/obj/artifact/lamp/L = O
-		if (L.light)
-			L.light.enable()
+		var/obj/artifact/lamp/L = src.holder
+		L?.light?.enable()
 
-	effect_deactivate(var/obj/O)
+	effect_deactivate()
 		if (..())
 			return
-		var/obj/artifact/lamp/L = O
-		if (L.light)
-			L.light.disable()
+		var/obj/artifact/lamp/L = src.holder
+		L?.light?.disable()

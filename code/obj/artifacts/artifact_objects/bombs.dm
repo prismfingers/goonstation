@@ -39,16 +39,16 @@ ABSTRACT_TYPE(/datum/artifact/bomb)
 		if (artitype.name != "eldritch" && prob(3))
 			dud = 1
 
-	effect_activate(var/obj/O)
+	effect_activate()
 		if (..())
 			return
-		var/turf/T = get_turf(O)
+		var/turf/T = get_turf(src.holder)
 		src.detonation_time = TIME + src.explode_delay
-		if(recharge_delay && ON_COOLDOWN(O, "bomb_cooldown", recharge_delay))
-			T.visible_message("<b><span class='alert'>[O] [text_cooldown]</span></b>")
+		if(recharge_delay && ON_COOLDOWN(src.holder, "bomb_cooldown", recharge_delay))
+			T.visible_message("<b><span class='alert'>\the [src.holder] [text_cooldown]</span></b>")
 			playsound(T, sound_cooldown, 100, 1)
 			SPAWN(3 SECONDS)
-				O.ArtifactDeactivated() // lol get rekt spammer
+				SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_DEACTIVATE)
 			return
 
 		// this is all just fluff
@@ -93,18 +93,18 @@ ABSTRACT_TYPE(/datum/artifact/bomb)
 					blewUp = 1
 					deploy_payload(O)
 
-	effect_deactivate(obj/O)
+	effect_deactivate()
 		if(..())
 			return
 		// and remove all the animation stuff when it is deactivated (:
-		animate(O, pixel_y = 0, pixel_y = 0, time = 3,loop = 1, easing = LINEAR_EASING)
-		if(O.simple_light)
-			animate(O.simple_light, flags=ANIMATION_PARALLEL, time= 3 SECONDS, transform = null)
+		animate(src.holder, pixel_y = 0, pixel_y = 0, time = 3,loop = 1, easing = LINEAR_EASING)
+		if(src.holder.simple_light)
+			animate(src.holder.simple_light, flags=ANIMATION_PARALLEL, time= 3 SECONDS, transform = null)
 		SPAWN(3 SECONDS)
-			O.remove_simple_light("artbomb")
-		var/turf/T = get_turf(O)
-		T.visible_message("<b><span class='notice'>[O] [text_disarmed]</b></span>")
-		if(src.doAlert && !src.blewUp && !ON_COOLDOWN(O, "alertDisarm", 10 MINUTES)) // lol, don't give the message if it was destroyed by exploding itself
+			src.holder.remove_simple_light("artbomb")
+		var/turf/T = get_turf(src.holder)
+		T.visible_message("<b><span class='notice'>[src.holder] [text_disarmed]</b></span>")
+		if(src.doAlert && !src.blewUp && !ON_COOLDOWN(src.holder, "alertDisarm", 10 MINUTES)) // lol, don't give the message if it was destroyed by exploding itself
 			command_alert("The object of [src.artitype.type_name] origin has been neutralized. All personnel should return to their duties.", "Station Threat Neutralized", alert_origin = ALERT_ANOMALY)
 
 	proc/deploy_payload(var/obj/O)
@@ -443,10 +443,10 @@ ABSTRACT_TYPE(/datum/artifact/bomb)
 
 		range = rand(3,7)
 
-	effect_activate(obj/O)
+	effect_activate()
 		if(..())
 			return
-		O.setMaterial(mat)
+		src.holder.setMaterial(mat)
 
 	deploy_payload(var/obj/O)
 		if (..())
