@@ -3919,14 +3919,13 @@
 
 		return
 
-	hitby(atom/movable/M, datum/thrown_thing/thr)
+	hitby(atom/movable/AM, datum/thrown_thing/thr)
 		if (src.density)
 			for (var/obj/item/I in src.loc.contents)
-				I.hitby(M)
-				if (istype(I.artifact,/datum/artifact/) && isitem(M))
-					var/obj/item/ITM = M
-					var/obj/ART = I
-					src.impactpad_senseforce(ART, ITM)
+				I.hitby(AM)
+				var/obj/item/ITM = M
+				var/obj/ART = I
+				src.impactpad_senseforce(ART, ITM)
 		..()
 
 	bullet_act(var/obj/projectile/P)
@@ -3938,9 +3937,8 @@
 						src.impactpad_senseforce_shot(I, P)
 				return
 
-	proc/impactpad_senseforce(var/obj/I, var/atom/movable/AM)
-		if (istype(I.artifact,/datum/artifact/))
-			var/datum/artifact/ARTDATA = I.artifact
+	proc/impactpad_senseforce(var/datum/artifact/art, var/atom/movable/AM)
+		if (art)
 			var/stimforce = AM.throwforce
 			src.sensed[1] = stimforce * ARTDATA.react_mpct[1]
 			src.sensed[2] = stimforce * ARTDATA.react_mpct[2]
@@ -3956,7 +3954,7 @@
 		src.visible_message("<b>[src.name]</b> registers an impact and chimes.")
 		playsound(src.loc, "sound/machines/chime.ogg", 50, 1)
 
-	proc/impactpad_senseforce_shot(var/obj/I, var/datum/projectile/P)
+	proc/impactpad_senseforce_shot(var/datum/artifact/art, var/datum/projectile/P)
 		if (istype(I.artifact,/datum/artifact/))
 			var/datum/artifact/ARTDATA = I.artifact
 			var/stimforce = P.power
@@ -4034,7 +4032,6 @@
 
 		else use_power(20)
 
-		return
 
 	proc/electrify_contents()
 		var/current = src.wattage * src.voltage
@@ -4042,9 +4039,8 @@
 			for (var/mob/living/carbon/OUCH in src.contents)
 				OUCH.TakeDamage("All",0,current / 500)
 		else if(length(src.contents))
-			var/obj/O = pick(src.contents)
-			if (istype(O.artifact,/datum/artifact/))
-				O.ArtifactStimulus("elec", current)
+			var/atom/movable/AM = pick(src.contents)
+			SEND_SIGNAL(AM, COMSIG_ARTIFACT_STIMULUS, ARTIFACT_SIMULUS_ELECTRICAL, current)
 
 	attackby(var/obj/item/I, mob/user)
 		if (src.status & (NOPOWER|BROKEN))
@@ -4069,10 +4065,8 @@
 			I.set_loc(src)
 			user.visible_message("<b>[user]</b> loads [I] into [src.name]!")
 			src.UpdateIcon()
-			return
 		else
 			boutput(user, "There is no room left for that!")
-			return
 
 	message_interface(var/list/packetData)
 		switch (lowertext(packetData["command"]))

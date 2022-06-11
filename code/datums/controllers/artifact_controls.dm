@@ -158,7 +158,7 @@ var/datum/artifact_controller/artifact_controls
 			var/turf/T = art_atom.loc
 			usr.set_loc(T)
 
-			src.log_me(usr, O, "jumps to", 0)
+			src.log_me(usr, art_atom, "jumps to", 0)
 
 		else if (href_list["Get"])
 			var/atom/movable/art_atom = locate(href_list["Get"]) in src.artifacts
@@ -171,7 +171,7 @@ var/datum/artifact_controller/artifact_controls
 			var/atom/movable/art_atom = locate(href_list["Destroy"]) in src.artifacts
 
 			src.log_me(usr, art_atom, "destroys", 1)
-			qdel(O)
+			qdel(art_atom)
 
 		else if (href_list["Spawnnew"])
 			var/turf/T = get_turf(usr)

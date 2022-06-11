@@ -607,7 +607,7 @@ var/global/datum/arena/gauntletController/gauntlet_controller = new()
 			var/obj/O = new ST(T)
 			showswirl(T)
 			SPAWN(0.5 SECONDS)
-				O.ArtifactActivated()
+				SEND_SIGNAL(O, COMSIG_ARTIFACT_ACTIVATE)
 
 		forcewall
 			minimum_level = 25

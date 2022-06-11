@@ -44,6 +44,7 @@ TYPEINFO(/datum/component/artifact)
 	// Misc
 	RegisterSignal(src.artifact_atom, COMSIG_ATOM_EXAMINE, .proc/examine_hint)
 	RegisterSignal(src.artifact_atom, COMSIG_OBJ_FLIP_INSIDE, .proc/artifact_mob_flip_inside)
+	RegisterSignal(src.artifact_atom, COMSIG_ATOM_HITBY_THROWN, .proc/artifact_hitby)
 
 	// Artifact specific
 	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
@@ -138,7 +139,7 @@ TYPEINFO(/datum/component/artifact)
 											COMSIG_ATOM_EX_ACT, COMSIG_ATOM_HITBY_PROJ, COMSIG_ATOM_REAGENT_ACT,
 											COMSIG_ATOM_METEORHIT, COMSIG_OBJ_FLIP_INSIDE, COMSIG_ARTIFACT_FAULT_USED,
 											COMSIG_ATOM_EXAMINE, COMSIG_PARENT_PRE_DISPOSING, COMSIG_ITEM_ATTACK_PRE,
-											COMSIG_ITEM_AFTERATTACK))
+											COMSIG_ITEM_AFTERATTACK, COMSIG_ATOM_HITBY_THROWN))
 
 /**
  * Proc called to possibly give an artifact a fault, depending on probability. Called in New() with a low probability, and also whenever you
@@ -228,7 +229,7 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state + "fx"
 	else
 		src.artifact_atom.UpdateOverlays(src.artifact.fx_image, "activated")
-	src.artifact.effect_activate(src.artifact_atom)
+	src.artifact.effect_activate()
 
 /// Called to deactivate this artifact, whether automatically or through an activator key
 /datum/component/artifact/proc/artifact_deactivated()
@@ -244,7 +245,7 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state - "fx"
 	else
 		src.artifact_atom.UpdateOverlays(null, "activated")
-	src.artifact.effect_deactivate(src.artifact_atom)
+	src.artifact.effect_deactivate()
 
 
 /// Called when someone hits another mob with this artifact (only relevant to artifact items)
@@ -418,7 +419,7 @@ TYPEINFO(/datum/component/artifact)
 	switch (shot.proj_data.damage_type)
 		if(D_KINETIC,D_PIERCING,D_SLASHING)
 			var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.loc
-			pad?.impactpad_senseforce_shot(src, pad)
+			pad?.impactpad_senseforce_shot(src.artifact, pad)
 			src.artifact_stimulus("force", shot.power)
 		if(D_ENERGY)
 			src.artifact_stimulus("elec", shot.power * 10)
@@ -430,8 +431,8 @@ TYPEINFO(/datum/component/artifact)
 /// Called when this artifact is hit by a thrown movable
 /datum/component/artifact/proc/artifact_hitby(atom/movable/AM, datum/thrown_thing/thr)
 	src.artifact_stimulus("force", AM.throwforce)
-	var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.contents
-	pad?.impactpad_senseforce(src.artifact_atom, AM)
+	var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.loc
+	pad?.impactpad_senseforce(src.artifact, AM)
 
 /// Called when this artifact is hit by an EMP
 /datum/component/artifact/proc/artifact_emp_act()

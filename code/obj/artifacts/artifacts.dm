@@ -69,13 +69,6 @@
 		if (A.activated)
 			A.effect_process(src)
 
-	hitby(atom/movable/M, datum/thrown_thing/thr)
-		if (isitem(M))
-			var/obj/item/ITM = M
-			for (var/obj/machinery/networked/test_apparatus/impact_pad/I in src.loc.contents)
-				I.impactpad_senseforce(src, ITM)
-		..()
-
 /obj/item/artifact
 	name = "artifact small art piece"
 	icon = 'icons/obj/artifacts/artifactsitem.dmi'
