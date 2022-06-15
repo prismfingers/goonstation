@@ -21,14 +21,6 @@
 		SPAWN(0)
 			src.ArtifactSetup()
 
-	// TODO
-	examine()
-		. = list("You have no idea what this thing is!")
-		if (!src.ArtifactSanityCheck())
-			return
-		var/datum/artifact/A = src.artifact
-		if (istext(A.examine_hint))
-			. += A.examine_hint
 
 /obj/machinery/artifact
 	name = "artifact large art piece"

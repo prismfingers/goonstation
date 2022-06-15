@@ -3938,24 +3938,19 @@
 				return
 
 	proc/impactpad_senseforce(var/datum/artifact/art, var/atom/movable/AM)
-		if (art)
-			var/stimforce = AM.throwforce
-			src.sensed[1] = stimforce * ARTDATA.react_mpct[1]
-			src.sensed[2] = stimforce * ARTDATA.react_mpct[2]
-			if (src.sensed[2] != 0 && length(ARTDATA.faults))
-				src.sensed[2] += rand(ARTDATA.faults.len / 2,ARTDATA.faults.len * 2)
-			var/datum/artifact_trigger/AT = ARTDATA.get_trigger_by_string("force")
-			if (AT)
-				src.sensed[1] *= 5
-				src.sensed[2] *= 5
-		else
-			src.sensed[1] = "???"
-			src.sensed[2] = "0"
+		var/stimforce = AM.throwforce
+		src.sensed[1] = stimforce * art.react_mpct[1]
+		src.sensed[2] = stimforce * art.react_mpct[2]
+		if (src.sensed[2] != 0 && length(art.faults))
+			src.sensed[2] += rand(art.faults.len / 2, art.faults.len * 2)
+		var/datum/artifact_trigger/force_trigger = art.get_trigger_by_string("force")
+		if (force_trigger)
+			src.sensed[1] *= 5
+			src.sensed[2] *= 5
 		src.visible_message("<b>[src.name]</b> registers an impact and chimes.")
 		playsound(src.loc, "sound/machines/chime.ogg", 50, 1)
 
 	proc/impactpad_senseforce_shot(var/datum/artifact/art, var/datum/projectile/P)
-		if (istype(I.artifact,/datum/artifact/))
 			var/datum/artifact/ARTDATA = I.artifact
 			var/stimforce = P.power
 			src.sensed[1] = stimforce * ARTDATA.react_mpct[1]
