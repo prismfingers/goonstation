@@ -2107,11 +2107,8 @@ datum
 					if(holder.get_reagent_amount(src.id) > 300)
 						// oh no
 						if(probmult(1)) // i hate you all, players
-							H.visible_message("<span class='alert bold'>[H] is torn apart from the inside as some weird floaty thing rips its way out of their body! Holy fuck!!</span>")
-							var/mob/living/critter/flock/bit/B = new()
-							B.set_loc(get_turf(H))
+							H.flockbit_gib()
 							logTheThing("combat", H, null, "was gibbed by reagent [name] at [log_loc(H)].")
-							H.gib()
 					else
 						// DO SPOOKY THINGS
 						if(holder.get_reagent_amount(src.id) < 100)
@@ -3503,7 +3500,7 @@ datum
 					if (!isliving(M))
 						return
 					src.music_given_to = M	// Lets just add all this to on_add instead of on reaction
-					M << sound('sound/misc/yee_music.ogg', repeat = 1, wait = 0, channel = 391, volume = 50) // play them tunes
+					M.playsound_local(M, "sound/misc/yee_music.ogg", 50, 0) // why the fuck was this playing sound with << and to repeat forever? never do this
 					if (M.bioHolder && ishuman(M))			// All mobs get the tunes, only "humans" get the scales
 						var/mob/living/carbon/human/H = M
 						src.the_bioeffect_you_had_before_it_was_affected_by_yee = H?.mutantrace?.name			// then write down what your whatsit was
@@ -3540,7 +3537,7 @@ datum
 					M = holder.my_atom
 				if (!src.music_given_to) // only do this one time!!
 					src.music_given_to = M
-					M << sound('sound/misc/yee_music.ogg', repeat = 1, wait = 0, channel = 391, volume = 50) // play them tunes
+					M.playsound_local(M, "sound/misc/yee_music.ogg", 50, 0)  // same comment as the other instance of this being played, yeesh
 				if (M.bioHolder)
 					if (src.the_bioeffect_you_had_before_it_was_affected_by_yee != "lizard")	// Just for consistency
 						M.bioHolder.AddEffect("lizard", timeleft = 180)
