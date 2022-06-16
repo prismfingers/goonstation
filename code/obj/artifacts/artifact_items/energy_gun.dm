@@ -21,34 +21,8 @@
 			AS.bullets = forceBullets
 		set_current_projectile(pick(AS.bullets))
 		projectiles = AS.bullets
-		AddComponent(/datum/component/cell_holder, new/obj/item/ammo/power_cell/self_charging/artifact(src,A.artitype,current_projectile.cost), swappable = FALSE)
 
 		src.setItemSpecial(null)
-
-	shoot(var/target,var/start,var/mob/user)
-		if (!src.ArtifactSanityCheck())
-			return
-		var/datum/artifact/energygun/A = src.artifact
-
-		if (!istype(A))
-			return
-
-		if (!A.activated)
-			return
-
-		. = ..()
-
-		if(!.) // do not trigger fault or damage if we don't shoot
-			return
-
-		SEND_SIGNAL(src, COMSIG_ARTIFACT_FAULT_USED, user)
-
-		if(prob(20))
-			SEND_SIGNAL(src, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)
-			user.visible_message("<span class='alert'>[src] emits \a [pick("ominous", "portentous", "sinister")] sound.</span>")
-		else if(prob(20))
-			SEND_SIGNAL(src, COMSIG_ARTIFACT_TAKE_DAMAGE, 20)
-			user.visible_message("<span class='alert'>[src] emits a terrible cracking noise.</span>")
 
 /datum/artifact/energygun
 	associated_object = /obj/item/gun/energy/artifact
@@ -78,6 +52,8 @@
 
 	post_setup()
 		. = ..()
+		// do this here so we can pass the art datum (ourselves) to the cell
+		holder.AddComponent(/datum/component/cell_holder, new/obj/item/ammo/power_cell/self_charging/artifact(holder, src.artitype, current_projectile.cost), swappable = FALSE)
 
 
 	effect_destroyed()
@@ -91,4 +67,28 @@
 	effect_deactivate()
 		. = ..()
 		src.holder.AddComponent(/datum/component/cell_holder, swappable = FALSE) // prevent cell swapping while deactivated
+
+	effect_afterattack(mob/living/user, atom/A)
+		. = ..()
+		if (!istype(holder, /obj/item/gun))
+			CRASH("Some chucklefuck put a gun artifact datum on non-gun object [holder] (\ref [holder]). That's not going to work.")
+		var/obj/item/gun/gun_holder = holder
+
+		if (!src.activated)
+			return
+
+		. = gun_holder.shoot(A, get_turf(src), user)
+
+		if(!.) // do not trigger fault or damage if we don't shoot
+			return
+
+		SEND_SIGNAL(holder, COMSIG_ARTIFACT_FAULT_USED, user)
+
+		if(prob(20))
+			SEND_SIGNAL(holder, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)
+			user.visible_message("<span class='alert'>[src] emits \a [pick("ominous", "portentous", "sinister")] sound.</span>")
+		else if(prob(20))
+			SEND_SIGNAL(holder, COMSIG_ARTIFACT_TAKE_DAMAGE, 20)
+			user.visible_message("<span class='alert'>[src] emits a terrible cracking noise.</span>")
+
 

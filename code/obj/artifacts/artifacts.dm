@@ -39,18 +39,6 @@
 		var/datum/artifact/AS = new src.associated_datum(src)
 		if (forceartiorigin)
 			AS.validtypes = list("[forceartiorigin]")
-		src.artifact = AS
-
-		SPAWN(0)
-			src.ArtifactSetup()
-
-	examine()
-		. = list("You have no idea what this thing is!")
-		if (!src.ArtifactSanityCheck())
-			return
-		var/datum/artifact/A = src.artifact
-		if (istext(A.examine_hint))
-			. += A.examine_hint
 
 	process()
 		..()
@@ -84,7 +72,7 @@
 
 /obj/artifact_spawner
 	// pretty much entirely for debugging/gimmick use
-	New(var/loc,var/forceartiorigin = null,var/cinematic = 0)
+	New(var/loc, var/forceartiorigin = null, var/cinematic = 0)
 		..()
 		var/turf/T = get_turf(src)
 		if (cinematic)
@@ -96,7 +84,6 @@
 				qdel(swirl)
 		Artifact_Spawn(T,forceartiorigin)
 		qdel(src)
-		return
 
 /obj/artifact_type_spawner
 	var/list/types = list()
