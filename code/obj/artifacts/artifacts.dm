@@ -18,9 +18,6 @@
 		if (forceartiorigin) AS.validtypes = list("[forceartiorigin]")
 		src.artifact = AS
 
-		SPAWN(0)
-			src.ArtifactSetup()
-
 
 /obj/machinery/artifact
 	name = "artifact large art piece"
@@ -42,8 +39,6 @@
 
 	process()
 		..()
-		if (!src.ArtifactSanityCheck())
-			return
 		var/datum/artifact/A = src.artifact
 
 		if (A.activated)
@@ -64,10 +59,6 @@
 		if (forceartiorigin)
 			AS.validtypes = list("[forceartiorigin]")
 		src.artifact = AS
-
-		SPAWN(0)
-			src.ArtifactSetup()
-
 
 
 /obj/artifact_spawner

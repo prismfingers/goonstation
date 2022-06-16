@@ -256,7 +256,7 @@ TYPEINFO(/datum/component/artifact)
 /datum/component/artifact/proc/artifact_attack(obj/item/weapon, mob/target, mob/user)
 	if (src.artifact.activated)
 		src.artifact_fault_used(user)
-		src.artifact_fault_used(user)
+		src.artifact_fault_used(target)
 		src.artifact.effect_melee_attack(weapon, user, target)
 
 /// Called when someone clicks pretty much anything with an artifact. For certain objects (telewands etc), called on ranged clicks too.

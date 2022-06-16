@@ -8,12 +8,7 @@
 
 	New(var/loc, var/forceartiorigin)
 		..()
-		var/datum/artifact/pitcher/AS = new /datum/artifact/pitcher(src)
-		if (forceartiorigin)
-			AS.validtypes = list("[forceartiorigin]")
-		src.artifact = AS
-		SPAWN(0)
-			src.ArtifactSetup()
+		src.AddComponent(/datum/component/artifact, /datum/artifact/pitcher, TRUE, forceartiorigin)
 
 		gulp_size = rand(2, 10) * 5 //How fast will you drink from this? Who knows!
 		var/capacity = rand(5,20)
@@ -150,18 +145,8 @@
 	smash()
 		return //Prevents pitcher from smashing into glass
 
-	//Annoyingly duplicated code to override pitcher's explosion behavior (smashing)
+	// Don't want to smash; can still be destroyed by artifact stimuli
 	ex_act(severity)
-		switch(severity)
-			if(1.0)
-				src.ArtifactStimulus("force", 200)
-				src.ArtifactStimulus("heat", 500)
-			if(2.0)
-				src.ArtifactStimulus("force", 75)
-				src.ArtifactStimulus("heat", 450)
-			if(3.0)
-				src.ArtifactStimulus("force", 25)
-				src.ArtifactStimulus("heat", 380)
 		return
 
 	//Bastard child of artifact destuction behavior and drinkingglass smash behavior
@@ -194,3 +179,22 @@
 	New()
 		..()
 		src.react_heat[2] = "HIGH INTERNAL CONVECTION"
+
+	artifact_attack()
+
+	effect_destroyed()
+		. = ..()
+		if (!istype(holder, /obj/item/reagent_containers/food/drinks))
+			CRASH("Some chucklefuck put an artifact pitcher component on non-drinkable thing [holder] (\ref[holder])")
+		var/obj/item/reagent_containers/food/drinks/drink_holder = holder
+
+		if (istype(holder, /obj/item/reagent_containers/food/drinks/drinkingglass))
+			var/obj/item/reagent_containers/food/drinks/drinkingglass/glass_holder = holder
+			if (src.in_glass)
+				src.in_glass.set_loc(T)
+				src.in_glass = null
+			if (src.wedge)
+				src.wedge.set_loc(T)
+				src.wedge = null
+
+
