@@ -247,7 +247,6 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.UpdateOverlays(null, "activated")
 	src.artifact.effect_deactivate()
 
-
 /// Called when someone hits another mob with this artifact (only relevant to artifact items)
 /datum/component/artifact/proc/artifact_attack(obj/item/weapon, mob/target, mob/user)
 	if (src.artifact.activated)
@@ -418,8 +417,8 @@ TYPEINFO(/datum/component/artifact)
 /datum/component/artifact/proc/artifact_bullet_act(obj/projectile/shot)
 	switch (shot.proj_data.damage_type)
 		if(D_KINETIC,D_PIERCING,D_SLASHING)
-			var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in src.artifact_atom.loc
-			pad?.impactpad_senseforce_shot(src.artifact, pad)
+			var/obj/machinery/networked/test_apparatus/impact_pad/pad = locate() in get_turf(src.artifact_atom)
+			pad?.impactpad_senseforce(src.artifact, shot)
 			src.artifact_stimulus("force", shot.power)
 		if(D_ENERGY)
 			src.artifact_stimulus("elec", shot.power * 10)

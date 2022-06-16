@@ -3921,54 +3921,40 @@
 
 	hitby(atom/movable/AM, datum/thrown_thing/thr)
 		if (src.density)
-			for (var/obj/item/I in src.loc.contents)
-				I.hitby(AM)
-				var/obj/item/ITM = M
-				var/obj/ART = I
-				src.impactpad_senseforce(ART, ITM)
-		..()
+			for (var/obj/item/I in get_turf(src))
+				I.hitby(AM) // Bit of a hack- to get all the artifact datum stuff sent correctly we just reroute the throw to the item
+		return ..()
 
 	bullet_act(var/obj/projectile/P)
 		if (src.density)
 			for (var/obj/item/I in src.loc.contents)
-				I.bullet_act(P)
-				switch (P.proj_data.damage_type)
-					if(D_KINETIC,D_PIERCING,D_SLASHING)
-						src.impactpad_senseforce_shot(I, P)
-				return
+				I.bullet_act(P) // Likewise
+		return ..()
 
-	proc/impactpad_senseforce(var/datum/artifact/art, var/atom/movable/AM)
-		var/stimforce = AM.throwforce
-		src.sensed[1] = stimforce * art.react_mpct[1]
-		src.sensed[2] = stimforce * art.react_mpct[2]
-		if (src.sensed[2] != 0 && length(art.faults))
+	proc/impactpad_senseforce(datum/artifact/art, atom/movable/impetus)
+		var/force
+		if (istype(impetus, /obj/projectile))
+			var/obj/projectile/P = impetus
+			if (!(P.proj_data.damage_type in list(D_PIERCING, D_SLASHING, D_KINETIC))) // only sense force on bullets that trigger force reactions
+				return
+			force = P.power
+		else //something got thrown at us
+			force = impetus.throwforce // It's funny that this is defined on /atom. I'm not complaining, but the fact that turfs and areas have throw damage is amusing
+
+		src.sensed[1] = force * art.react_mpct[1]
+		src.sensed[2] = force * art.react_mpct[2]
+
+		if (src.sensed[2] && length(art.faults))
 			src.sensed[2] += rand(art.faults.len / 2, art.faults.len * 2)
+
 		var/datum/artifact_trigger/force_trigger = art.get_trigger_by_string("force")
 		if (force_trigger)
 			src.sensed[1] *= 5
 			src.sensed[2] *= 5
-		src.visible_message("<b>[src.name]</b> registers an impact and chimes.")
-		playsound(src.loc, "sound/machines/chime.ogg", 50, 1)
-
-	proc/impactpad_senseforce_shot(var/datum/artifact/art, var/datum/projectile/P)
-			var/datum/artifact/ARTDATA = I.artifact
-			var/stimforce = P.power
-			src.sensed[1] = stimforce * ARTDATA.react_mpct[1]
-			src.sensed[2] = stimforce * ARTDATA.react_mpct[2]
-
-			if (src.sensed[2] != 0 && length(ARTDATA.faults))
-				src.sensed[2] += rand(ARTDATA.faults.len / 2,ARTDATA.faults.len * 2)
-
-			var/datum/artifact_trigger/AT = ARTDATA.get_trigger_by_string("force")
-			if (AT)
-				src.sensed[1] *= 5
-				src.sensed[2] *= 5
-		else
-			src.sensed[1] = "???"
-			src.sensed[2] = "0"
 
 		src.visible_message("<b>[src.name]</b> registers an impact and chimes.")
 		playsound(src, "sound/machines/chime.ogg", 50, 1)
+
 
 /obj/machinery/networked/test_apparatus/electrobox
 	name = "Electrical Testing Apparatus"
