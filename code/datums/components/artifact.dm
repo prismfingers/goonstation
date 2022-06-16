@@ -2,7 +2,7 @@ TYPEINFO(/datum/component/artifact)
 	initialization_args = list(
 		ARG_INFO("artifact_type", DATA_INPUT_TYPE, "What type of artifact should this component correspond to", /datum/artifact),
 		ARG_INFO("scramble_appearance", DATA_INPUT_BOOL, "Should we scramble this thing's name, appearance, and desc (like normal)?", TRUE),
-		ARG_INFO("forceartiorigin", DATA_INPUT_TEXT, "Should we force this artifact to be a specific origin? Warning: will potentially create unusual artifacts if a type is also specified.", null)
+		ARG_INFO("forceartiorigin", DATA_INPUT_TEXT, "Should we force this artifact to be a specific origin? Warning: will potentially create unusual artifacts if a type is also specified. Can also be a list.", null)
 	)
 
 /**
@@ -59,6 +59,9 @@ TYPEINFO(/datum/component/artifact)
 	if (isitem(src.artifact_atom))
 		RegisterSignal(src.artifact_atom, COMSIG_ITEM_ATTACK_PRE, .proc/artifact_attack)
 		RegisterSignal(src.artifact_atom, COMSIG_ITEM_AFTERATTACK, .proc/artifact_afterattack)
+
+	if (forceartiorigin)
+		src.artifact.validtypes = forceartiorigin
 
 	// Setup actual origin
 	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(src.artifact.validtypes))
