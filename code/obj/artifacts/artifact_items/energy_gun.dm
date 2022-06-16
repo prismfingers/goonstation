@@ -14,48 +14,16 @@
 		var/datum/artifact/energygun/AS = new /datum/artifact/energygun(src)
 		if (forceartiorigin)
 			AS.validtypes = list("[forceartiorigin]")
-		src.artifact = AS
-		// The other three are normal for energy gun setup, so proceed as usual i guess
 
-		SPAWN(0)
-			src.ArtifactSetup()
-			var/datum/artifact/A = src.artifact
-
-
-			if(forceBullets)
-				for(var/datum/projectile/artifact/forceBullet as anything in forceBullets)
-					forceBullet.turretArt = null // not making this trigger faults on people who are shot, to prevent guns from feeling too unfair
-				AS.bullets = forceBullets
-			set_current_projectile(pick(AS.bullets))
-			projectiles = AS.bullets
-			AddComponent(/datum/component/cell_holder, new/obj/item/ammo/power_cell/self_charging/artifact(src,A.artitype,current_projectile.cost), swappable = FALSE)
+		if(forceBullets)
+			for(var/datum/projectile/artifact/forceBullet as anything in forceBullets)
+				forceBullet.turretArt = null // not making this trigger faults on people who are shot, to prevent guns from feeling too unfair
+			AS.bullets = forceBullets
+		set_current_projectile(pick(AS.bullets))
+		projectiles = AS.bullets
+		AddComponent(/datum/component/cell_holder, new/obj/item/ammo/power_cell/self_charging/artifact(src,A.artitype,current_projectile.cost), swappable = FALSE)
 
 		src.setItemSpecial(null)
-
-	examine()
-		. = list("You have no idea what this thing is!")
-		if (!src.ArtifactSanityCheck())
-			return
-		var/datum/artifact/A = src.artifact
-		if (istext(A.examine_hint))
-			. += A.examine_hint
-
-	UpdateName()
-		src.name = "[name_prefix(null, 1)][src.real_name][name_suffix(null, 1)]"
-
-	attackby(obj/item/W, mob/user)
-		if (src.Artifact_attackby(W,user))
-			..()
-
-	reagent_act(reagent_id,volume)
-		if (..())
-			return
-		src.Artifact_reagent_act(reagent_id, volume)
-		return
-
-	emp_act()
-		src.Artifact_emp_act()
-		..()
 
 	shoot(var/target,var/start,var/mob/user)
 		if (!src.ArtifactSanityCheck())
@@ -73,28 +41,14 @@
 		if(!.) // do not trigger fault or damage if we don't shoot
 			return
 
-		src.ArtifactFaultUsed(user)
+		SEND_SIGNAL(src, COMSIG_ARTIFACT_FAULT_USED, user)
 
 		if(prob(20))
-			src.ArtifactDevelopFault(100)
+			SEND_SIGNAL(src, COMSIG_ARTIFACT_DEVELOP_FAULT, 100)
 			user.visible_message("<span class='alert'>[src] emits \a [pick("ominous", "portentous", "sinister")] sound.</span>")
 		else if(prob(20))
-			src.ArtifactTakeDamage(20)
+			SEND_SIGNAL(src, COMSIG_ARTIFACT_TAKE_DAMAGE, 20)
 			user.visible_message("<span class='alert'>[src] emits a terrible cracking noise.</span>")
-
-		return
-
-	ArtifactDestroyed()
-		SEND_SIGNAL(src, COMSIG_CELL_SWAP, null, null) //swap cell with nothing (drop cell on flooor)
-		. = ..()
-
-	ArtifactActivated()
-		. = ..()
-		AddComponent(/datum/component/cell_holder, swappable = TRUE)
-
-	ArtifactDeactivated()
-		. = ..()
-		AddComponent(/datum/component/cell_holder, swappable = FALSE)
 
 /datum/artifact/energygun
 	associated_object = /obj/item/gun/energy/artifact
@@ -121,3 +75,20 @@
 			bullet.dissipation_rate = rand(1,bullet.power)
 			bullet.cost = rand(35,100) // randomise puts it at 50-150
 			bullets += bullet
+
+	post_setup()
+		. = ..()
+
+
+	effect_destroyed()
+		..()
+		SEND_SIGNAL(src, COMSIG_CELL_SWAP, null, null) //swap cell with nothing (drop cell on flooor)
+
+	effect_activate()
+		. = ..()
+		src.holder.AddComponent(/datum/component/cell_holder, swappable = TRUE)
+
+	effect_deactivate()
+		. = ..()
+		src.holder.AddComponent(/datum/component/cell_holder, swappable = FALSE) // prevent cell swapping while deactivated
+

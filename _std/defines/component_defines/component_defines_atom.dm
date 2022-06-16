@@ -71,16 +71,19 @@
 
 	// ---- artifacts ----
 
-	/// Send to an artifact atom to trigger faults on that atom. Does nothing to non-artifacts (user, cosmetic origin)
+	// These are all relevant to artifact ATOMS. Sending them to an object with no associated artifact does nothing [or SHOULD >:( ]
+	/// Send to an artifact atom to trigger faults on that atom. Returns result of the fault- see [_std/defines/artifact.dm] (user, cosmetic origin)
 	#define COMSIG_ARTIFACT_FAULT_USED "artifact_fault_used"
 	/// Send to an artifact to develop a fault with the passed probability, or omit the probability for a 100% chance (fault probability)
 	#define COMSIG_ARTIFACT_DEVELOP_FAULT "artifact_develop_fault"
 	/// Send to an artifact atom to apply a stimulus to it (stimulus, amount)
 	#define COMSIG_ARTIFACT_STIMULUS "artifact_stimulus"
-	/// Send to an artifact atom to activate it. Returns FALSE if already activated.
+	/// Send to an artifact atom to activate it. 3 possible returns- see [_std/defines/artifact.dm]
 	#define COMSIG_ARTIFACT_ACTIVATE "artifact_activate"
-	/// Send to an artifact to deactivate it Returns FALSE if already deactivated.
+	/// Send to an artifact to deactivate it Returns FALSE if already deactivated, TRUE otherwise
 	#define COMSIG_ARTIFACT_DEACTIVATE "artifact_deactivate"
+	/// Send to an artifact to deal the specified amount of damage (damage)
+	#define COMSIG_ARTIFACT_TAKE_DAMAGE "artifact_take_damage"
 
 	// ---- complex ----
 

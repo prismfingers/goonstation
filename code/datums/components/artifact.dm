@@ -50,6 +50,7 @@ TYPEINFO(/datum/component/artifact)
 	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_FAULT_USED, .proc/artifact_fault_used)
 	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_DEVELOP_FAULT, .proc/maybe_develop_fault)
 	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_ACTIVATE, .proc/artifact_activated)
+	RegisterSignal(src.artifact_atom, COMSIG_ARTIFACT_TAKE_DAMAGE, .proc/artifact_take_damage)
 
 	// Clean up artifact/drop stuff on parent deletion
 	RegisterSignal(src.artifact_atom, COMSIG_PARENT_PRE_DISPOSING, .proc/artifact_destroyed)
@@ -161,10 +162,10 @@ TYPEINFO(/datum/component/artifact)
 			stack_trace("Didn't get a path from fault_types. Got \[[new_fault]\] instead.")
 
 /datum/component/artifact/proc/artifact_mob_flip_inside(mob/flipper)
-	src.artifact_take_damage(rand(5, 20))
+	src.artifact_take_damage(damage = rand(5, 20))
 	flipper.visible_message("<span class='alert'>\the [src.artifact_atom] seems to be a bit more damaged!</span>")
 
-/datum/component/artifact/proc/artifact_take_damage(var/damage)
+/datum/component/artifact/proc/artifact_take_damage(artifact, damage = 0)
 	src.artifact.health -= damage
 	src.artifact.health = min(src.artifact.health, 100)
 
@@ -184,6 +185,7 @@ TYPEINFO(/datum/component/artifact)
 
 	src.remove_artifact_forms()
 	src.artifact_deactivated()
+	src.artifact.effect_destroyed()
 
 	artifact_controls.artifacts -= src.artifact_atom
 
@@ -472,9 +474,9 @@ TYPEINFO(/datum/component/artifact)
 		if("voltagen","energydrink")
 			src.artifact_stimulus("elec", volume * 50)
 		if("acid","acetic_acid")
-			src.artifact_take_damage(volume * 2)
+			src.artifact_take_damage(damage = volume * 2)
 		if("pacid","clacid","nitric_acid")
-			src.artifact_take_damage(volume * 10)
+			src.artifact_take_damage(damage = volume * 10)
 		if("george_melonium")
 			var/random_stimulus = pick("heat","force","radiate","elec", "carbtouch", "silitouch")
 			var/random_strength = 0
@@ -508,22 +510,22 @@ TYPEINFO(/datum/component/artifact)
 					T.visible_message("<span class='alert'>[src] bruises from the impact!</span>")
 					playsound(src.artifact_atom.loc, "sound/impact_sounds/Slimy_Hit_3.ogg", 100, 1)
 					src.maybe_develop_fault(faultprob = 33)
-					src.artifact_take_damage(strength / 1.5)
+					src.artifact_take_damage(damage = strength / 1.5)
 			if(stimtype == "elec")
 				if (strength >= 3000) // max you can get from the electrobox is 5000
 					T.visible_message("<span class='alert'>[src] seems to quiver in pain!</span>")
-					src.artifact_take_damage(strength / 1000)
+					src.artifact_take_damage(damage = strength / 1000)
 			if(stimtype == "radiate")
 				if (strength >= 6)
 					src.maybe_develop_fault(faultprob = strength * 10 - 20) // 40% at 6, 80% at 10
-					src.artifact_take_damage(strength * 1.25)
+					src.artifact_take_damage(damage = strength * 1.25)
 		if("wizard") // these are big crystals, thus you probably shouldn't smack them around too hard!
 			if(stimtype == "force")
 				if (strength >= 20)
 					T.visible_message("<span class='alert'>[src] cracks and splinters!</span>")
 					playsound(src.artifact_atom.loc, "sound/impact_sounds/Glass_Shards_Hit_1.ogg", 100, 1)
 					src.maybe_develop_fault(faultprob = 80)
-					src.artifact_take_damage(strength * 1.5)
+					src.artifact_take_damage(damage = strength * 1.5)
 
 	if (!src.artifact.activated)
 		for (var/datum/artifact_trigger/trigger in src.artifact.triggers)

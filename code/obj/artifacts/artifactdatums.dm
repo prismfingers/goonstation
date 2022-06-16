@@ -2,7 +2,12 @@
 
 ABSTRACT_TYPE(/datum/artifact/)
 /datum/artifact/
-	/// the actual /obj type that is the artifact for this datum
+	//  -----------
+	/// the actual /obj that belongs to this specific artifact instance
+	var/obj/holder = null
+	//  -----------
+
+	/// the /obj type that is the artifact for this datum
 	var/associated_object = null
 	/// a weighted commonness, the higher it is the more often the artifact will appear
 	/// at 0 it should not appear randomly at all
@@ -27,8 +32,6 @@ ABSTRACT_TYPE(/datum/artifact/)
 	// These are automatically handled. They're used to make the artifact glow different colors.
 	/// the glowy overlay used for when the artifact is activated
 	var/image/fx_image = null
-	/// the actual /obj that belongs to this specific artifact instance
-	var/obj/holder = null
 
 	/// Is the artifact currently switched on?
 	var/activated = 0
@@ -128,14 +131,18 @@ ABSTRACT_TYPE(/datum/artifact/)
 		ArtifactLogs(usr, null, O, "deactivated", log_addendum, 0)
 		return FALSE
 
+	/// What the artifact should do when destroyed. Called AFTER deactivation (on destruction). Actual deletion is handled elsewhere.
+	proc/effect_destroyed()
+		return FALSE
+
 	/// What activated artifact machines do each processing tick.
 	proc/effect_process()
-		return 0
+		return FALSE
 
 	/// What the artifact does if touched while activated.
 	proc/effect_touch(var/obj/O,var/mob/living/user)
 		O.add_fingerprint(user)
-		return 0
+		return FALSE
 
 	/// What the artifact does when it is activated and you smack a person with it.
 	/// Only used by /obj/item/artifact/melee_weapon so far.
