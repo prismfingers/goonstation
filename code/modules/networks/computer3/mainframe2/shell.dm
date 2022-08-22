@@ -125,7 +125,8 @@
 					else
 						suppress_out = 0
 						return 1
-
+				else
+					return 1
 				subPlace = findtext(text, "_sub")
 
 			//var/list/command_list = parse_string(text, (script_iteration ? src.scriptvars : null))
@@ -588,7 +589,7 @@
 		//Something something immersion something something 32-bit signed someting fixed point something.
 		script_clampvalue(var/clampnum)
 			//return round( min( max(text2num_safe(clampnum), -2147483647), 2147483648) ) // good riddance
-			return round( min( max(clampnum, -2147483647), 2147483600), 0.01 ) // 2147483648
+			return round( clamp(clampnum, -2147483647, 2147483600), 0.01 ) // 2147483648
 
 		script_isNumResult(var/current, var/result)
 
