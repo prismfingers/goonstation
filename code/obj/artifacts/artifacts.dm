@@ -10,13 +10,6 @@
 	artifact = 1
 	mat_changename = 0
 	mat_changedesc = 0
-	var/associated_datum = /datum/artifact/art
-
-	New(var/loc, var/forceartiorigin)
-		..()
-		var/datum/artifact/AS = new src.associated_datum(src)
-		if (forceartiorigin) AS.validtypes = list("[forceartiorigin]")
-		src.artifact = AS
 
 
 /obj/machinery/artifact
@@ -29,13 +22,6 @@
 	artifact = 1
 	mat_changename = 0
 	mat_changedesc = 0
-	var/associated_datum = /datum/artifact/art
-
-	New(var/loc, var/forceartiorigin)
-		..()
-		var/datum/artifact/AS = new src.associated_datum(src)
-		if (forceartiorigin)
-			AS.validtypes = list("[forceartiorigin]")
 
 	process()
 		..()
@@ -51,7 +37,6 @@
 	artifact = 1
 	mat_changename = 0
 	mat_changedesc = 0
-	var/associated_datum = /datum/artifact/art
 
 	New(var/loc, var/forceartiorigin)
 		..()

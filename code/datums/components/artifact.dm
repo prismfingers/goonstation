@@ -1,3 +1,54 @@
+/*//////////////////////////////////////////
+Copy pasted from an old notepad doc so some of this might be outdated
+
+--------------------MASTER TODO---------------------
+
+artifact procs DONE
+signal passthrough DONE
+remove all obj-datum associations
+make activator keys less shit DONE
+add effect_afterattack to artifacts DONE
+figure out how to do examine hints DONE
+implement defines
+rework mob_flip_inside? DONE
+remove dumb args from art datums
+figure out a sane way to make sure effect_afterattack is consistently called (pixelaction signal?)
+
+LATER
+mass rename ArtifactStimulus etc
+rework touch descriptors
+remove all var-copying from appearance to artifact datum; just query appearance
+add better logging
+move ArtifactDestroyed calls to qdel()
+make sure forms work
+singleton arti origins
+typeinfo arti origin lists
+remove `src` arg from effect_activate
+improve baton-artifact interaction
+remove artifact arguments from effect_activate and effect_deactivate
+retrofit spawn_artifact
+figure out how to do artifact machine processing
+add logging to everything
+
+FEATURES
+Multi artifacts (?) [might leave this for later if it needs some extra consideration]
+Mob artifact demo
+
+
+GENERAL FLOW
+1. Maintain obj artifact types, but with less code duplication
+2. Art datum types specify the atom type they want in New() when adding component (not a var)
+3. Most behavior goes in component; objs are very lightweight
+4. Some still obj/machinery to ride machine loop
+
+ONE DAY
+- Artifact process so no machine loop shit
+
+
+IMPACT PAD
+Make stand-up pad set density of items to 1 (so you can shoot/hit them)
+
+*//////////////////////////////////////////
 TYPEINFO(/datum/component/artifact)
 	initialization_args = list(
 		ARG_INFO("artifact_type", DATA_INPUT_TYPE, "What type of artifact should this component correspond to", /datum/artifact),
@@ -64,7 +115,7 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact.validtypes = forceartiorigin
 
 	// Setup actual origin
-	var/datum/artifact_origin/real_origin = artifact_controls.get_origin_from_string(pick(src.artifact.validtypes))
+	var/datum/artifact_origin/real_origin = global.artifact_controls.get_origin_from_string(pick(src.artifact.validtypes))
 	src.artifact.artitype = real_origin
 
 	// Make this appear like an artifact
@@ -77,7 +128,7 @@ TYPEINFO(/datum/component/artifact)
 
 		// If we nulled the appearance, pick a random one
 		if (!istype(appearance_origin, /datum/artifact_origin/))
-			appearance_origin = artifact_controls.get_origin_from_string(pick(artifact_controls.artifact_origin_names))
+			appearance_origin = global.artifact_controls.get_origin_from_string(pick(global.artifact_controls.artifact_origin_names))
 
 		// Artifact-ize name
 		var/name1 = pick(appearance_origin.adjectives)
@@ -134,11 +185,11 @@ TYPEINFO(/datum/component/artifact)
 
 
 		// Finally, add to artifact controller so we can track it and run the artifact's setup
-		artifact_controls.artifacts += src.artifact_atom
+		global.artifact_controls.artifacts += src.artifact_atom
 		src.artifact.post_setup()
 
 /datum/component/artifact/UnregisterFromParent()
-	artifact_controls.artifacts -= src.artifact_atom
+	global.artifact_controls.artifacts -= src.artifact_atom
 	UnregisterSignal(artifact_atom, list(COMSIG_ATTACKBY, COMSIG_ATTACKHAND, COMSIG_ATOM_BLOB_ACT,
 											COMSIG_ATOM_EX_ACT, COMSIG_ATOM_HITBY_PROJ, COMSIG_ATOM_REAGENT_ACT,
 											COMSIG_ATOM_METEORHIT, COMSIG_OBJ_FLIP_INSIDE, COMSIG_ARTIFACT_FAULT_USED,
@@ -162,7 +213,7 @@ TYPEINFO(/datum/component/artifact)
 			F.holder = src.artifact
 			src.artifact.faults += F
 		else
-			stack_trace("Didn't get a path from fault_types. Got \[[new_fault]\] instead.")
+			stack_trace("Didn't get a path from fault_types for artifact [src.artifact.type]. Got \[[new_fault]\] instead.")
 
 /datum/component/artifact/proc/artifact_mob_flip_inside(mob/flipper)
 	src.artifact_take_damage(damage = rand(5, 20))
@@ -182,15 +233,13 @@ TYPEINFO(/datum/component/artifact)
 /// Called before the parent atom is deleted. DO NOT CALL THIS SHIT JUST DELETE THE THING PARENT ATOM
 /datum/component/artifact/proc/artifact_destroyed()
 
-	var/turf/T = get_turf(src)
-	if (istype(T, /turf/))
-		T.visible_message("<span class='alert><b>[src] [src.artifact.artitype.destruction_message]</b></span>")
+	src.artifact_atom.visible_message("<span class='alert><b>[src.artifact_atom] [src.artifact.artitype.destruction_message]!</b></span>")
 
 	src.remove_artifact_forms()
 	src.artifact_deactivated()
 	src.artifact.effect_destroyed()
 
-	artifact_controls.artifacts -= src.artifact_atom
+	global.artifact_controls.artifacts -= src.artifact_atom
 
 	qdel(src.artifact)
 
@@ -218,39 +267,38 @@ TYPEINFO(/datum/component/artifact)
 /// Called to activate this artifact and start applying whatever effects it has
 /datum/component/artifact/proc/artifact_activated()
 	if (src.artifact.activated)
-		return TRUE
+		return ARTIFACT_ALREADY_ACTIVATED
 	if (src.artifact.triggers.len < 1 && !src.artifact.automatic_activation)
-		return TRUE // can't activate these ones at all by design
+		return ARTIFACT_CANNOT_ACTIVATE
 	if (!src.artifact.may_activate(src.artifact_atom))
-		return TRUE
+		return ARTIFACT_CANNOT_ACTIVATE
 	if (src.artifact.activ_sound)
-		playsound(src.artifact_atom.loc, src.artifact.activ_sound, 100, 1)
+		playsound(src.artifact_atom.loc, src.artifact.activ_sound, 100, TRUE)
 	if (src.artifact.activ_text)
-		var/turf/T = get_turf(src.artifact_atom)
-		if (T)
-			T.visible_message("<b>[src.artifact_atom] [src.artifact.activ_text]</b>")
+			src.artifact_atom.visible_message("<b>[src.artifact_atom] [src.artifact.activ_text]</b>")
 	src.artifact.activated = TRUE
 	if (src.artifact.nofx)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state + "fx"
 	else
 		src.artifact_atom.UpdateOverlays(src.artifact.fx_image, "activated")
 	src.artifact.effect_activate()
+	return ARTIFACT_NOW_ACTIVATED
 
 /// Called to deactivate this artifact, whether automatically or through an activator key
 /datum/component/artifact/proc/artifact_deactivated()
 	if (!src.artifact.activated) // do not deactivate if already deactivated
-		return
+		return ARTIFACT_ALREADY_DEACTIVATED
 	if (src.artifact.deact_sound)
 		playsound(src.artifact_atom.loc, src.artifact.deact_sound, 100, 1)
 	if (src.artifact.deact_text)
-		var/turf/T = get_turf(src.artifact_atom)
-		T.visible_message("<b>[src] [src.artifact.deact_text]</b>")
+		src.artifact_atom.visible_message("<b>[src.artifact_atom] [src.artifact.deact_text]</b>")
 	src.artifact.activated = FALSE
 	if (src.artifact.nofx)
 		src.artifact_atom.icon_state = src.artifact_atom.icon_state - "fx"
 	else
 		src.artifact_atom.UpdateOverlays(null, "activated")
 	src.artifact.effect_deactivate()
+	return ARTIFACT_NOW_DEACTIVATED
 
 /// Called when someone hits another mob with this artifact (only relevant to artifact items)
 /datum/component/artifact/proc/artifact_attack(obj/item/weapon, mob/target, mob/user)
@@ -298,6 +346,7 @@ TYPEINFO(/datum/component/artifact)
 
 // TODO make this use signals on the relevant items.
 /// Called when someone hits this with an item
+/// Returns FALSE if we did something special to the artifact, TRUE if we just smacked it like normal.
 /datum/component/artifact/proc/artifact_attackby(var/artifact_atom, var/obj/item/I, var/mob/attacker)
 
 	. = FALSE
@@ -307,7 +356,8 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_stimulus("silitouch", 1)
 
 	if (isweldingtool(I))
-		if (I:try_weld(attacker, 0, -1, FALSE, TRUE))
+		var/obj/item/weldingtool/welder = I
+		if (welder.try_weld(attacker, 0, -1, FALSE, TRUE))
 			src.artifact_stimulus("heat", 800)
 			src.artifact_atom.visible_message("<span class='alert'>[attacker] burns \the [src.artifact_atom] with [I]!</span>")
 			return
@@ -328,7 +378,7 @@ TYPEINFO(/datum/component/artifact)
 		var/obj/item/robodefibrillator/R = I
 		if (R.do_the_shocky_thing(attacker))
 			src.artifact_stimulus("elec", 2500)
-			src.artifact_atom.visible_message("<span class='alert'>[attacker] shocks \the [src] with \the [R]!</span>")
+			src.artifact_atom.visible_message("<span class='alert'>[attacker] shocks \the [src.artifact_atom] with \the [R]!</span>")
 			return
 
 	if(istype(I, /obj/item/baton))
@@ -351,15 +401,15 @@ TYPEINFO(/datum/component/artifact)
 		src.artifact_atom.visible_message("<span class='alert'>[attacker] shocks \the [src.artifact_atom] with \the [I]!</span>")
 		return
 
-	if (istype(I,/obj/item/parts/robot_parts))
-		var/obj/item/parts/robot_parts/THISPART = I
-		src.artifact_atom.visible_message("<b>[attacker]</b> presses \the [THISPART] against \the [src.artifact_atom].</span>")
+	if (istype(I, /obj/item/parts/robot_parts))
+		var/obj/item/parts/robot_parts/part = I
+		src.artifact_atom.visible_message("<b>[attacker]</b> presses \the [part] against \the [src.artifact_atom].</span>")
 		src.artifact_stimulus("silitouch", 1)
 		return
 
 	if (istype(I, /obj/item/parts/human_parts))
-		var/obj/item/parts/human_parts/THISPART = I
-		src.artifact_atom.visible_message("<b>[attacker]</b> smooshes \the [THISPART] against \the [src.artifact_atom].</span>")
+		var/obj/item/parts/human_parts/part = I
+		src.artifact_atom.visible_message("<b>[attacker]</b> smooshes \the [part] against \the [src.artifact_atom].</span>")
 		src.artifact_stimulus("carbtouch", 1)
 		return
 
@@ -571,22 +621,23 @@ TYPEINFO(/datum/component/artifact)
 
 	var/list/artifactweights
 	if(forceartiorigin)
-		artifactweights = artifact_controls.artifact_rarities[forceartiorigin]
+		artifactweights = global.artifact_controls.artifact_rarities[forceartiorigin]
 	else
-		artifactweights = artifact_controls.artifact_rarities["all"]
+		artifactweights = global.artifact_controls.artifact_rarities["all"]
 
 	var/datum/artifact/picked
 	if(forceartitype)
 		picked = forceartitype
 	else
-		if (artifactweights.len == 0)
+		if (length(artifactweights) == 0)
 			return
-		picked = weighted_pick(artifactweights)
+		picked = weighted_pick(artifactweights) // Get artifact datum type
 
 	var/type = null
-	if(ispath(picked,/datum/artifact/))
-		type = initial(picked.associated_object)	// artifact type
+	if(ispath(picked, /datum/artifact))
+		type = initial(picked.associated_object) // Get artifact object type
 	else
+		stack_trace("Didn't get an artifact datum path to spawn an artifact from origin []")
 		return
 
 	if (istext(forceartiorigin))
