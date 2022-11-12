@@ -15,8 +15,8 @@ The artifact component acts as a middle-man between the atom and the datum. When
 generic artifact processing like converting an explosion into a force stimulus and applying it to the datum. The component also handles setup of artifact
 appearance, name, etc.- basically any generic artifact behavior is done here, leaving the specific types to the datum.
 
-Because we're a component, all the things acting on artifacts now have to be sent via signals. This is a pain in the ass. For some (blob_act, meteorhit),
-I used wrapper procs; for others (ex_act) which are often used in cases where the signal shouldn't be sent, I just added the signal send to the main place
+Because we're a component, all the things acting on artifacts now have to be sent via signals. This is a pain in the ass. For some (meteorhit),
+I used wrapper procs; for some, SHOULD_CALL_PARENT was easy to add (meteorhit); for others (ex_act) which are often used in cases where the signal shouldn't be sent, I just added the signal send to the main place
 where the signal should be applied (e.g. for ex_act, in the explosion processing code).
 I'm not happy about all this, but I think it's a necessary evil.
 
