@@ -1,5 +1,4 @@
 /obj/item/artifact/activator_key
-	// can activate any artifact simply by smacking it. very very rare
 	name = "artifact activator key"
 	associated_datum = /datum/artifact/activator_key
 
