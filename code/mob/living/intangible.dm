@@ -8,6 +8,7 @@
 	anchored = 1
 	throws_can_hit_me = FALSE
 	event_handler_flags =  IMMUNE_MANTA_PUSH | IMMUNE_SINGULARITY
+	canbegrabbed = FALSE
 
 	New()
 		. = ..()
@@ -58,6 +59,9 @@
 
 	Move(NewLoc, direct)
 		if(!canmove) return
+
+		//Mostly for manifested wraith. Dont move through everything.
+		if (src.density) return ..()
 
 		if (NewLoc && isrestrictedz(src.z) && !restricted_z_allowed(src, NewLoc) && !(src.client && src.client.holder))
 			var/OS = pick_landmark(LANDMARK_OBSERVER, locate(1, 1, 1))

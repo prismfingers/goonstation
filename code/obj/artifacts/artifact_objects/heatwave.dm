@@ -36,7 +36,7 @@
 			SEND_SIGNAL(src.holder, COMSIG_ARTIFACT_DEACTIVATE)
 			return
 		var/turf/T = get_turf(src.holder)
-		playsound(src.holder, "sound/effects/mag_fireballlaunch.ogg", 50, 0)
+		playsound(src.holder, 'sound/effects/mag_fireballlaunch.ogg', 50, 0)
 		src.holder.visible_message("<span class='alert'><b>[src.holder]</b> erupts into a huge column of flames! Holy shit!</span>")
 		fireflash_sm(T, fire_range, temperature, (temperature / fire_range))
 		SPAWN(3 SECONDS)

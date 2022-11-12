@@ -51,6 +51,7 @@
 	var/list/product_list = list()
 	mats = 10
 	flags = NOSPLASH | FPRINT | FLUID_SUBMERGE | TGUI_INTERACTIVE
+	event_handler_flags = NO_MOUSEDROP_QOL
 
 	deconstruct_flags = DECON_SCREWDRIVER | DECON_WRENCH | DECON_WELDER | DECON_WIRECUTTERS
 
@@ -59,10 +60,16 @@
 		src.get_products()
 		UnsubscribeProcess()
 
+	MouseDrop_T(atom/movable/O as obj, mob/user as mob)
+		if (!istype(O, /obj/item)) // dont recycle the floor!
+			return
+
+		if (isAI(user) || !in_interact_range(O, user) || !can_act(user) || !isliving(user))
+			return
+
+		src.attackby(O, user)
+
 	attackby(obj/item/W, mob/user)
-		if(istype(W.loc, /obj/item/storage))
-			var/obj/item/storage/storage = W.loc
-			storage.hud.remove_object(W)
 		if(W.cant_drop)
 			boutput(user, "<span class='alert'>You cannot put [W] into [src]!</span>")
 			return
@@ -72,8 +79,8 @@
 		if(W.reagents?.total_volume) // Ask if they really want to lose the contents of the beaker
 			if (tgui_alert(user,"The [W] has reagents in it, are you sure you want to recycle it?","Recycler alert!",list("Yes","No")) != "Yes")
 				return 0 //they said no, do nothing
-
-
+			if(!in_interact_range(src,user) || QDELETED(W))
+				return 0
 
 		var/success = FALSE //did we successfully recycle a thing?
 		if(istype(W, /obj/item/reagent_containers/glass))
@@ -109,6 +116,9 @@
 			success = TRUE
 			glass_amt += W.amount
 		else if (istype(W, /obj/item/plate))
+			if (length(W.contents))
+				boutput(user, "<span class='alert'>You can't put [W] into [src] while it has things on it!</span>")
+				return FALSE // early return for custom messageP
 			success = TRUE
 			glass_amt += PLATE_COST
 		else if (istype(W, /obj/item/storage/box))
@@ -118,17 +128,18 @@
 					break
 
 		if (success)
+			if(istype(W.loc, /obj/item/storage))
+				var/obj/item/storage/storage = W.loc
+				storage.hud.remove_object(W)
+
 			user.visible_message("<span class='notice'>[user] inserts [W] into [src].</span>")
 			user.u_equip(W)
-			if (istype(W, /obj/item/raw_material/shard))
-				qdel(W)
-			else
-				qdel(W)
+			qdel(W)
 			ui_interact(user)
-			return 1
+			return TRUE
 		else
 			boutput(user, "<span class='alert'>You cannot put [W] into [src]!</span>")
-			return 0
+			return FALSE
 
 	proc/get_products()
 		product_list += new /datum/glass_product("beaker", /obj/item/reagent_containers/glass/beaker, 1)

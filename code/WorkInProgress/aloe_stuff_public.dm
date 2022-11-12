@@ -109,3 +109,62 @@
 /area/centcom/offices/aloe
 	name = "\proper office of aloe"
 	ckey = "asche"
+
+/// Button 4 bill office
+/obj/machinery/shipalert/bill
+	name = "\improper Emergency Plot Generation Button"
+	desc = "<b style='color:red'>IN CASE OF BOREDOM<br>BREAK GLASS</b>"
+	var/list/eventbank
+
+	New()
+		..()
+		src.eventbank = childrentypesof(/datum/random_event) // yes, this includes broken or unused events. the plot stops for nothing
+
+	toggleActivate(mob/user)
+		if (src.working)
+			boutput(user, "<span class='alert'><b>There's already enough plot! Don't overcomplicate the story!</b></span>")
+		src.working = TRUE
+		var/num_events = rand(1, 5)
+		if (current_state < GAME_STATE_FINISHED && !isadmin(user))
+			num_events = 1
+			boutput(user, "<span class='alert'><b>You just don't have the creativity for all this plot. You add a little, though.</b></span>")
+		for (var/i in 1 to num_events)
+			var/event_type = pick(eventbank)
+			var/datum/random_event/picked_event = new event_type
+			picked_event.event_effect("that stupid fucking button in Bill's office. [user] ([user.key]) pressed it.")
+
+
+/// Stamina monitor for target dummies.
+/obj/machinery/maptext_monitor/stamina
+	maptext_prefix = "<span class='c pixel sh' style='color: #FBE801; font-size: 14px'>"
+	require_var_or_list = FALSE
+	update_delay = 2 // very fast but this is for testing so w/e
+	maptext_y = -8
+	var/mob/living/mob_loc
+
+	New()
+		. = ..()
+		if (!istype(src.loc, /mob/living))
+			qdel(src) //bye!
+			return
+		src.mob_loc = src.loc
+		src.monitored = src.mob_loc
+		src.mob_loc.vis_contents += src
+
+	validate_monitored()
+		. = ..()
+		var/mob/living/M = src.loc
+		if (!istype(M) || !M.use_stamina) // uh oh
+			qdel(src)
+			return FALSE
+
+	get_value() // this should return a number but I am being malicious
+		return "[src.mob_loc.stamina] / [src.mob_loc.stamina_max]"
+
+	disposing()
+		src.mob_loc = null
+		. = ..()
+
+
+
+

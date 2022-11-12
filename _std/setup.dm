@@ -52,8 +52,6 @@
 
 #define CREW_OBJECTIVES
 
-#define MISCREANTS
-
 //#define RESTART_WHEN_ALL_DEAD 1
 
 //#define PLAYSOUND_LIMITER
@@ -64,6 +62,8 @@
 
 #if (BUILD_TIME_MONTH == 10)
 #define HALLOWEEN 1
+#elif (BUILD_TIME_MONTH == 9) || (BUILD_TIME_MONTH == 10) || (BUILD_TIME_MONTH == 11)
+#define AUTUMN 1
 #elif (BUILD_TIME_MONTH == 12)
 #define XMAS 1
 #elif (BUILD_TIME_MONTH == 7) && (BUILD_TIME_DAY == 1)
@@ -107,8 +107,8 @@ var/ZLOG_START_TIME
 #define PREGAME_LOBBY_TICKS 180	// raised from 120 to 180 to accomodate the v500 ads, then raised back down to 150 after Z5 was introduced.
 
 //The value of mapvotes. A passive vote is one done through player preferences, an active vote is one where the player actively chooses a map
-#define MAPVOTE_PASSIVE_WEIGHT 1.0
-#define MAPVOTE_ACTIVE_WEIGHT 1.0
+#define MAPVOTE_PASSIVE_WEIGHT 1
+#define MAPVOTE_ACTIVE_WEIGHT 1
 
 //what counts as participation?
 #ifdef RP_MODE
