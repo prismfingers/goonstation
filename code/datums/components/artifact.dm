@@ -1,22 +1,56 @@
 /*//////////////////////////////////////////
-Copy pasted from an old notepad doc so some of this might be outdated
+
+----- OVERVIEW OF SYSTEM (IN THEORY, THERE'S A LOT TO IMPLEMENT) -----
+Artifact objects (now atoms technically) are very dumb. In fact, many artifacts without a need for special handling can probably use the `/obj/artifact/` and
+`/obj/item/artifact` types, with whatever datum added. They exist for people to interact with them, and to apply effects to the world. They
+pass a bunch of signals over to the artifact component. They don't get to see artifact datums at all, ever.
+
+Artifact datums are basically the same as before. They handle all the specific artifact behavior, origin stuff, etc.
+They still get to know about the artifact object, as we first pick a datum, and then spawn whatever type that artifact wants.
+We allow datums to specify the type of object they want to spawn because we don't want to end up with shit like a power cell datum with a non-power-cell
+artifact. This also goes for admin-spawns- artifact datums should report a failure and delete themselves (and by extension, the component, but the compo-
+nent will handle that) if the atom type is incompatible.
+
+The artifact component acts as a middle-man between the atom and the datum. When signals are sent to the atom, the component grabs those and does
+generic artifact processing like converting an explosion into a force stimulus and applying it to the datum. The component also handles setup of artifact
+appearance, name, etc.- basically any generic artifact behavior is done here, leaving the specific types to the datum.
+
+Because we're a component, all the things acting on artifacts now have to be sent via signals. This is a pain in the ass. For some (blob_act, meteorhit),
+I used wrapper procs; for others (ex_act) which are often used in cases where the signal shouldn't be sent, I just added the signal send to the main place
+where the signal should be applied (e.g. for ex_act, in the explosion processing code).
+I'm not happy about all this, but I think it's a necessary evil.
+
+Having a component makes the types way, way better for artifact objects, and we can straight up remove a bunch of them. However, there are some annoying cases-
+a big one is activator keys, which were previously super simple (if (thing.artifact) thing.artifact.activate). Either need to make a special signal for them
+or do some jank with return values.
+
+It's all kind of like an evil MVC I suppose.
+
+P.S.
+This also involves a lot of general de-janking because the old artifact system was bad and also there's a lot of lingering oldcode which is passing
+extraneous arguments, using `.len`, etc etc. Luckily we can mass-delete a lot of it, but some general refactoring will also have to be done outside of
+the component conversion
 
 --------------------MASTER TODO---------------------
+[Copy pasted from an old notepad doc so some of this might be outdated]
 
 artifact procs DONE
 signal passthrough DONE
-remove all obj-datum associations
+remove all obj-datum associations VARS REMOVED, OVERRIDES REMAIN FOR ORGANIZATION
 make activator keys less shit DONE
+make activator keys even less shit because my impl sucks
 add effect_afterattack to artifacts DONE
 figure out how to do examine hints DONE
-implement defines
+implement defines DONE?
 rework mob_flip_inside? DONE
 remove dumb args from art datums
 figure out a sane way to make sure effect_afterattack is consistently called (pixelaction signal?)
+move all obj/artifact/machinery off those types
 
 LATER
 mass rename ArtifactStimulus etc
-rework touch descriptors
+Artifact process so no machine loop shit
+rework touch descriptors for this framework
 remove all var-copying from appearance to artifact datum; just query appearance
 add better logging
 move ArtifactDestroyed calls to qdel()
@@ -27,8 +61,6 @@ remove `src` arg from effect_activate
 improve baton-artifact interaction
 remove artifact arguments from effect_activate and effect_deactivate
 retrofit spawn_artifact
-figure out how to do artifact machine processing
-add logging to everything
 
 FEATURES
 Multi artifacts (?) [might leave this for later if it needs some extra consideration]
@@ -36,17 +68,13 @@ Mob artifact demo
 
 
 GENERAL FLOW
-1. Maintain obj artifact types, but with less code duplication
+1. Maintain obj artifact types mostly, but with less code duplication
 2. Art datum types specify the atom type they want in New() when adding component (not a var)
 3. Most behavior goes in component; objs are very lightweight
-4. Some still obj/machinery to ride machine loop
-
-ONE DAY
-- Artifact process so no machine loop shit
 
 
 IMPACT PAD
-Make stand-up pad set density of items to 1 (so you can shoot/hit them)
+Make stand-up pad set density of items to 1 (so you can shoot/hit them) I guess? hacky but eh
 
 *//////////////////////////////////////////
 TYPEINFO(/datum/component/artifact)
