@@ -2826,7 +2826,7 @@ ABSTRACT_TYPE(/datum/job/special/pod_wars)
 
 /datum/job/special/bandit
 	linkcolor = "#880000"
-	name = "Space Bandit"
+	name = "Bandit"
 	limit = 0
 	wages = 0
 	add_to_manifest = FALSE
@@ -2864,7 +2864,7 @@ ABSTRACT_TYPE(/datum/job/special/pod_wars)
 		M.mind.add_antagonist(rank)
 
 	leader
-		name = "Bandit LEader"
+		name = "Bandit Leader"
 		rank = ROLE_BANDIT_LEADER
 		special_spawn_location = LANDMARK_BANDIT_LEADER
 

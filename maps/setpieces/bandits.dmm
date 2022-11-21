@@ -199,11 +199,11 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/obj/item/clothing/head/westhat/black,
-/obj/item/clothing/head/westhat/black,
-/obj/item/clothing/head/westhat/black,
-/obj/item/clothing/head/westhat/black,
-/obj/item/clothing/head/westhat/black,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "kR" = (
@@ -275,10 +275,6 @@
 /obj/item/clothing/head/westhat/blue,
 /obj/item/clothing/head/westhat/blue,
 /obj/item/clothing/head/westhat/blue,
-/obj/item/clothing/head/westhat/red{
-	pixel_x = 8;
-	pixel_y = 9
-	},
 /obj/item/clothing/head/westhat/tan{
 	pixel_x = -8;
 	pixel_y = -8
@@ -490,34 +486,11 @@
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "wj" = (
-/obj/item/clothing/suit/gimmick/guncoat/dirty,
-/obj/item/clothing/suit/gimmick/guncoat/tan{
-	pixel_x = 8;
-	pixel_y = -8
-	},
 /obj/table/wood/auto,
-/obj/item/clothing/suit/gimmick/guncoat/dirty,
-/obj/item/clothing/suit/gimmick/guncoat/tan{
-	pixel_x = 8;
-	pixel_y = -8
-	},
-/obj/item/clothing/suit/gimmick/guncoat/tan{
-	pixel_x = 8;
-	pixel_y = -8
-	},
-/obj/item/clothing/suit/gimmick/guncoat/dirty,
-/obj/item/clothing/suit/gimmick/guncoat{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/clothing/suit/gimmick/guncoat{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/clothing/suit/gimmick/guncoat{
-	pixel_x = -8;
-	pixel_y = 8
-	},
+/obj/item/storage/belt/security/shoulder_holster,
+/obj/item/storage/belt/security/shoulder_holster,
+/obj/item/storage/belt/security/shoulder_holster,
+/obj/item/storage/belt/security/shoulder_holster,
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "xQ" = (
@@ -865,6 +838,10 @@
 /obj/item/medical/ointment,
 /obj/item/medical/ointment,
 /obj/item/medical/ointment,
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Mn" = (
@@ -892,6 +869,10 @@
 /obj/item/medical/bruise_pack,
 /obj/item/medical/bruise_pack,
 /obj/item/medical/bruise_pack,
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Nw" = (

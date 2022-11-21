@@ -480,7 +480,7 @@
 	icon_override = "bandit"
 	icon_tooltip = "Bandit"
 
-	chief
+	leader
 		icon_override = "bandit_chief"
 		icon_tooltip = "Bandit Chief"
 
