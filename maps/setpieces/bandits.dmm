@@ -218,7 +218,14 @@
 /area/bandit_camp)
 "lu" = (
 /obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/moonshine,
+/obj/item/clothing/suit/gimmick/guncoat/black{
+	pixel_x = 8;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = -6;
+	pixel_y = 5
+	},
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "mh" = (
@@ -481,7 +488,34 @@
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "wj" = (
+/obj/item/clothing/suit/gimmick/guncoat/dirty,
+/obj/item/clothing/suit/gimmick/guncoat/tan{
+	pixel_x = 8;
+	pixel_y = -8
+	},
 /obj/table/wood/auto,
+/obj/item/clothing/suit/gimmick/guncoat/dirty,
+/obj/item/clothing/suit/gimmick/guncoat/tan{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/suit/gimmick/guncoat/tan{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/suit/gimmick/guncoat/dirty,
+/obj/item/clothing/suit/gimmick/guncoat{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/gimmick/guncoat{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/gimmick/guncoat{
+	pixel_x = -8;
+	pixel_y = 8
+	},
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "xQ" = (
@@ -495,6 +529,18 @@
 /obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
 /turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"yp" = (
+/obj/table/wood/auto,
+/obj/item/ammo/bullets/a38{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/ammo/bullets/a38/stun{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "yB" = (
 /obj/machinery/door/unpowered/wood{
@@ -700,6 +746,10 @@
 /area/bandit_camp)
 "HF" = (
 /turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"HW" = (
+/obj/table/wood/auto,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "HX" = (
 /obj/table/wood/auto,
@@ -1385,7 +1435,7 @@ Cr
 bF
 lu
 pi
-Nw
+yp
 sG
 PA
 PA
@@ -1587,11 +1637,11 @@ rI
 "}
 (19,1,1) = {"
 bF
-PL
-PL
-PL
-PL
-PL
+bF
+HW
+HW
+HW
+HW
 PL
 PL
 bj
