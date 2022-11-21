@@ -17,8 +17,8 @@
 		H.unequip_all(TRUE)
 
 		if (id == ROLE_BANDIT_LEADER)
-			H.equip_if_possible(new /obj/item/clothing/under/misc/western(H), H.slot_wear_uniform)
-			H.equip_if_possible(new /obj/item/clothing/suit/gimmick/guncoat/black(H), H.slot_wear_suit)
+			H.equip_if_possible(new /obj/item/clothing/under/misc/western(H), H.slot_w_uniform)
+			H.equip_if_possible(new /obj/item/clothing/suit/gimmick/guncoat/reinforced/black(H), H.slot_wear_suit)
 			H.equip_if_possible(new /obj/item/clothing/head/westhat/black(H), H.slot_head)
 			H.equip_if_possible(new /obj/item/clothing/shoes/westboot/black(H), H.slot_shoes)
 			H.equip_if_possible(new /obj/item/device/radio/headset/bandit/leader(H), H.slot_ears)
@@ -41,11 +41,7 @@
 			H.equip_if_possible(new /obj/item/device/radio/headset/bandit(H), H.slot_ears)
 			H.equip_if_possible(new /obj/item/storage/belt/security/shoulder_holster(H), H.slot_belt)
 
-		H.equip_if_possible(new /obj/item/clothing/shoes/swat(H), H.slot_shoes)
 		H.equip_if_possible(new /obj/item/storage/backpack(H), H.slot_back)
-		H.equip_if_possible(new /obj/item/clothing/glasses/eyepatch/pirate(H), H.slot_glasses)
-		H.equip_if_possible(new /obj/item/tank/emergency_oxygen/extended(H), H.slot_r_store)
-		H.equip_if_possible(new /obj/item/swords_sheaths/pirate(H), H.slot_belt)
 
 		H.equip_sensory_items()
 

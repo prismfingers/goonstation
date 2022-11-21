@@ -3,6 +3,50 @@
 /obj/stool/wooden,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
+"aI" = (
+/obj/table/wood/auto,
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "bj" = (
 /turf/unsimulated/wall/auto/supernorn/wood,
 /area/bandit_camp)
@@ -220,10 +264,6 @@
 /area/bandit_camp)
 "lu" = (
 /obj/table/wood/auto,
-/obj/item/clothing/suit/gimmick/guncoat/black{
-	pixel_x = 8;
-	pixel_y = -4
-	},
 /obj/item/reagent_containers/food/drinks/moonshine{
 	pixel_x = -6;
 	pixel_y = 5
@@ -485,6 +525,11 @@
 /obj/item/reagent_containers/food/snacks/breadloaf,
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
+"vX" = (
+/obj/stool/bed/bedroll,
+/obj/landmark/bandits,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
 "wj" = (
 /obj/table/wood/auto,
 /obj/item/storage/belt/security/shoulder_holster,
@@ -517,11 +562,23 @@
 	},
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
+"yy" = (
+/obj/stool/bed/bedroll{
+	dir = 8
+	},
+/obj/landmark/bandits,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
 "yB" = (
 /obj/machinery/door/unpowered/wood{
 	name = "Chief's room"
 	},
 /turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"yL" = (
+/obj/stool/wooden,
+/obj/landmark/bandits,
+/turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "yU" = (
 /obj/table/reinforced/bar/auto,
@@ -672,6 +729,7 @@
 /area/bandit_camp)
 "Dk" = (
 /obj/stool/bench/wooden/auto,
+/obj/landmark/bandits,
 /turf/unsimulated/dirt,
 /area/bandit_camp)
 "DK" = (
@@ -847,6 +905,7 @@
 "Mn" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet/red,
+/obj/landmark/bandits/leader,
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "Mx" = (
@@ -928,6 +987,50 @@
 	dir = 8
 	},
 /turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"Tr" = (
+/obj/table/wood/auto,
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "UI" = (
 /turf/simulated/wall/auto/asteroid/mountain/desert,
@@ -1149,7 +1252,7 @@ PA
 PA
 ML
 PA
-cq
+vX
 bF
 bF
 bF
@@ -1177,7 +1280,7 @@ bF
 PA
 cq
 PA
-cq
+vX
 PA
 cq
 PA
@@ -1215,7 +1318,7 @@ PA
 Cm
 PA
 PA
-cq
+vX
 PA
 PA
 PA
@@ -1244,7 +1347,7 @@ sG
 PA
 PA
 PA
-cq
+vX
 fE
 PA
 PA
@@ -1252,7 +1355,7 @@ PA
 PA
 PA
 Tn
-Ww
+yy
 PA
 PA
 sG
@@ -1316,7 +1419,7 @@ PA
 mD
 PA
 PA
-Ww
+yy
 PA
 Hu
 Ww
@@ -1647,8 +1750,8 @@ bF
 bF
 HW
 HW
-HW
-HW
+aI
+Tr
 PL
 PL
 bj
@@ -1800,7 +1903,7 @@ PA
 PA
 PA
 aq
-aq
+yL
 aq
 PA
 GM
@@ -1832,7 +1935,7 @@ PA
 PA
 PA
 PA
-aq
+yL
 hE
 fU
 rQ
@@ -1900,7 +2003,7 @@ sU
 bj
 PA
 sF
-aq
+yL
 Mx
 PA
 PA
@@ -1968,7 +2071,7 @@ Cz
 sG
 PA
 sF
-aq
+yL
 kR
 ck
 bF
