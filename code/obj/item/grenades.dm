@@ -1946,3 +1946,44 @@ ABSTRACT_TYPE(/obj/item/old_grenade/spawner)
 	explosion_new(src, T, strength, 1)
 	if (delete)
 		qdel(src)
+
+/obj/item/pipebomb/bomb/dynamite
+	name = "stick of dynamite"
+	desc = "Some gunpowder packed in a tube kept nice and dry for a special occasion."
+	icon_state = "dynamite_off"
+
+	attack_self(mob/user as mob)
+		return
+
+	attackby(obj/item/W, mob/user)
+		if (src.armed)
+			return
+		//Stolen from cigarettes
+		if (isweldingtool(W) && W:try_weld(user,0,-1,0,0))
+			src.visible_message("<span class='alert'><b>[user]</b> casually lights [src] with [W], what a badass.</span>")
+			src.armed = TRUE
+		else if (istype(W, /obj/item/clothing/head/cakehat) && W:on)
+			src.visible_message("<span class='alert'>Did [user] just light \his with [W]? Holy Shit.</span>")
+			src.armed = TRUE
+		else if (istype(W, /obj/item/device/igniter))
+			src.visible_message("<span class='alert'><b>[user]</b> fumbles around with [W]; sparks erupt from [src].</span>")
+			src.armed = TRUE
+		else if (istype(W, /obj/item/device/light/zippo) && W:on)
+			src.visible_message("<span class='alert'>With a single flick of their wrist, [user] smoothly lights [src] with [W].</span>")
+			src.armed = TRUE
+		else if ((istype(W, /obj/item/match) || istype(W, /obj/item/device/light/candle)) && W:on)
+			src.visible_message("<span class='alert'><b>[user] lights [src] with [W].</span>")
+			src.armed = TRUE
+		else if (W.burning)
+			src.visible_message("<span class='alert'><b>[user]</b> lights [src] with [W]. Goddamn.</span>")
+			src.armed = TRUE
+		if (!src.armed)
+			return ..()
+		else
+			src.icon_state = "dynamite_on"
+			SPAWN (rand(4,7) SECONDS)
+				do_explode()
+
+	ex_act(severity)
+		do_explode()
+		. = ..()

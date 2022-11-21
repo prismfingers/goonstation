@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aq" = (
 /obj/stool/wooden,
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "aI" = (
 /obj/table/wood/auto,
@@ -60,8 +60,10 @@
 /turf/simulated/wall/auto/asteroid/mountain/desert,
 /area/noGenerate)
 "ck" = (
-/obj/reagent_dispensers/still,
-/turf/unsimulated/floor/auto/sand,
+/obj/submachine/chef_sink/chem_sink{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "cl" = (
 /obj/table/wood/auto,
@@ -149,11 +151,14 @@
 	pixel_y = -3;
 	pixel_x = -2
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "cq" = (
-/obj/stool/bed/bedroll,
-/turf/unsimulated/floor/auto/sand,
+/obj/machinery/door/unpowered/wood{
+	name = "Barracks";
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "cw" = (
 /obj/table/wood/auto,
@@ -179,18 +184,34 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "fE" = (
-/obj/item/instrument/harmonica,
-/turf/unsimulated/floor/auto/sand,
+/obj/bookshelf,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "fU" = (
 /obj/table/reinforced/bar/auto,
-/obj/item/reagent_containers/food/drinks/mug,
-/turf/unsimulated/floor/auto/sand,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 4
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/kitchen/utensil/fork{
+	dir = 4;
+	pixel_y = -8;
+	pixel_x = -3
+	},
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "fZ" = (
 /obj/item/pen/crayon/golden,
 /obj/item/spacecash/random/really_small,
 /turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"gm" = (
+/obj/table/wood/auto,
+/obj/item/diceholder/dicecup,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "gA" = (
 /obj/item/stamped_bullion,
@@ -209,13 +230,29 @@
 	pixel_x = 8;
 	pixel_y = 9
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"iK" = (
+/obj/table/wood/auto,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/matchbook,
+/obj/item/device/light/zippo,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "iO" = (
 /obj/stool/chair/wooden{
 	dir = 8
 	},
 /turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"ka" = (
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "kf" = (
 /obj/table/wood/auto,
@@ -253,14 +290,17 @@
 "kR" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/drinks/mug{
-	pixel_x = 3;
+	pixel_x = 2;
 	pixel_y = -2
 	},
 /obj/item/reagent_containers/food/snacks/breakfast{
 	pixel_x = -7;
 	pixel_y = 8
 	},
-/turf/unsimulated/floor/auto/sand,
+/obj/item/kitchen/utensil/fork{
+	pixel_x = 8
+	},
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "lu" = (
 /obj/table/wood/auto,
@@ -268,9 +308,24 @@
 	pixel_x = -6;
 	pixel_y = 5
 	},
+/obj/item/decoration/ashtray{
+	pixel_x = 7;
+	pixel_y = -2
+	},
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "mh" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = -4
+	},
+/obj/item/cigpacket/cigarillo{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"mn" = (
 /obj/storage/crate/wooden,
 /obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
 /obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
@@ -289,13 +344,11 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
 /obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
 /obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "mD" = (
-/obj/item/reagent_containers/food/drinks/bottle/beer{
-	broken = 1
-	},
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto/desk,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "nP" = (
 /obj/item/raw_material/gold,
@@ -439,7 +492,7 @@
 	pixel_y = 8;
 	pixel_x = 3
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "rf" = (
 /obj/table/wood/round/auto,
@@ -469,17 +522,22 @@
 	pixel_x = -3;
 	pixel_y = -4
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"sm" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/mop/old,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "sC" = (
 /obj/item/mining_tools/pick,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "sF" = (
-/obj/railing/orange{
+/obj/stool/chair/wooden{
 	dir = 1
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "sG" = (
 /obj/item/device/light/magic_lantern,
@@ -516,7 +574,7 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "tJ" = (
-/obj/random_item_spawner/junk/few,
+/obj/storage/closet/coffin/wood,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "vp" = (
@@ -526,9 +584,19 @@
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "vX" = (
-/obj/stool/bed/bedroll,
-/obj/landmark/bandits,
-/turf/unsimulated/floor/auto/sand,
+/obj/item/raw_material/shard/glass,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"wh" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/matchbook{
+	pixel_x = 7
+	},
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "wj" = (
 /obj/table/wood/auto,
@@ -537,6 +605,13 @@
 /obj/item/storage/belt/security/shoulder_holster,
 /obj/item/storage/belt/security/shoulder_holster,
 /turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"wK" = (
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "xQ" = (
 /obj/table/wood/round/auto,
@@ -563,11 +638,10 @@
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "yy" = (
-/obj/stool/bed/bedroll{
-	dir = 8
-	},
-/obj/landmark/bandits,
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "yB" = (
 /obj/machinery/door/unpowered/wood{
@@ -578,7 +652,7 @@
 "yL" = (
 /obj/stool/wooden,
 /obj/landmark/bandits,
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "yU" = (
 /obj/table/reinforced/bar/auto,
@@ -591,7 +665,7 @@
 	pixel_x = 8;
 	pixel_y = 9
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "zd" = (
 /obj/table/wood/round/auto,
@@ -605,21 +679,35 @@
 /obj/item/ammo/bullets/a38,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
-"Ai" = (
-/obj/item/cigpacket/cigarillo{
-	pixel_x = 9;
-	pixel_y = 8
+"zl" = (
+/obj/machinery/door/unpowered/wood{
+	dir = 8;
+	name = "Saloon"
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Ai" = (
+/obj/player_piano,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "AG" = (
-/obj/item/kitchen/utensil/spoon,
+/obj/railing/orange{
+	dir = 4
+	},
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "AS" = (
 /obj/stool/bed,
 /obj/item/clothing/suit/bedsheet,
 /turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"AZ" = (
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "Bf" = (
 /obj/table/wood/auto,
@@ -690,14 +778,13 @@
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
 /obj/item/storage/box/beer,
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Cm" = (
-/obj/item/cigpacket/cigarillo{
-	pixel_x = -6;
-	pixel_y = 8
+/obj/stool/chair/wooden{
+	dir = 4
 	},
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Cr" = (
 /turf/unsimulated/floor/auto/sand,
@@ -709,6 +796,12 @@
 "CV" = (
 /obj/campfire,
 /turf/unsimulated/dirt,
+/area/bandit_camp)
+"CY" = (
+/obj/table/wood/auto,
+/obj/item/matchbook,
+/obj/item/cigpacket/cigarillo,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "De" = (
 /obj/item/coin,
@@ -723,7 +816,7 @@
 /area/bandit_camp)
 "Dj" = (
 /obj/machinery/door/unpowered/wood{
-	name = "Chief's room"
+	name = "Dispensary"
 	},
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
@@ -741,7 +834,7 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Es" = (
-/obj/item/furniture_parts/bookshelf,
+/obj/storage/crate/bin,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "ET" = (
@@ -768,26 +861,36 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Gg" = (
-/obj/railing/orange{
-	dir = 8
-	},
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto,
+/obj/item/card_box,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Gq" = (
+/obj/landmark/bandits,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "GM" = (
-/obj/item/plank,
-/obj/item/plank,
-/turf/unsimulated/floor/auto/sand,
+/obj/table/reinforced/roulette,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "GN" = (
 /turf/unsimulated/dirt,
 /area/bandit_camp)
+"Hk" = (
+/obj/submachine/chef_sink/chem_sink{
+	pixel_y = 3
+	},
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
 "Hn" = (
 /obj/reagent_dispensers/beerkeg,
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Hu" = (
-/obj/item/reagent_containers/food/snacks/soup/refried_beans,
-/turf/unsimulated/floor/auto/sand,
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/green,
+/obj/landmark/bandits,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "HF" = (
 /turf/unsimulated/floor/wood/two,
@@ -882,6 +985,16 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
+"Le" = (
+/obj/table/wood/auto,
+/obj/item/dice{
+	pixel_x = -4
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = 4
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "Li" = (
 /obj/stool/bed{
 	dir = 1
@@ -908,6 +1021,15 @@
 /obj/landmark/bandits/leader,
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
+"Mr" = (
+/obj/table/wood/auto,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/matchbook,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "Mx" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/drinks/mug,
@@ -915,11 +1037,20 @@
 	pixel_x = 9;
 	pixel_y = 8
 	},
-/turf/unsimulated/floor/auto/sand,
+/obj/item/decoration/ashtray{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "ML" = (
-/obj/item/instrument/fiddle,
-/turf/unsimulated/floor/auto/sand,
+/obj/storage/crate/wooden,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Ni" = (
 /obj/table/wood/auto,
@@ -937,6 +1068,14 @@
 "Nw" = (
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
+"NX" = (
+/obj/roulette_table_w,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Oi" = (
+/obj/bookshelf,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
 "PA" = (
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
@@ -953,10 +1092,8 @@
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "QC" = (
-/obj/item/reagent_containers/food/drinks/bottle/cider{
-	broken = 1
-	},
-/turf/unsimulated/floor/auto/sand,
+/obj/stool/bench/wooden/auto,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "QM" = (
 /obj/machinery/door/unpowered/wood{
@@ -977,16 +1114,17 @@
 /area/bandit_camp)
 "Sk" = (
 /obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "Tj" = (
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Tn" = (
-/obj/item/kitchen/utensil/spoon{
-	dir = 8
-	},
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto/desk,
+/obj/item/matchbook,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Tr" = (
 /obj/table/wood/auto,
@@ -1040,10 +1178,8 @@
 /turf/unsimulated/floor/auto/sand,
 /area/allowGenerate)
 "Ww" = (
-/obj/stool/bed/bedroll{
-	dir = 8
-	},
-/turf/unsimulated/floor/auto/sand,
+/obj/storage/closet/dresser,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "XE" = (
 /obj/table/wood/auto,
@@ -1131,6 +1267,12 @@
 /obj/item/clothing/under/misc/serpico,
 /obj/item/clothing/under/misc/serpico,
 /turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"ZU" = (
+/obj/storage/crate/wooden,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 
 (1,1,1) = {"
@@ -1246,13 +1388,13 @@ bF
 bF
 bF
 bF
-PA
 Hu
-PA
-PA
+PL
+ZU
+PL
 ML
-PA
-vX
+PL
+Hu
 bF
 bF
 bF
@@ -1278,18 +1420,18 @@ bF
 bF
 bF
 PA
-cq
 PA
+bj
 vX
-PA
-cq
-PA
-PA
-QC
-PA
-PA
+PL
+PL
+PL
+PL
+PL
+Tn
+bj
 tJ
-PA
+tJ
 bF
 bF
 bF
@@ -1310,20 +1452,20 @@ bF
 bF
 bF
 bj
+Dh
 PA
 PA
+bj
+Hu
+PL
+QC
+wh
+QC
+PL
+Hu
+bj
 PA
 PA
-PA
-Cm
-PA
-PA
-vX
-PA
-PA
-PA
-PA
-tJ
 bj
 XX
 bF
@@ -1344,18 +1486,18 @@ bF
 bF
 Li
 sG
-PA
-PA
-PA
-vX
+AG
+AG
+AG
+bj
 fE
-PA
-PA
-PA
-PA
-PA
-Tn
-yy
+PL
+QC
+Le
+QC
+PL
+PL
+bj
 PA
 PA
 sG
@@ -1381,15 +1523,15 @@ bj
 PA
 PA
 PA
-PA
-PA
-Ww
-PA
-PA
-PA
-PA
-PA
-PA
+sG
+Hu
+PL
+QC
+gm
+QC
+PL
+Hu
+sG
 PA
 PA
 bj
@@ -1415,15 +1557,15 @@ Dj
 PA
 PA
 PA
-PA
+bj
 mD
-PA
-PA
+PL
+QC
 yy
-PA
-Hu
+QC
+PL
 Ww
-PA
+bj
 PA
 PA
 bj
@@ -1449,15 +1591,15 @@ bj
 PA
 PA
 PA
-AG
-PA
-PA
-PA
-PA
-PA
-Ai
-PA
-PA
+bj
+Hu
+PL
+PL
+Gq
+PL
+PL
+Hu
+bj
 PA
 GN
 bj
@@ -1483,15 +1625,15 @@ sG
 PA
 PA
 PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
+bj
+ZU
+PL
+PL
+PL
+wK
+PL
+sm
+bj
 GN
 GN
 QM
@@ -1517,15 +1659,15 @@ bj
 PA
 PA
 PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
+bj
+bj
+sG
+bj
+cq
+bj
+sG
+bj
+bj
 GN
 GN
 sG
@@ -1553,7 +1695,7 @@ PA
 PA
 PA
 PA
-PA
+Es
 PA
 GN
 GN
@@ -1611,7 +1753,7 @@ Cr
 "}
 (15,1,1) = {"
 bF
-Nw
+Hk
 Nw
 Nw
 yB
@@ -1634,7 +1776,7 @@ GN
 PA
 PA
 PA
-GM
+AZ
 FM
 FM
 bF
@@ -1764,8 +1906,8 @@ GN
 GN
 GN
 PA
-PA
-PA
+GN
+GN
 GN
 GN
 GN
@@ -1799,9 +1941,9 @@ GN
 PA
 PA
 PA
-PA
-PA
-PA
+GN
+GN
+GN
 PA
 PA
 sC
@@ -1830,16 +1972,16 @@ GN
 PA
 PA
 PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-Sk
-Es
+bj
+bj
+sG
+bj
+zl
+bj
+sG
+bj
+bj
+bj
 bF
 bF
 UI
@@ -1864,16 +2006,16 @@ GN
 PA
 PA
 PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-PA
-GM
-FM
+bj
+Ai
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+NX
 bF
 bF
 Cr
@@ -1898,15 +2040,15 @@ GN
 PA
 PA
 PA
-PA
-PA
-PA
-PA
+sG
+ha
+ha
+ha
 aq
 yL
 aq
-PA
-GM
+ha
+ha
 GM
 bF
 bF
@@ -1931,15 +2073,15 @@ GN
 GN
 PA
 PA
-PA
-PA
-PA
-PA
+Es
+bj
+Cm
+ha
 yL
 hE
 fU
 rQ
-PA
+ha
 mh
 bF
 bF
@@ -1957,7 +2099,7 @@ bF
 DK
 PL
 PL
-PL
+iK
 bj
 sG
 bj
@@ -1971,9 +2113,9 @@ Gg
 sF
 aq
 qZ
-PA
-PA
-PA
+ha
+ha
+ha
 Hn
 bF
 bF
@@ -1991,7 +2133,7 @@ bF
 bF
 HX
 PL
-PL
+Mr
 bj
 Jp
 fZ
@@ -2001,12 +2143,12 @@ De
 gA
 sU
 bj
-PA
+CY
 sF
 yL
 Mx
-PA
-PA
+ha
+mn
 Ci
 bF
 bF
@@ -2035,11 +2177,11 @@ ha
 ha
 nP
 bj
-Dh
-sF
+ka
+ha
 aq
 yU
-PA
+ha
 cn
 bF
 bF
@@ -2069,8 +2211,8 @@ nP
 Jp
 Cz
 sG
-PA
-sF
+ha
+ha
 yL
 kR
 ck
@@ -2103,8 +2245,8 @@ cO
 FW
 cw
 bj
-FM
-sF
+Oi
+ha
 aq
 bF
 bF
