@@ -2824,6 +2824,50 @@ ABSTRACT_TYPE(/datum/job/special/pod_wars)
 			slot_card = /obj/item/card/id/pod_wars/syndicate/commander
 			slot_ears = list(/obj/item/device/radio/headset/pod_wars/syndicate/commander)
 
+/datum/job/special/bandit
+	linkcolor = "#880000"
+	name = "Space Bandit"
+	limit = 0
+	wages = 0
+	add_to_manifest = FALSE
+	radio_announcement = FALSE
+	allow_traitors = FALSE
+	allow_spy_theft = FALSE
+	cant_spawn_as_rev = TRUE
+	special_spawn_location = LANDMARK_BANDIT
+	slot_card = /obj/item/card/id
+	slot_belt = list()
+	slot_back = list()
+	slot_jump = list()
+	slot_foot = list()
+	slot_head = list()
+	slot_eyes = list()
+	slot_ears = list()
+	slot_poc1 = list()
+	slot_poc2 = list()
+	var/rank = ROLE_BANDIT
+
+	New()
+		..()
+		src.access = list(access_maint_tunnels)
+		return
+
+	special_setup(var/mob/living/carbon/human/M)
+		..()
+		if (!M)
+			return
+
+		for (var/datum/antagonist/antag in M.mind.antagonists)
+			if (antag.id == ROLE_BANDIT || antag.id == ROLE_BANDIT_LEADER)
+				antag.give_equipment()
+				return
+		M.mind.add_antagonist(rank)
+
+	leader
+		name = "Bandit LEader"
+		rank = ROLE_BANDIT_LEADER
+		special_spawn_location = LANDMARK_BANDIT_LEADER
+
 /datum/job/football
 	name = "Football Player"
 	limit = -1

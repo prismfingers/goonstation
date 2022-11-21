@@ -30,6 +30,8 @@
 #define ROLE_NUKEOP_GUNBOT "nukeop gunbot"
 #define ROLE_SALVAGER "salvager"
 #define ROLE_ZOMBIE "zombie"
+#define ROLE_BANDIT "bandit"
+#define ROLE_BANDIT_LEADER "bandit_leader"
 
 // gimmicks
 #define ROLE_BATTLER "battler"

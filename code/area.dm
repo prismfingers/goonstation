@@ -3849,6 +3849,7 @@ ABSTRACT_TYPE(/area/mining)
 	requires_power = 0
 	teleport_blocked = 1
 	sound_environment = 18
+	do_not_irradiate = TRUE
 
 /* ================================================== */
 
