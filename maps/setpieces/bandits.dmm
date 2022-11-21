@@ -168,8 +168,10 @@
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "iO" = (
-/obj/item/furniture_parts/podium_wood,
-/turf/unsimulated/floor/auto/sand,
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "kf" = (
 /obj/table/wood/auto,
@@ -585,8 +587,9 @@
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "AS" = (
-/obj/item/furniture_parts/wood_chair,
-/turf/unsimulated/floor/auto/sand,
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Bf" = (
 /obj/table/wood/auto,
@@ -688,6 +691,12 @@
 	},
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
+"Dj" = (
+/obj/machinery/door/unpowered/wood{
+	name = "Chief's room"
+	},
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
 "Dk" = (
 /obj/stool/bench/wooden/auto,
 /turf/unsimulated/dirt,
@@ -709,8 +718,13 @@
 /turf/unsimulated/floor/auto/sand,
 /area/allowGenerate)
 "Fe" = (
-/obj/random_item_spawner/junk,
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/bandage,
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "FM" = (
 /obj/decal/woodclutter,
@@ -838,12 +852,20 @@
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
 "Li" = (
-/obj/item/furniture_parts/bench/wooden,
-/turf/unsimulated/floor/auto/sand,
+/obj/stool/bed{
+	dir = 1
+	},
+/obj/item/clothing/suit/bedsheet,
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "LQ" = (
-/obj/item/furniture_parts/woodenstool,
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Mn" = (
 /obj/stool/bed,
@@ -864,8 +886,13 @@
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "Ni" = (
-/obj/item/furniture_parts/table/wood/round,
-/turf/unsimulated/floor/auto/sand,
+/obj/table/wood/auto,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Nw" = (
 /turf/unsimulated/floor/wood,
@@ -913,8 +940,7 @@
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "Tj" = (
-/obj/item/furniture_parts/table/wood/desk,
-/turf/unsimulated/floor/auto/sand,
+/turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Tn" = (
 /obj/item/kitchen/utensil/spoon{
@@ -1199,7 +1225,7 @@ Cr
 bF
 bF
 bF
-Ni
+bj
 PA
 PA
 PA
@@ -1233,8 +1259,8 @@ bF
 bF
 bF
 Li
+sG
 PA
-Fe
 PA
 PA
 cq
@@ -1265,9 +1291,9 @@ Cr
 bF
 bF
 bF
-FM
-AS
-PA
+Ni
+Tj
+bj
 PA
 PA
 PA
@@ -1300,8 +1326,8 @@ bF
 bF
 bF
 LQ
-Li
-PA
+Tj
+Dj
 PA
 PA
 PA
@@ -1332,10 +1358,10 @@ Cr
 (10,1,1) = {"
 bF
 bF
-FM
-FM
-PA
-Ni
+Fe
+Tj
+Tj
+bj
 PA
 PA
 PA
@@ -1369,7 +1395,7 @@ bF
 AS
 Tj
 iO
-PA
+sG
 PA
 PA
 PA
@@ -1403,7 +1429,7 @@ bj
 bj
 bj
 bj
-PA
+bj
 PA
 PA
 PA
