@@ -232,15 +232,17 @@
 	},
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
-"iK" = (
-/obj/table/wood/auto,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
+"ie" = (
+/obj/table/wood/auto/desk,
 /obj/item/matchbook,
-/obj/item/device/light/zippo,
 /turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"iK" = (
+/obj/machinery/door/unpowered/wood{
+	dir = 8;
+	name = "Saloon"
+	},
+/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "iO" = (
 /obj/stool/chair/wooden{
@@ -613,6 +615,16 @@
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
+"xl" = (
+/obj/table/wood/auto,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/matchbook,
+/obj/item/device/light/zippo,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "xQ" = (
 /obj/table/wood/round/auto,
 /obj/item/ammo/bullets/a38/stun,
@@ -678,13 +690,6 @@
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
 /turf/unsimulated/floor/wood/seven,
-/area/bandit_camp)
-"zl" = (
-/obj/machinery/door/unpowered/wood{
-	dir = 8;
-	name = "Saloon"
-	},
-/turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Ai" = (
 /obj/player_piano,
@@ -1021,15 +1026,6 @@
 /obj/landmark/bandits/leader,
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
-"Mr" = (
-/obj/table/wood/auto,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/matchbook,
-/turf/unsimulated/floor/wood/seven,
-/area/bandit_camp)
 "Mx" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/drinks/mug,
@@ -1112,6 +1108,15 @@
 /obj/item/clothing/head/bigtex,
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
+"Sg" = (
+/obj/table/wood/auto,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/pipebomb/bomb/dynamite,
+/obj/item/matchbook,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "Sk" = (
 /obj/item/plank,
 /obj/item/plank,
@@ -1122,10 +1127,8 @@
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Tn" = (
-/obj/table/wood/auto/desk,
-/obj/item/matchbook,
-/turf/unsimulated/floor/wood/seven,
-/area/bandit_camp)
+/turf/unsimulated/wall/auto/supernorn/wood,
+/area/noGenerate)
 "Tr" = (
 /obj/table/wood/auto,
 /obj/item/clothing/suit/gimmick/guncoat/reinforced{
@@ -1353,15 +1356,15 @@ bF
 bF
 bF
 bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
 bF
 bF
 bF
@@ -1387,7 +1390,7 @@ bF
 bF
 bF
 bF
-bF
+Tn
 Hu
 PL
 ZU
@@ -1395,7 +1398,7 @@ PL
 ML
 PL
 Hu
-bF
+Tn
 bF
 bF
 bF
@@ -1428,13 +1431,13 @@ PL
 PL
 PL
 PL
-Tn
+ie
 bj
 tJ
 tJ
-bF
-bF
-bF
+Tn
+Tn
+Tn
 bF
 bF
 Cr
@@ -1450,7 +1453,7 @@ Cr
 Cr
 bF
 bF
-bF
+Tn
 bj
 Dh
 PA
@@ -1468,7 +1471,7 @@ PA
 PA
 bj
 XX
-bF
+Tn
 bF
 bF
 Cr
@@ -1483,7 +1486,7 @@ Cr
 Cr
 bF
 bF
-bF
+Tn
 Li
 sG
 AG
@@ -1503,7 +1506,7 @@ PA
 sG
 HF
 wj
-bF
+Tn
 bF
 bF
 Cr
@@ -1516,7 +1519,7 @@ Cr
 (8,1,1) = {"
 bF
 bF
-bF
+Tn
 Ni
 Tj
 bj
@@ -1537,7 +1540,7 @@ PA
 bj
 HF
 kf
-bF
+Tn
 bF
 bF
 bF
@@ -1550,7 +1553,7 @@ Cr
 (9,1,1) = {"
 bF
 bF
-bF
+Tn
 LQ
 Tj
 Dj
@@ -1572,7 +1575,7 @@ bj
 HF
 HF
 oL
-bF
+Tn
 bF
 bF
 Cr
@@ -1583,7 +1586,7 @@ Cr
 "}
 (10,1,1) = {"
 bF
-bF
+Tn
 Fe
 Tj
 Tj
@@ -1607,7 +1610,7 @@ HF
 HF
 HF
 oG
-bF
+Tn
 bF
 Cr
 Cr
@@ -1617,7 +1620,7 @@ Cr
 "}
 (11,1,1) = {"
 bF
-bF
+Tn
 AS
 Tj
 iO
@@ -1641,7 +1644,7 @@ HF
 HF
 HF
 Bf
-bF
+Tn
 bF
 Cr
 Cr
@@ -1675,7 +1678,7 @@ Sc
 vp
 Lb
 XE
-bF
+Tn
 bF
 bF
 Cr
@@ -1889,7 +1892,7 @@ rI
 "}
 (19,1,1) = {"
 bF
-bF
+bj
 HW
 HW
 aI
@@ -1923,7 +1926,7 @@ rI
 "}
 (20,1,1) = {"
 bF
-bF
+bj
 di
 PL
 PL
@@ -1957,7 +1960,7 @@ Cr
 "}
 (21,1,1) = {"
 bF
-bF
+bj
 sQ
 PL
 PL
@@ -1976,13 +1979,13 @@ bj
 bj
 sG
 bj
-zl
+iK
 bj
 sG
 bj
 bj
 bj
-bF
+Tn
 bF
 UI
 Cr
@@ -1991,7 +1994,7 @@ Cr
 "}
 (22,1,1) = {"
 bF
-bF
+bj
 sQ
 PL
 PL
@@ -2016,7 +2019,7 @@ ha
 ha
 ha
 NX
-bF
+Tn
 bF
 Cr
 Cr
@@ -2026,7 +2029,7 @@ Cr
 (23,1,1) = {"
 Cr
 bF
-bF
+bj
 sQ
 PL
 qG
@@ -2050,7 +2053,7 @@ aq
 ha
 ha
 GM
-bF
+Tn
 bF
 Cr
 Cr
@@ -2060,7 +2063,7 @@ Cr
 (24,1,1) = {"
 Cr
 bF
-bF
+bj
 sQ
 PL
 PL
@@ -2083,7 +2086,7 @@ fU
 rQ
 ha
 mh
-bF
+Tn
 bF
 bF
 Cr
@@ -2095,11 +2098,11 @@ Cr
 Cr
 Cr
 bF
-bF
+bj
 DK
 PL
 PL
-iK
+xl
 bj
 sG
 bj
@@ -2117,7 +2120,7 @@ ha
 ha
 ha
 Hn
-bF
+Tn
 bF
 Cr
 Cr
@@ -2130,10 +2133,10 @@ Cr
 Cr
 Cr
 bF
-bF
+bj
 HX
 PL
-Mr
+Sg
 bj
 Jp
 fZ
@@ -2150,7 +2153,7 @@ Mx
 ha
 mn
 Ci
-bF
+Tn
 bF
 Cr
 Cr
@@ -2165,7 +2168,7 @@ ET
 Cr
 Cr
 bF
-bF
+bj
 HX
 cl
 sG
@@ -2183,7 +2186,7 @@ aq
 yU
 ha
 cn
-bF
+Tn
 bF
 Cr
 Cr
@@ -2200,8 +2203,8 @@ Cr
 Cr
 bF
 bF
-bF
-bF
+bj
+bj
 bj
 gA
 Jp
@@ -2216,8 +2219,8 @@ ha
 yL
 kR
 ck
-bF
-bF
+Tn
+Tn
 bF
 Cr
 Cr
@@ -2237,10 +2240,10 @@ bF
 bF
 bF
 bF
-bF
-bF
-bF
-bF
+Tn
+Tn
+Tn
+Tn
 cO
 FW
 cw
@@ -2248,8 +2251,8 @@ bj
 Oi
 ha
 aq
-bF
-bF
+Tn
+Tn
 bF
 bF
 Cr
@@ -2275,13 +2278,13 @@ bF
 bF
 bF
 bF
-bF
-bF
-bF
-bF
-bF
-bF
-bF
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
+Tn
 bF
 bF
 Cr
