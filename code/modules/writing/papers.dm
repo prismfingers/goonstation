@@ -1107,8 +1107,8 @@ Only trained personnel should operate station systems. Follow all procedures car
 	name = "About the cave in"
 	icon_state = "paper"
 	info = {"
-	----------------------------------------<br>
 	To the poor sod who's going to have to dig us out.<br>
+	----------------------------------------<br>
 
 	Remember how after the last heist boss wanted us to lay low?<br>
 	Yeah well the other idiots interpreted it as blowing up the front door and organizing a cave-in.<br>

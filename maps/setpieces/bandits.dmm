@@ -960,7 +960,7 @@
 /area/bandit_camp)
 "Gg" = (
 /obj/table/wood/auto,
-/obj/item/card_box,
+/obj/item/card_box/plain,
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Gq" = (
