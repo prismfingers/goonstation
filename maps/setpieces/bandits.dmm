@@ -51,14 +51,22 @@
 /turf/unsimulated/wall/auto/supernorn/wood,
 /area/bandit_camp)
 "bD" = (
-/obj/stool/chair/wooden{
-	dir = 8
+/obj/machinery/door/unpowered/wood{
+	name = "Chief's room";
+	locked = 1
 	},
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "bF" = (
 /turf/simulated/wall/auto/asteroid/mountain/desert,
 /area/noGenerate)
+"bM" = (
+/obj/storage/crate/wooden,
+/obj/item/paper/book/from_file/deep_blue_sea,
+/obj/item/paper/book/from_file/critter_compendium,
+/obj/item/paper/book/from_file/the_trial,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "ck" = (
 /obj/submachine/chef_sink/chem_sink{
 	dir = 8
@@ -67,73 +75,15 @@
 /area/bandit_camp)
 "cl" = (
 /obj/table/wood/auto,
-/obj/item/gun/kinetic/foamdartrevolver,
-/obj/item/gun/kinetic/foamdartrevolver,
-/obj/item/gun/kinetic/foamdartrevolver,
-/obj/item/gun/kinetic/foamdartrevolver,
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
+/obj/item/gun/kinetic/single_action/mts_255{
+	pixel_y = -8;
+	desc = "An old level action shotgun. You're not sure where it came from, but it's clear that whoever had it last took good care of it.";
+	name = "Level action shotgun"
 	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
-	},
-/obj/item/ammo/bullets/foamdarts{
-	pixel_y = -10;
-	pixel_x = 6
+/obj/item/gun/kinetic/single_action/mts_255{
+	pixel_y = 8;
+	name = "Level action shotgun";
+	desc = "An old level action shotgun. You're not sure where it came from, but it's clear that whoever had it last took good care of it."
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
@@ -183,6 +133,18 @@
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
+"fg" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/turf/unsimulated/floor/carpet/purple/standard/edge/south,
+/area/bandit_camp)
 "fE" = (
 /obj/bookshelf,
 /turf/unsimulated/floor/wood/seven,
@@ -204,14 +166,15 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "fZ" = (
-/obj/item/pen/crayon/golden,
-/obj/item/spacecash/random/really_small,
-/turf/unsimulated/floor/wood/five,
+/turf/unsimulated/floor/carpet/regalcarpet/border,
 /area/bandit_camp)
 "gm" = (
 /obj/table/wood/auto,
 /obj/item/diceholder/dicecup,
 /turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"gv" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/west,
 /area/bandit_camp)
 "gA" = (
 /obj/item/stamped_bullion,
@@ -219,6 +182,12 @@
 /area/bandit_camp)
 "ha" = (
 /turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"hr" = (
+/obj/item/raw_material/gold,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 4
+	},
 /area/bandit_camp)
 "hx" = (
 /turf/simulated/wall/auto/asteroid/mountain/desert,
@@ -231,6 +200,19 @@
 	pixel_y = 9
 	},
 /turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"hL" = (
+/obj/table/wood/auto/desk,
+/obj/item/gun/kinetic/derringer{
+	pixel_x = -4
+	},
+/obj/item/plant/herb/poppy{
+	pixel_x = 8;
+	pixel_y = 6;
+	name = "dry poppy";
+	desc = "Slightly faded. Holding it close brings you comfort."
+	},
+/turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "ie" = (
 /obj/table/wood/auto/desk,
@@ -305,16 +287,7 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "lu" = (
-/obj/table/wood/auto,
-/obj/item/reagent_containers/food/drinks/moonshine{
-	pixel_x = -6;
-	pixel_y = 5
-	},
-/obj/item/decoration/ashtray{
-	pixel_x = 7;
-	pixel_y = -2
-	},
-/turf/unsimulated/floor/wood,
+/turf/unsimulated/floor/carpet/regalcarpet,
 /area/bandit_camp)
 "mh" = (
 /obj/table/reinforced/bar/auto,
@@ -352,9 +325,20 @@
 /obj/table/wood/auto/desk,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
+"mY" = (
+/obj/item/paper/bandithideout,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
 "nP" = (
 /obj/item/raw_material/gold,
 /turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"oo" = (
+/obj/item/reagent_containers/glass/bucket{
+	name = "trusty spitoon";
+	desc = "For spittin'."
+	},
+/turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "ov" = (
 /obj/machinery/door/unpowered/wood{
@@ -364,17 +348,8 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "oG" = (
-/obj/table/wood/auto,
-/obj/item/clothing/head/westhat/blue,
-/obj/item/clothing/head/westhat/blue,
-/obj/item/clothing/head/westhat/blue,
-/obj/item/clothing/head/westhat/blue,
-/obj/item/clothing/head/westhat/blue,
-/obj/item/clothing/head/westhat/tan{
-	pixel_x = -8;
-	pixel_y = -8
-	},
-/turf/unsimulated/floor/wood/two,
+/obj/decoration/candles/prelit,
+/turf/unsimulated/wall/auto/supernorn/wood,
 /area/bandit_camp)
 "oL" = (
 /obj/table/wood/auto,
@@ -446,44 +421,49 @@
 /area/bandit_camp)
 "pi" = (
 /obj/table/wood/auto,
-/obj/item/pen/pencil{
-	pixel_x = -5;
-	pixel_y = 6
-	},
-/obj/item/cigpacket/cigarillo{
-	pixel_y = -6;
-	pixel_z = null
-	},
-/obj/item/device/key/generic{
-	desc = "Unlocks the door to the armory.";
-	name = "armory key";
+/obj/item/device/light/zippo{
 	pixel_x = 8;
-	pixel_y = 4
+	pixel_y = 12
 	},
-/turf/unsimulated/floor/wood,
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/nw,
 /area/bandit_camp)
 "pt" = (
 /obj/table/wood/round/auto,
-/obj/item/ammo/bullets/buckshot_burst,
-/obj/item/ammo/bullets/buckshot_burst,
-/obj/item/ammo/bullets/buckshot_burst,
-/obj/item/ammo/bullets/buckshot_burst,
-/turf/unsimulated/floor/wood/seven,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/turf/unsimulated/floor/carpet/purple/standard,
 /area/bandit_camp)
 "qy" = (
-/obj/table/podium_wood,
-/obj/item/skull/gold,
-/turf/unsimulated/floor/wood/five,
+/obj/item/goldbar,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 5
+	},
 /area/bandit_camp)
 "qG" = (
-/obj/table/wood/round/auto,
-/obj/item/ammo/bullets/abg,
-/obj/item/ammo/bullets/abg,
-/obj/item/ammo/bullets/abg,
-/obj/item/ammo/bullets/abg,
-/obj/item/ammo/bullets/abg,
-/obj/item/ammo/bullets/abg,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = -6;
+	pixel_y = 9;
+	broken = 1
+	},
 /turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"qU" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/sw,
 /area/bandit_camp)
 "qZ" = (
 /obj/table/reinforced/bar/auto,
@@ -497,23 +477,24 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "rf" = (
-/obj/table/wood/round/auto,
-/obj/item/ammo/bullets/a38/AP,
-/obj/item/ammo/bullets/a38/AP,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38/AP,
-/obj/item/ammo/bullets/a38/AP,
-/turf/unsimulated/floor/wood/seven,
+/turf/unsimulated/floor/carpet/purple/standard/edge/north,
 /area/bandit_camp)
 "rI" = (
-/turf/unsimulated/floor/auto/sand,
-/area/noGenerate)
+/obj/decal/fakeobjects/skeleton{
+	desc = "Didn't even have the courtesy to die with his boots on. Nothing to loot here.";
+	name = "Snake-eye Bob"
+	},
+/obj/item/clothing/head/westhat{
+	pixel_y = -12;
+	pixel_x = 12;
+	name = "Very flat Ten-Gallon hat";
+	desc = "This thing has been squished by a ton of rubble!"
+	},
+/turf/simulated/wall/auto/asteroid/mountain/desert,
+/area/bandit_camp)
+"rN" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/east,
+/area/bandit_camp)
 "rQ" = (
 /obj/table/reinforced/bar/auto,
 /obj/item/reagent_containers/food/drinks/mug{
@@ -527,9 +508,11 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "sm" = (
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/mop/old,
-/turf/unsimulated/floor/wood/seven,
+/obj/item/horseshoe{
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/turf/unsimulated/dirt,
 /area/bandit_camp)
 "sC" = (
 /obj/item/mining_tools/pick,
@@ -579,6 +562,18 @@
 /obj/storage/closet/coffin/wood,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
+"uz" = (
+/obj/item/horseshoe{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/head_on_spike{
+	anchored = 1;
+	name = "horseshoe spike";
+	desc = "Used to practice horse throwing. For the love of god don't run near this thing, last guy poked his eye out on it."
+	},
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
 "vp" = (
 /obj/table/wood/auto,
 /obj/item/reagent_containers/food/snacks/breadloaf,
@@ -625,29 +620,33 @@
 /obj/item/device/light/zippo,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
+"xs" = (
+/turf/simulated/wall/auto/asteroid/mountain/desert,
+/area/allowGenerate)
 "xQ" = (
 /obj/table/wood/round/auto,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/turf/unsimulated/floor/wood/seven,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/turf/unsimulated/floor/carpet/purple/standard,
 /area/bandit_camp)
 "yp" = (
 /obj/table/wood/auto,
-/obj/item/ammo/bullets/a38{
-	pixel_x = -4;
-	pixel_y = 8
+/obj/item/cigarbox{
+	pixel_x = -8;
+	pixel_y = 7
 	},
-/obj/item/ammo/bullets/a38/stun{
-	pixel_x = 4;
-	pixel_y = -4
+/obj/item/device/key/generic{
+	desc = "Unlocks the door to the armory.";
+	name = "armory key";
+	pixel_x = 8
 	},
-/turf/unsimulated/floor/wood,
+/turf/unsimulated/floor/carpet/red/fancy/edge/west,
 /area/bandit_camp)
 "yy" = (
 /obj/table/wood/auto,
@@ -656,10 +655,43 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "yB" = (
-/obj/machinery/door/unpowered/wood{
-	name = "Chief's room"
+/obj/table/wood/auto,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/tan{
+	pixel_x = -8;
+	pixel_y = -8
 	},
-/turf/unsimulated/floor/wood,
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"yD" = (
+/obj/item/coin,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 1
+	},
 /area/bandit_camp)
 "yL" = (
 /obj/stool/wooden,
@@ -680,15 +712,16 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "zd" = (
-/obj/table/wood/round/auto,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/sawnoff,
+/obj/item/gun/kinetic/sawnoff{
+	pixel_x = 4;
+	pixel_y = -8
+	},
+/obj/item/gun/kinetic/sawnoff{
+	pixel_x = -4;
+	pixel_y = 8
+	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Ai" = (
@@ -767,6 +800,41 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
+"Bx" = (
+/obj/storage/crate/wooden,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/mead,
+/obj/item/reagent_containers/food/drinks/bottle/mead,
+/obj/item/reagent_containers/food/drinks/bottle/cider,
+/obj/item/reagent_containers/food/drinks/bottle/cider,
+/mob/living/critter/small_animal/mouse/weak{
+	name = "alcohol-reeking rodent";
+	desc = "Damned thing snuck in your alcohol crate!";
+	health_burn = 0;
+	health_burn_vuln = 0
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"BG" = (
+/obj/table/wood/auto,
+/obj/item/ammo/bullets/a38{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/ammo/bullets/a38/stun{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/sw,
+/area/bandit_camp)
+"BL" = (
+/obj/item/pen/crayon/golden,
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 9
+	},
+/area/bandit_camp)
 "Ci" = (
 /obj/storage/crate/chest{
 	desc = "Nothing is too fancy to protect your alcohol.";
@@ -798,6 +866,24 @@
 /obj/item/spacecash/random/really_small,
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
+"CA" = (
+/obj/item/stamped_bullion,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 10
+	},
+/area/bandit_camp)
+"CO" = (
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/obj/item/gun/kinetic/hunting_rifle{
+	name = "antique varmint hunting rifle";
+	desc = "Passed down for generations from bandit to bandit. Surprisingly still loaded.";
+	pixel_x = -26;
+	pixel_y = 32
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/ne,
+/area/bandit_camp)
 "CV" = (
 /obj/campfire,
 /turf/unsimulated/dirt,
@@ -809,8 +895,10 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "De" = (
-/obj/item/coin,
-/turf/unsimulated/floor/wood/five,
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 8
+	},
 /area/bandit_camp)
 "Dh" = (
 /mob/living/critter/small_animal/pig{
@@ -853,7 +941,12 @@
 /obj/item/bandage,
 /obj/item/bandage,
 /obj/item/bandage,
+/obj/item/suture,
 /turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"FH" = (
+/obj/item/dice,
+/turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "FM" = (
 /obj/decal/woodclutter,
@@ -882,10 +975,7 @@
 /turf/unsimulated/dirt,
 /area/bandit_camp)
 "Hk" = (
-/obj/submachine/chef_sink/chem_sink{
-	pixel_y = 3
-	},
-/turf/unsimulated/floor/wood,
+/turf/unsimulated/floor/carpet/purple/standard/edge/se,
 /area/bandit_camp)
 "Hn" = (
 /obj/reagent_dispensers/beerkeg,
@@ -905,16 +995,19 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "HX" = (
-/obj/table/wood/auto,
-/obj/item/gun/kinetic/riotgun{
-	pixel_x = -8;
-	pixel_y = 8
+/obj/item/reagent_containers/glass/bucket{
+	name = "trusty spitoon";
+	desc = "For spittin'."
 	},
-/obj/item/gun/kinetic/riotgun{
-	pixel_x = -8;
-	pixel_y = -8
-	},
+/obj/item/mop/old,
 /turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"Ib" = (
+/mob/living/critter/small_animal/armadillo/ai_controlled{
+	name = "Tumbles";
+	desc = "An armadillo you were supposed to cook for everyone, but you couldn't bring yourself to do it. Look at those little legs, aww."
+	},
+/turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "Iz" = (
 /obj/decal/fakeobjects/rockpile/big,
@@ -926,17 +1019,21 @@
 /area/bandit_camp)
 "JG" = (
 /obj/table/wood/round/auto,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/turf/unsimulated/floor/wood/seven,
+/obj/item/ammo/bullets/a38/AP,
+/obj/item/ammo/bullets/a38/AP,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38/AP,
+/turf/unsimulated/floor/carpet/purple/standard,
+/area/bandit_camp)
+"KL" = (
+/obj/item/goldbar,
+/turf/unsimulated/floor/carpet/regalcarpet,
 /area/bandit_camp)
 "Lb" = (
 /obj/table/wood/auto,
@@ -992,11 +1089,81 @@
 /area/bandit_camp)
 "Le" = (
 /obj/table/wood/auto,
-/obj/item/dice{
-	pixel_x = -4
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
 	},
-/obj/item/decoration/ashtray{
-	pixel_x = 4
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
+	},
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
+	},
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
@@ -1006,6 +1173,9 @@
 	},
 /obj/item/clothing/suit/bedsheet,
 /turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"LN" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/east,
 /area/bandit_camp)
 "LQ" = (
 /obj/table/wood/auto,
@@ -1078,14 +1248,23 @@
 "PL" = (
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
+"PW" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/turf/unsimulated/floor/carpet/purple/standard/edge/south,
+/area/bandit_camp)
 "Qd" = (
-/obj/table/wood/auto/desk,
-/obj/item/gun/kinetic/derringer{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/gun/kinetic/revolver,
-/turf/unsimulated/floor/wood,
+/obj/item/item_box/gold_star,
+/turf/unsimulated/floor/carpet/regalcarpet,
 /area/bandit_camp)
 "QC" = (
 /obj/stool/bench/wooden/auto,
@@ -1097,11 +1276,23 @@
 	},
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
+"QX" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/se,
+/area/bandit_camp)
 "Ra" = (
-/mob/living/critter/small_animal/armadillo/ai_controlled{
-	name = "cigarillo"
+/obj/table/podium_wood,
+/obj/item/skull/gold,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 4
 	},
-/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"RS" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/ne,
+/area/bandit_camp)
+"RW" = (
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 8
+	},
 /area/bandit_camp)
 "Sc" = (
 /obj/table/podium_wood,
@@ -1123,11 +1314,14 @@
 /obj/item/plank,
 /turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
+"SR" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/nw,
+/area/bandit_camp)
 "Tj" = (
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
 "Tn" = (
-/turf/unsimulated/wall/auto/supernorn/wood,
+/turf/unsimulated/wall/cave,
 /area/noGenerate)
 "Tr" = (
 /obj/table/wood/auto,
@@ -1173,15 +1367,38 @@
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
+"TE" = (
+/obj/item/goldbar,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 6
+	},
+/area/bandit_camp)
 "UI" = (
-/turf/simulated/wall/auto/asteroid/mountain/desert,
-/area/allowGenerate)
+/obj/item/coin,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 8
+	},
+/area/bandit_camp)
 "Vg" = (
 /obj/decal/fakeobjects/smallrocks,
 /turf/unsimulated/floor/auto/sand,
 /area/allowGenerate)
 "Ww" = (
 /obj/storage/closet/dresser,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"WU" = (
+/obj/table/wood/auto,
+/obj/item/dice{
+	pixel_x = -4
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = 4
+	},
+/obj/item/device/light/candle{
+	pixel_y = 18;
+	pixel_x = 6
+	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "XE" = (
@@ -1271,6 +1488,24 @@
 /obj/item/clothing/under/misc/serpico,
 /turf/unsimulated/floor/wood/two,
 /area/bandit_camp)
+"Yb" = (
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 4
+	},
+/area/bandit_camp)
+"YK" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/turf/unsimulated/floor/carpet/purple/standard/edge/south,
+/area/bandit_camp)
 "ZU" = (
 /obj/storage/crate/wooden,
 /obj/item/reagent_containers/food/drinks/bottle/beer,
@@ -1316,8 +1551,8 @@ Cr
 Cr
 Cr
 Cr
-Iz
 Cr
+ET
 Cr
 bF
 bF
@@ -1331,10 +1566,11 @@ bF
 bF
 bF
 bF
-Cr
-Cr
-Cr
-Cr
+bF
+bF
+bF
+bF
+bF
 Cr
 ET
 Cr
@@ -1342,7 +1578,6 @@ Cr
 Cr
 Cr
 Vg
-Cr
 Cr
 Cr
 "}
@@ -1354,24 +1589,24 @@ Cr
 Cr
 bF
 bF
+Tn
+Tn
+Tn
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+Tn
+Tn
+Tn
 bF
 bF
-Tn
-Tn
-Tn
-Tn
-Tn
-Tn
-Tn
-Tn
-Tn
 bF
-bF
-bF
-Cr
-Cr
-Cr
-Cr
 Cr
 Cr
 Cr
@@ -1387,26 +1622,26 @@ Cr
 Cr
 bF
 bF
-bF
-bF
-bF
 Tn
+bF
+bF
+bF
+bj
 Hu
 PL
-ZU
-PL
+Bx
+bM
 ML
 PL
 Hu
+bj
+bF
+bF
+bF
+Tn
 Tn
 bF
 bF
-bF
-bF
-bF
-Cr
-Cr
-Cr
 Cr
 Cr
 Cr
@@ -1416,10 +1651,11 @@ Cr
 "}
 (5,1,1) = {"
 Cr
-Iz
 Cr
+Iz
 bF
 bF
+Tn
 bF
 bF
 PA
@@ -1429,18 +1665,17 @@ vX
 PL
 PL
 PL
-PL
+qG
 PL
 ie
 bj
 tJ
 tJ
-Tn
-Tn
-Tn
+bj
+bj
+bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1453,7 +1688,8 @@ Cr
 Cr
 bF
 bF
-Tn
+bF
+bj
 bj
 Dh
 PA
@@ -1471,10 +1707,9 @@ PA
 PA
 bj
 XX
-Tn
+bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1486,7 +1721,8 @@ Cr
 Cr
 bF
 bF
-Tn
+bF
+bj
 Li
 sG
 AG
@@ -1496,7 +1732,7 @@ bj
 fE
 PL
 QC
-Le
+WU
 QC
 PL
 PL
@@ -1506,10 +1742,9 @@ PA
 sG
 HF
 wj
-Tn
+bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1517,9 +1752,10 @@ Cr
 Cr
 "}
 (8,1,1) = {"
+Cr
 bF
 bF
-Tn
+bj
 Ni
 Tj
 bj
@@ -1540,11 +1776,10 @@ PA
 bj
 HF
 kf
-Tn
+bj
 bF
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1553,7 +1788,8 @@ Cr
 (9,1,1) = {"
 bF
 bF
-Tn
+bF
+bj
 LQ
 Tj
 Dj
@@ -1562,7 +1798,7 @@ PA
 PA
 bj
 mD
-PL
+FH
 QC
 yy
 QC
@@ -1570,15 +1806,14 @@ PL
 Ww
 bj
 PA
-PA
+GN
 bj
 HF
 HF
 oL
-Tn
+bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1586,7 +1821,8 @@ Cr
 "}
 (10,1,1) = {"
 bF
-Tn
+bF
+bj
 Fe
 Tj
 Tj
@@ -1600,19 +1836,18 @@ PL
 PL
 Gq
 PL
-PL
+FH
 Hu
 bj
-PA
+GN
 GN
 bj
 HF
 HF
 HF
-oG
-Tn
+yB
+bj
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1620,7 +1855,8 @@ Cr
 "}
 (11,1,1) = {"
 bF
-Tn
+bF
+bj
 AS
 Tj
 iO
@@ -1635,7 +1871,7 @@ PL
 PL
 wK
 PL
-sm
+HX
 bj
 GN
 GN
@@ -1644,9 +1880,8 @@ HF
 HF
 HF
 Bf
-Tn
+bj
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1654,6 +1889,7 @@ Cr
 "}
 (12,1,1) = {"
 bF
+bj
 bj
 bj
 bj
@@ -1678,28 +1914,28 @@ Sc
 vp
 Lb
 XE
-Tn
+bj
 bF
 bF
 Cr
 Cr
 ET
-Cr
 "}
 (13,1,1) = {"
 bF
-lu
+bj
 pi
 yp
+BG
 sG
+GN
+GN
 PA
 PA
 PA
 PA
 PA
-PA
-Es
-PA
+GN
 GN
 GN
 PA
@@ -1715,16 +1951,16 @@ sG
 bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
 "}
 (14,1,1) = {"
 bF
-bD
-Nw
-Nw
+bj
+CO
+LN
+QX
 bj
 GN
 GN
@@ -1732,7 +1968,7 @@ GN
 GN
 GN
 PA
-PA
+GN
 Dk
 Dk
 Dk
@@ -1744,22 +1980,22 @@ GN
 PA
 PA
 PA
-PA
+sC
 Sk
 FM
 bF
 bF
-Cr
-Cr
+xs
 Cr
 Cr
 "}
 (15,1,1) = {"
 bF
-Hk
+bj
 Nw
 Nw
-yB
+Nw
+bD
 GN
 GN
 GN
@@ -1783,14 +2019,14 @@ AZ
 FM
 FM
 bF
-UI
-Cr
-Cr
+bF
+xs
 Cr
 "}
 (16,1,1) = {"
 bF
-Ra
+bj
+Ib
 Nw
 Nw
 bj
@@ -1818,15 +2054,15 @@ Sk
 sC
 bF
 bF
-rI
-rI
-Cr
+bF
+bF
 "}
 (17,1,1) = {"
 bF
+bj
 Mn
-Qd
-Nw
+hL
+oo
 sG
 GN
 GN
@@ -1852,12 +2088,12 @@ GN
 GN
 PA
 hx
-PA
-PA
-rI
+hx
+hx
 "}
 (18,1,1) = {"
 bF
+bj
 bj
 bj
 bj
@@ -1883,14 +2119,14 @@ GN
 GN
 GN
 GN
-GN
+mY
 GN
 hx
-PA
-PA
 rI
+hx
 "}
 (19,1,1) = {"
+bF
 bF
 bj
 HW
@@ -1920,18 +2156,18 @@ GN
 GN
 PA
 hx
-PA
-PA
-rI
+hx
+hx
 "}
 (20,1,1) = {"
+bF
 bF
 bj
 di
 PL
-PL
-PL
-PL
+SR
+gv
+qU
 PL
 bj
 PA
@@ -1947,32 +2183,32 @@ PA
 GN
 GN
 GN
-PA
+GN
 PA
 sC
 FM
 FM
 bF
 bF
-rI
-rI
-Cr
+bF
+bF
 "}
 (21,1,1) = {"
+bF
 bF
 bj
 sQ
 PL
-PL
 rf
 JG
+PW
 PL
 sG
 PA
 PA
 GN
 GN
-PA
+GN
 PA
 PA
 bj
@@ -1985,21 +2221,21 @@ sG
 bj
 bj
 bj
-Tn
+bj
 bF
-UI
-Cr
-Cr
+bF
+xs
 Cr
 "}
 (22,1,1) = {"
+Cr
 bF
 bj
 sQ
 PL
-PL
-zd
+rf
 xQ
+YK
 PL
 bj
 PA
@@ -2019,21 +2255,21 @@ ha
 ha
 ha
 NX
-Tn
+bj
 bF
-Cr
-Cr
+xs
 Cr
 Cr
 "}
 (23,1,1) = {"
 Cr
 bF
+bF
 bj
 sQ
-PL
-qG
+rf
 pt
+fg
 PL
 bj
 PA
@@ -2041,9 +2277,9 @@ GN
 GN
 GN
 PA
+uz
 PA
-PA
-sG
+bj
 ha
 ha
 ha
@@ -2053,28 +2289,28 @@ aq
 ha
 ha
 GM
-Tn
+bj
 bF
-Cr
 Cr
 Cr
 Cr
 "}
 (24,1,1) = {"
 Cr
+Cr
 bF
 bj
 sQ
-PL
-PL
-PL
+RS
+rN
+Hk
 PL
 bj
 PA
 GN
 GN
 GN
-PA
+sm
 PA
 Es
 bj
@@ -2086,10 +2322,9 @@ fU
 rQ
 ha
 mh
-Tn
+oG
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -2097,6 +2332,7 @@ Cr
 (25,1,1) = {"
 Cr
 Cr
+bF
 bF
 bj
 DK
@@ -2120,9 +2356,8 @@ ha
 ha
 ha
 Hn
-Tn
+bj
 bF
-Cr
 Cr
 Cr
 Cr
@@ -2133,17 +2368,18 @@ Cr
 Cr
 Cr
 bF
+bF
 bj
-HX
+zd
 PL
 Sg
 bj
 Jp
-fZ
-ha
-Cz
+BL
+RW
 De
-gA
+UI
+CA
 sU
 bj
 CY
@@ -2153,31 +2389,31 @@ Mx
 ha
 mn
 Ci
-Tn
+bj
 bF
-Cr
+bF
 Cr
 Cr
 Iz
 Cr
-Cr
 "}
 (27,1,1) = {"
 Cr
+Cr
 ET
 Cr
-Cr
+bF
 bF
 bj
-HX
 cl
+Le
 sG
 te
-De
-ha
-ha
-ha
-ha
+yD
+lu
+Qd
+KL
+fZ
 nP
 bj
 ka
@@ -2186,10 +2422,9 @@ aq
 yU
 ha
 cn
-Tn
+bj
 bF
-Cr
-Cr
+bF
 Cr
 Cr
 Cr
@@ -2201,28 +2436,28 @@ Cr
 Cr
 Cr
 Cr
+Cr
 bF
 bF
 bj
 bj
 bj
 gA
-Jp
 qy
+Ra
+Yb
+hr
+TE
 Cz
-nP
-Jp
-Cz
-sG
+bj
 ha
 ha
 yL
 kR
 ck
-Tn
-Tn
+bj
+bj
 bF
-Cr
 Cr
 Cr
 Cr
@@ -2236,14 +2471,15 @@ Cr
 Cr
 Cr
 Cr
+Cr
 bF
 bF
 bF
 bF
-Tn
-Tn
-Tn
-Tn
+bj
+bj
+bj
+bj
 cO
 FW
 cw
@@ -2251,12 +2487,11 @@ bj
 Oi
 ha
 aq
-Tn
-Tn
+oG
+bj
 bF
 bF
-Cr
-Cr
+bF
 Cr
 Cr
 Cr
@@ -2273,26 +2508,26 @@ Cr
 Cr
 Cr
 Cr
-bF
-bF
-bF
-bF
-bF
-Tn
-Tn
-Tn
-Tn
-Tn
-Tn
-Tn
-bF
-bF
 Cr
+bF
+bF
+bF
+bF
+bF
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+bF
+bF
+bF
 Cr
 Cr
 Cr
 Vg
-Cr
 Cr
 Cr
 Cr
@@ -2311,16 +2546,16 @@ Cr
 Cr
 Cr
 Cr
-bF
-bF
-bF
-bF
-bF
-bF
-bF
 Cr
-Cr
-Cr
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
 Cr
 Cr
 Cr
@@ -2354,8 +2589,8 @@ Cr
 Cr
 Cr
 Cr
-Iz
 Cr
+Iz
 Cr
 Cr
 Cr

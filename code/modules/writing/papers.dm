@@ -1102,3 +1102,20 @@ Only trained personnel should operate station systems. Follow all procedures car
 
 	Congrats! Your mineral magnet is now assembled and ready for use!
 	"}
+
+/obj/item/paper/bandithideout
+	name = "About the cave in"
+	icon_state = "paper"
+	info = {"
+	----------------------------------------<br>
+	To the poor sod who's going to have to dig us out.<br>
+
+	Remember how after the last heist boss wanted us to lay low?<br>
+	Yeah well the other idiots interpreted it as blowing up the front door and organizing a cave-in.<br>
+	Didn't even wait until we all got here! Snake-eye bob got caught in the rubble. Rascal didn't even have the courtesy of throwing me his gun before he died.<br>
+	But sure, it got the job done. No one's foolish enough to try and move so much rubble for an innocent-looking rock.<br>
+	But food's gonna run low eventually, or some hoard is gonna pass around yonder and we'll have to get out and nab it. Which means that <i>someone</i> will have to dig us outta here, and it's not gonna be me.<br><br>
+	Best of luck to the poor dude who's going to have to get us out of this one.<br>
+	----------------------------------------<br>
+	<i>Tetanus Bill</i>
+	"}
