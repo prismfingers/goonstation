@@ -612,12 +612,13 @@
 /area/bandit_camp)
 "xl" = (
 /obj/table/wood/auto,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
 /obj/item/matchbook,
 /obj/item/device/light/zippo,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "xs" = (
@@ -1301,11 +1302,12 @@
 /area/bandit_camp)
 "Sg" = (
 /obj/table/wood/auto,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
-/obj/item/pipebomb/bomb/dynamite,
 /obj/item/matchbook,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Sk" = (
