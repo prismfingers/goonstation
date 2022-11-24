@@ -2835,7 +2835,7 @@ ABSTRACT_TYPE(/datum/job/special/pod_wars)
 	allow_spy_theft = FALSE
 	cant_spawn_as_rev = TRUE
 	special_spawn_location = LANDMARK_BANDIT
-	slot_card = /obj/item/card/id
+	slot_card = list()
 	slot_belt = list()
 	slot_back = list()
 	slot_jump = list()
