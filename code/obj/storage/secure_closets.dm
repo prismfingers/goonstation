@@ -402,6 +402,29 @@
 	bolted = TRUE
 	spawn_contents = list(/obj/item/item_box/contraband)
 
+/obj/storage/secure/closet/safe
+	name = "\improper cast iron safe"
+	desc = "An inordinately heavy and durable safe, no doubt containing copious amounts of valuables."
+	radio_control = null
+	req_access = list(access_centcom) // Prevents the safe from being opened by ID.
+	icon_state = "safe"
+	icon_closed = "safe"
+	icon_opened = "safe-open"
+	icon_greenlight = null
+	icon_redlight = null
+	open_sound = 'sound/misc/safe_open.ogg'
+	close_sound = 'sound/misc/safe_close.ogg'
+	_max_health = 500
+	_health = 500
+	reinforced = TRUE
+	bolted = TRUE
+	spawn_contents = list(/obj/random_item_spawner/safe)
+
+	emag_act(var/mob/user, var/obj/item/card/emag/E)
+		if (user)
+			user.show_text("[src] seems to resist the [E].", "blue")
+		return
+
 // Old Mushroom-era feature I fixed up (Convair880).
 /obj/storage/secure/closet/brig_automatic
 	name = "\improper Automatic Locker"
