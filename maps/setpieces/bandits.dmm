@@ -200,13 +200,20 @@
 "hL" = (
 /obj/table/wood/auto/desk,
 /obj/item/gun/kinetic/derringer{
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 6
 	},
 /obj/item/plant/herb/poppy{
-	pixel_x = 8;
-	pixel_y = 6;
+	pixel_x = 7;
+	pixel_y = 10;
 	name = "dry poppy";
 	desc = "Slightly faded. Holding it close brings you comfort."
+	},
+/obj/item/device/key/generic{
+	desc = "Unlocks the door to the armory.";
+	name = "camp key";
+	pixel_x = 6;
+	pixel_y = -4
 	},
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
@@ -319,6 +326,7 @@
 /area/bandit_camp)
 "mD" = (
 /obj/table/wood/auto/desk,
+/obj/item/reagent_containers/food/drinks/flask,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "mY" = (
@@ -547,6 +555,8 @@
 /obj/item/ammo/bullets/old_rifle,
 /obj/item/ammo/bullets/old_rifle,
 /obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "sU" = (
@@ -623,10 +633,80 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "xs" = (
-/turf/simulated/wall/auto/asteroid/mountain/desert,
-/area/allowGenerate)
+/obj/table/wood/auto,
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "xQ" = (
 /obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
@@ -642,10 +722,9 @@
 	pixel_x = -8;
 	pixel_y = 7
 	},
-/obj/item/device/key/generic{
-	desc = "Unlocks the door to the armory.";
-	name = "armory key";
-	pixel_x = 8
+/obj/item/reagent_containers/food/drinks/flask{
+	pixel_x = 8;
+	pixel_y = 10
 	},
 /turf/unsimulated/floor/carpet/red/fancy/edge/west,
 /area/bandit_camp)
@@ -814,6 +893,7 @@
 	health_burn = 0;
 	health_burn_vuln = 0
 	},
+/obj/item/reagent_containers/food/drinks/flask,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "BG" = (
@@ -891,7 +971,13 @@
 "CY" = (
 /obj/table/wood/auto,
 /obj/item/matchbook,
-/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/flask{
+	pixel_x = 8;
+	pixel_y = 8
+	},
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "De" = (
@@ -992,6 +1078,74 @@
 /area/bandit_camp)
 "HW" = (
 /obj/table/wood/auto,
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "HX" = (
@@ -1212,6 +1366,8 @@
 	pixel_x = -16;
 	pixel_y = 8
 	},
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
 /obj/item/ammo/bullets/old_rifle,
 /obj/item/ammo/bullets/old_rifle,
 /obj/item/ammo/bullets/old_rifle,
@@ -1557,7 +1713,6 @@ Cr
 Cr
 Cr
 ET
-Cr
 bF
 bF
 bF
@@ -1575,7 +1730,8 @@ bF
 bF
 bF
 bF
-Cr
+bF
+bF
 ET
 Cr
 Cr
@@ -1590,28 +1746,28 @@ Cr
 Cr
 Cr
 Cr
-Cr
-bF
-bF
-Tn
-Tn
-Tn
-bj
-bj
-bj
-bj
-bj
-bj
-bj
-bj
-bj
-Tn
-Tn
-Tn
 bF
 bF
 bF
-Cr
+Tn
+Tn
+Tn
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+bj
+Tn
+Tn
+Tn
+bF
+bF
+bF
+bF
 Cr
 Cr
 Cr
@@ -1621,9 +1777,9 @@ Cr
 "}
 (4,1,1) = {"
 Cr
+Iz
 Cr
-Cr
-Cr
+bF
 bF
 bF
 Tn
@@ -1656,7 +1812,7 @@ Cr
 (5,1,1) = {"
 Cr
 Cr
-Iz
+bF
 bF
 bF
 Tn
@@ -1689,10 +1845,10 @@ Cr
 "}
 (6,1,1) = {"
 Cr
-Cr
 bF
 bF
 bF
+bj
 bj
 bj
 Dh
@@ -1712,9 +1868,9 @@ PA
 bj
 XX
 bj
+bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -1725,7 +1881,7 @@ Cr
 Cr
 bF
 bF
-bF
+bj
 bj
 Li
 sG
@@ -1749,14 +1905,14 @@ wj
 bj
 bF
 bF
-Cr
+bF
 Cr
 Cr
 Cr
 Cr
 "}
 (8,1,1) = {"
-Cr
+bF
 bF
 bF
 bj
@@ -1781,7 +1937,7 @@ bj
 HF
 kf
 bj
-bF
+bj
 bF
 bF
 Cr
@@ -1792,7 +1948,7 @@ Cr
 (9,1,1) = {"
 bF
 bF
-bF
+bj
 bj
 LQ
 Tj
@@ -1816,7 +1972,7 @@ HF
 HF
 oL
 bj
-bF
+bj
 bF
 Cr
 Cr
@@ -1886,7 +2042,7 @@ HF
 Bf
 bj
 bF
-Cr
+bF
 Cr
 Cr
 Cr
@@ -1989,7 +2145,7 @@ Sk
 FM
 bF
 bF
-xs
+bF
 Cr
 Cr
 "}
@@ -2024,7 +2180,7 @@ FM
 FM
 bF
 bF
-xs
+bF
 Cr
 "}
 (16,1,1) = {"
@@ -2133,7 +2289,7 @@ hx
 bF
 bF
 bj
-HW
+xs
 HW
 aI
 Tr
@@ -2228,11 +2384,11 @@ bj
 bj
 bF
 bF
-xs
+bF
 Cr
 "}
 (22,1,1) = {"
-Cr
+bF
 bF
 bj
 di
@@ -2261,14 +2417,14 @@ ha
 NX
 bj
 bF
-xs
+bF
 Cr
 Cr
 "}
 (23,1,1) = {"
 Cr
 bF
-bF
+bj
 bj
 sQ
 rf
@@ -2295,13 +2451,13 @@ ha
 GM
 bj
 bF
-Cr
+bF
 Cr
 Cr
 "}
 (24,1,1) = {"
 Cr
-Cr
+bF
 bF
 bj
 MH
@@ -2327,7 +2483,7 @@ rQ
 ha
 mh
 oG
-bF
+bj
 bF
 Cr
 Cr
@@ -2337,7 +2493,7 @@ Cr
 Cr
 Cr
 bF
-bF
+bj
 bj
 DK
 PL
@@ -2362,17 +2518,17 @@ ha
 Hn
 bj
 bF
-Cr
+bF
 Cr
 Cr
 Cr
 "}
 (26,1,1) = {"
-Cr
-Cr
+Vg
 Cr
 bF
 bF
+bj
 bj
 zd
 PL
@@ -2394,7 +2550,7 @@ ha
 mn
 Ci
 bj
-bF
+bj
 bF
 Cr
 Cr
@@ -2405,9 +2561,9 @@ Cr
 Cr
 Cr
 ET
-Cr
 bF
 bF
+bj
 bj
 cl
 Le
@@ -2427,9 +2583,9 @@ yU
 ha
 cn
 bj
+bj
 bF
 bF
-Cr
 Cr
 Cr
 Cr
@@ -2440,9 +2596,9 @@ Cr
 Cr
 Cr
 Cr
-Cr
 bF
 bF
+bj
 bj
 bj
 bj
@@ -2462,7 +2618,7 @@ ck
 bj
 bj
 bF
-Cr
+bF
 Cr
 Cr
 Cr
@@ -2475,11 +2631,11 @@ Cr
 Cr
 Cr
 Cr
-Cr
 bF
 bF
 bF
 bF
+bj
 bj
 bj
 bj
@@ -2493,7 +2649,7 @@ ha
 aq
 oG
 bj
-bF
+bj
 bF
 bF
 Cr
@@ -2512,7 +2668,6 @@ Cr
 Cr
 Cr
 Cr
-Cr
 bF
 bF
 bF
@@ -2525,10 +2680,11 @@ bj
 bj
 bj
 bj
+bj
+bj
 bF
 bF
 bF
-Cr
 Cr
 Cr
 Vg
@@ -2550,7 +2706,6 @@ Cr
 Cr
 Cr
 Cr
-Cr
 bF
 bF
 bF
@@ -2560,7 +2715,8 @@ bF
 bF
 bF
 bF
-Cr
+bF
+bF
 Cr
 Cr
 Cr
