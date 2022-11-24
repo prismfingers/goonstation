@@ -1902,3 +1902,28 @@
 			pixel_x = -4;
 			pixel_y = 3
 			}(src.loc)
+
+/obj/random_item_spawner/safe
+	min_amt2spawn = 15
+	max_amt2spawn = 20
+	items2spawn = list(/obj/item/coin,
+		/obj/item/spacecash/fivehundred,
+		/obj/item/spacecash/thousand,
+		/obj/item/spacecash/hundredthousand,
+		/obj/item/spacecash/bag,
+		/obj/item/raw_material/gold,
+ 		/obj/item/stamped_bullion)
+
+	closet_check_spawn(var/obj/item/new_item)
+		var/obj/storage/S = locate(/obj/storage) in src.loc
+		if (S)
+			var/obj/item/item = new new_item(S)
+			item.burn_possible = 0
+			item.pixel_x = rand(-8,8)
+			item.pixel_y = rand(-8,8)
+		else
+			var/obj/item/item = new new_item(src.loc)
+			item.burn_possible = 0
+			item.pixel_x = rand(-8,8)
+			item.pixel_y = rand(-8,8)
+		return
