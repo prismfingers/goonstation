@@ -124,12 +124,8 @@
 "di" = (
 /obj/table/wood/auto,
 /obj/item/gun/kinetic/single_action/colt_saa/detective{
-	pixel_x = -8;
-	pixel_y = 8
-	},
-/obj/item/gun/kinetic/single_action/colt_saa/detective{
-	pixel_x = 8;
-	pixel_y = -8
+	pixel_x = -4;
+	pixel_y = 4
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
@@ -538,14 +534,19 @@
 /area/bandit_camp)
 "sQ" = (
 /obj/table/wood/auto,
-/obj/item/gun/kinetic/single_action/colt_saa/detective{
-	pixel_x = 8;
-	pixel_y = -8
-	},
-/obj/item/gun/kinetic/single_action/colt_saa/detective{
-	pixel_x = -8;
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
 	pixel_y = 8
 	},
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = -8
+	},
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "sU" = (
@@ -633,7 +634,6 @@
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
 /turf/unsimulated/floor/carpet/purple/standard,
 /area/bandit_camp)
 "yp" = (
@@ -714,7 +714,6 @@
 /area/bandit_camp)
 "zd" = (
 /obj/table/wood/auto,
-/obj/item/gun/kinetic/sawnoff,
 /obj/item/gun/kinetic/sawnoff{
 	pixel_x = 4;
 	pixel_y = -8
@@ -1022,13 +1021,6 @@
 /obj/table/wood/round/auto,
 /obj/item/ammo/bullets/a38/AP,
 /obj/item/ammo/bullets/a38/AP,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
-/obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38/AP,
 /turf/unsimulated/floor/carpet/purple/standard,
 /area/bandit_camp)
@@ -1210,6 +1202,23 @@
 	},
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
+"MH" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = -8
+	},
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = 8
+	},
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
 "ML" = (
 /obj/storage/crate/wooden,
 /obj/item/cigpacket/cigarillo,
@@ -1251,10 +1260,6 @@
 /area/bandit_camp)
 "PW" = (
 /obj/table/wood/round/auto,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
@@ -1498,9 +1503,6 @@
 /area/bandit_camp)
 "YK" = (
 /obj/table/wood/round/auto,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
-/obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
 /obj/item/ammo/bullets/a38/stun,
@@ -2199,7 +2201,7 @@ bF
 bF
 bF
 bj
-sQ
+di
 PL
 rf
 JG
@@ -2233,7 +2235,7 @@ Cr
 Cr
 bF
 bj
-sQ
+di
 PL
 rf
 xQ
@@ -2302,7 +2304,7 @@ Cr
 Cr
 bF
 bj
-sQ
+MH
 RS
 rN
 Hk

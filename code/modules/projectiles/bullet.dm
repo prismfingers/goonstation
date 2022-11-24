@@ -201,6 +201,19 @@ toxic - poisons
 				M.throw_at(target, 2, 2, throw_type = THROW_GUNIMPACT)
 		..()
 
+/datum/projectile/bullet/rifle_30_30
+	name = "bullet"
+	damage = 45
+	damage_type = D_PIERCING
+	armor_ignored = 0.66
+	hit_type = DAMAGE_STAB
+	implanted = /obj/item/implant/projectile/bullet_308
+	shot_sound = 'sound/weapons/Gunshot.ogg'
+	shot_volume = 50
+	dissipation_delay = 10
+	casing = /obj/item/casing/rifle
+	impact_image_state = "bhole-small"
+
 /datum/projectile/bullet/rifle_762_NATO //like .308 but military
 	name = "bullet"
 	damage = 70
