@@ -417,7 +417,7 @@
 	_max_health = 500
 	_health = 500
 	reinforced = TRUE
-	bolted = FALSE
+	bolted = TRUE
 	spawn_contents = list(/obj/random_item_spawner/safe)
 
 	emag_act(var/mob/user, var/obj/item/card/emag/E)
