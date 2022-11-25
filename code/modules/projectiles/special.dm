@@ -1138,3 +1138,46 @@ ABSTRACT_TYPE(/datum/projectile/special)
 		var/turf/T = get_turf(O)
 		src.emit_chems(T, O)
 		src.emit_gas(T, 1)
+
+
+/datum/projectile/special/slug_slime	//Goos people and doors!
+	name = "slime"
+	dissipation_rate = 1
+	dissipation_delay = 7
+	icon_state = "slime_shot"
+	power = 5
+	hit_ground_chance = 0
+	ks_ratio = 1.0
+	shot_sound = 'sound/items/sponge.ogg'
+	projectile_speed = 24
+	var/stamina_cost = 60
+
+	on_hit(atom/hit, angle, var/obj/projectile/P)
+		if (ismob(hit))
+			var/mob/M = hit
+			if(hit == P.special_data["owner"]) return 1
+			M.changeStatus("slowed", 8 SECONDS)
+			M.change_eye_blurry(10)
+			M.addOverlayComposition(/datum/overlayComposition/blinded_slime)
+			M.updateOverlaysClient(M.client)
+			SPAWN(10 SECONDS)
+				M.removeOverlayComposition(/datum/overlayComposition/blinded_slime)
+				M.updateOverlaysClient(M.client)
+			M.remove_stamina(src.stamina_cost)
+		else if (istype(hit, /obj/machinery/door))
+			var/obj/machinery/door/target = hit
+			if (!target.hardened)
+				target.slimed = TRUE
+				target.slime_gunk_health = 5
+				var/image/slime_image = image('icons/obj/decals/misc.dmi', "door_slime_[pick("1", "2")]")
+				slime_image.alpha = 255
+				target.UpdateOverlays(slime_image, "slime")
+		qdel(P)
+
+/datum/projectile/special/spreader/uniform_burst/slime
+	name = "slime spread"
+	sname = "slime spread"
+	spread_angle = 30
+	pellets_to_fire = 3
+	spread_projectile_type = /datum/projectile/special/slug_slime
+	shot_sound = 'sound/items/sponge.ogg'

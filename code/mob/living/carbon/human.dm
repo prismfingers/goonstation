@@ -156,6 +156,9 @@
 	/// forces the mob to display their special hair, even if their flags tell them not to
 	var/special_hair_override = 0 // only really works if they have any special hair
 
+	/// Keeps track of the brain slug inside us, if any.
+	var/mob/living/critter/brain_slug/slug = null
+
 	random_emotes = list("drool", "blink", "yawn", "burp", "twitch", "twitch_v",\
 	"cough", "sneeze", "shiver", "shudder", "shake", "hiccup", "sigh", "flinch", "blink_r")
 
@@ -499,6 +502,17 @@
 	return !src.organHolder.head
 
 /mob/living/carbon/human/disposing()
+
+	//Brain slug stuff
+	if(src.slug)
+		src.slug.set_loc(get_turf(src.loc))
+		src.slug.changeStatus("slowed", 10 SECONDS, 2)
+		var/datum/targetable/ability = src.slug.abilityHolder.getAbility(/datum/targetable/brain_slug/infest_host)
+		ability.doCooldown()
+		src.mind?.transfer_to(src.slug)
+		boutput(src.slug, "<span class='alert'>You manage to quickly slither out of your host!</span>")
+		src.visible_message("<span class='alert'>A horrible slithery slug crawls out of [src]'s remains!</span>", "<span class='alert'>You manage to quickly slither out of your host!</span>")
+
 	for(var/obj/item/I in src)
 		if(I.equipped_in_slot != slot_w_uniform)
 			src.u_equip(I)
@@ -722,6 +736,34 @@
 
 	if (!src.mutantrace || inafterlife(src)) // wow fucking racist
 		modify_christmas_cheer(-7)
+
+	//Brain slug business
+	if(src.slug)
+		var/mob/living/critter/brain_slug = src.slug
+		var/datum/targetable/ability = brain_slug.abilityHolder.getAbility(/datum/targetable/brain_slug/infest_host)
+		ability.doCooldown()
+		brain_slug.changeStatus("slowed", 10 SECONDS, 2)
+		src.mind?.transfer_to(brain_slug)
+		if(gibbed)
+			brain_slug.set_loc(get_turf(src.loc))
+			src.visible_message("<span class='alert'>A horrible slithery slug crawls out of [src]'s remains!</span>", "<span class='alert'>You slither out of your dying host.</span>")
+			src.remove_ability_holder(/datum/abilityHolder/brain_slug)
+			src.slug = null
+		else
+			spawn(3 SECONDS)
+				if (src.organHolder.head) //sanity check in case you somehow lost your head but didnt die yet.
+					var/obj/head = src.organHolder.drop_organ("head")
+					qdel(head)
+					make_cleanable( /obj/decal/cleanable/blood/gibs,src.loc)
+					playsound(src.loc, 'sound/impact_sounds/Flesh_Break_2.ogg', 50)
+					gibs(src.loc, headbits = 0)
+					src.visible_message("<span class='alert'>[src]'s head suddenly explodes in a shower of gore! Some horrific space slug jumps out of the horrible mess.</span>", "<span class='alert'>You leave [src]'s head in a delightfully horrific manner.</span>")
+				//If we didnt leave the body already
+				if (src.slug)
+					brain_slug.set_loc(get_turf(src.loc))
+				src.remove_ability_holder(/datum/abilityHolder/brain_slug)
+				src.slug = null
+
 
 	src.canmove = 0
 	src.lying = 1

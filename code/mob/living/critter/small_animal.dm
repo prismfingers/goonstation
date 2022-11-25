@@ -62,12 +62,13 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	health_burn = 20
 	health_burn_vuln = 1
 
+	///Keeps track of the brain slug inside us, if there is any
+	var/mob/living/critter/brain_slug/slug = null
+
 	var/fur_color = 0
 	var/eye_color = 0
 
 	var/is_pet = null // null = autodetect
-
-
 
 	New(loc)
 		if(isnull(src.is_pet))
@@ -85,6 +86,15 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	disposing()
 		if(src.is_pet)
 			STOP_TRACKING_CAT(TR_CAT_PETS)
+		//Only if we are infested with a brain_slug
+		if(src.slug)
+			src.slug.set_loc(get_turf(src.loc))
+			src.slug.changeStatus("slowed", 10 SECONDS, 2)
+			var/datum/targetable/ability = src.slug.abilityHolder.getAbility(/datum/targetable/brain_slug/infest_host)
+			ability.doCooldown()
+			src.mind?.transfer_to(src.slug)
+			boutput(src.slug, "<span class='alert'>You manage to quickly slither out of your host!</span>")
+			src.visible_message("<span class='alert'>A horrible slithery slug crawls out of [src]'s remains!</span>", "<span class='alert'>You manage to quickly slither out of your host!</span>")
 		..()
 
 	setup_healths()
@@ -102,6 +112,23 @@ ABSTRACT_TYPE(/mob/living/critter/small_animal)
 	death(var/gibbed)
 		if (!gibbed)
 			src.unequip_all()
+		if(src.slug)
+			var/mob/living/critter/brain_slug/the_slug = src.slug
+			var/datum/targetable/ability = the_slug.abilityHolder.getAbility(/datum/targetable/brain_slug/infest_host)
+			ability.doCooldown()
+			the_slug.changeStatus("slowed", 10 SECONDS, 2)
+			src.remove_ability_holder(/datum/abilityHolder/brain_slug)
+			if(gibbed)
+				the_slug.set_loc(get_turf(src.loc))
+				src.mind?.transfer_to(the_slug)
+				src.visible_message("<span class='alert'>A horrible slithery slug crawls out of [src]'s remains!</span>", "<span class='alert'>You slither out of your dying host.</span>")
+			else
+				spawn(3 SECONDS)
+					if(src?.slug)	//If we got deleted instead, disposing will take place
+						the_slug.set_loc(get_turf(src.loc))
+						src.mind?.transfer_to(the_slug)
+						src.visible_message("<span class='alert'>A horrible slithery slug crawls out of [src]'s ear!</span>", "<span class='alert'>You slither out of your dying host.</span>")
+			src.slug = null
 		..()
 
 	canRideMailchutes()

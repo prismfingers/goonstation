@@ -1467,13 +1467,13 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 		var/mob/M = AM
 		var/oopschance = 0
 		if (ismob(AM))
-			if (istype(AM, /mob/living/critter/small_animal/slug)) // slugs are not good with salt
+			if (istype(AM, /mob/living/critter/small_animal/slug) || istype(AM, /mob/living/critter/brain_slug)) // slugs are not good with salt
 				M.visible_message("<span class='alert'>[M] shrivels up!</span>",\
 				"<span class='alert'><b>OH GOD THE SALT [pick("IT BURNS","HOLY SHIT THAT HURTS","JESUS FUCK YOU'RE DYING")]![pick("","!","!!")]</b></span>")
 				M.TakeDamage(null, 15, 15)
 				qdel(src)
 				return
-			if (isghostdrone(AM) || isghostcritter(AM)) // slugs are not good with salt
+			if (isghostdrone(AM) || isghostcritter(AM))
 				return
 			if (M.m_intent != "walk") // walk, don't run
 				oopschance += 28
@@ -1805,3 +1805,10 @@ var/list/blood_decal_violent_icon_states = list("floor1", "floor2", "floor3", "f
 	icon = 'icons/obj/decals/cleanables.dmi'
 	icon_state = "sec_tape_1"
 	random_icon_states = list("sec_tape_1", "sec_tape_2")
+
+/obj/decal/cleanable/slug_molt
+	name = "slimy molt"
+	desc = "Good lord, that's gross."
+	icon = 'icons/mob/brainslug.dmi'
+	icon_state = "molt"
+	slippery = 40

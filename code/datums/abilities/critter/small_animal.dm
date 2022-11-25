@@ -44,6 +44,33 @@
 			return 1
 
 		var/mob/MT = target
+		if (istype(MT, /mob/living/critter/brain_slug))
+			var/mob/living/critter/brain_slug/the_slug = MT
+			boutput(holder.owner, "<span class='notice'>What a delightful morsel! You swallow it all in one gulp!</span>")
+			boutput(the_slug, "<span class='alert'>[holder.owner] pecks at you and swallows you in one gulp!</span>")
+			the_slug.set_loc(holder.owner)
+			if (istype(holder.owner, /mob/living/critter/small_animal))
+				var/mob/living/critter/small_animal/caster = holder.owner
+				caster.slug = the_slug
+			if (istype(holder.owner, /mob/living/carbon/human))
+				var/mob/living/carbon/human/caster = holder.owner
+				caster.slug = the_slug
+			spawn(4 SECONDS)
+				if (!holder.owner || !the_slug)
+					return
+				boutput(holder.owner, "<span class='alert'>Something is wrong! Your stomach is growling! You feel faint!</span>")
+				boutput(the_slug, "<span class='alert'>You get to work, you're not going to let yourself be eaten by some space critter!</span>")
+				spawn(4 SECONDS)
+					if (!holder.owner || !the_slug)
+						return
+					if (the_slug.mind)
+						logTheThing(LOG_COMBAT, the_slug, "[the_slug] has infested [holder.owner]")
+						boutput(holder.owner, "<span class='alert'>You feel something crawl up your neck, then nothingness. Your conscience fades.</span>")
+						holder.owner.ghostize()
+						the_slug.mind.transfer_to(holder.owner)
+						holder.owner.add_basic_slug_abilities()
+					else
+						boutput(holder.owner, "<span class='notice'>Actually, you feel just fine! Nothing to worry about!</span>")
 		if (iscarbon(MT) && prob(60))
 			holder.owner.visible_message("<span class='combat'><B>[holder.owner]</B> pecks [MT] in the eyes!</span>")
 			playsound(target, 'sound/impact_sounds/Flesh_Stab_2.ogg', 30, 1)

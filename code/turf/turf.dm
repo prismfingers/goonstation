@@ -46,6 +46,7 @@
 	var/tmp/allow_unrestricted_hotbox = 0
 	var/wet = 0
 	var/sticky = FALSE
+	var/acidic = FALSE //Used by acid spit from brain slugs
 	throw_unlimited = 0 //throws cannot stop on this tile if true (also makes space drift)
 
 	var/step_material = 0
@@ -1269,3 +1270,15 @@ proc/generate_space_color()
 		. = ..()
 		if(!mover.anchored)
 			mover.set_loc(null)
+
+///Gives a turf a damaging effect if you stand on it. Cancels after awhile.
+/turf/proc/acidify_turf(var/burn_duration = 25 SECONDS)
+	src.acidic = TRUE
+	if (istype(src, /turf/simulated/floor))
+		var/turf/simulated/floor/floor_turf = src
+		floor_turf.burn_tile()
+	var/image/burning_overlay = image('icons/mob/brainslug.dmi', icon_state = "acidground")
+	src.UpdateOverlays(burning_overlay, "acid_turf")
+	SPAWN(burn_duration)
+		src.UpdateOverlays(null, "acid_turf")
+		src.acidic = FALSE
