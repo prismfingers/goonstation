@@ -64,7 +64,7 @@
 		else
 			holder.owner.show_message("<span class='notice'>You squeeze your way into [P].</span>")
 
-		D = new/obj/dummy/disposalmover(P, holder.owner, src)
+		D = new/obj/dummy/disposalmover(P, holder.owner, src, .proc/exit_or_bust_out)
 		RegisterSignal(D, list(COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_SET_LOC), .proc/handle_move)
 		pointCost = 0
 		var/atom/movable/screen/ability/topBar/B = src.object
