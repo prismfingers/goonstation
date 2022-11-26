@@ -468,7 +468,7 @@ datum
 						return
 
 			on_mob_life(var/mob/target, var/mult = 1)
-				if(target.client && (istraitor(target) || isspythief(target)))
+				if(target.client && (istraitor(target) || isspythief(target) || isbandit(target)))
 					target.reagents.del_reagent("moonshine")
 					return
 				..()
