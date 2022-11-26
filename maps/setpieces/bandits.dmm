@@ -841,6 +841,19 @@
 /obj/player_piano,
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
+"Ax" = (
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
 "AG" = (
 /obj/railing/orange{
 	dir = 4
@@ -1079,8 +1092,8 @@
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "Gq" = (
-/obj/landmark/bandits,
-/turf/unsimulated/floor/wood/seven,
+/obj/decal/fakeobjects/rockpile,
+/turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "GM" = (
 /obj/table/reinforced/roulette,
@@ -1371,14 +1384,33 @@
 /area/bandit_camp)
 "LQ" = (
 /obj/table/wood/auto,
-/obj/item/medical/ointment,
-/obj/item/medical/ointment,
-/obj/item/medical/ointment,
-/obj/item/medical/ointment,
-/obj/item/medical/ointment,
+/obj/item/medical/ointment{
+	pixel_x = -2;
+	pixel_y = -4
+	},
 /obj/item/reagent_containers/food/drinks/moonshine{
 	pixel_x = 8;
 	pixel_y = 8
+	},
+/obj/item/scissors{
+	pixel_x = -5;
+	pixel_y = 8
+	},
+/obj/item/medical/ointment{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/item/medical/ointment{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/item/medical/ointment{
+	pixel_x = -2;
+	pixel_y = -4
+	},
+/obj/item/medical/ointment{
+	pixel_x = -2;
+	pixel_y = -4
 	},
 /turf/unsimulated/floor/wood/three,
 /area/bandit_camp)
@@ -1436,6 +1468,13 @@
 /obj/item/medical/bruise_pack,
 /obj/item/medical/bruise_pack,
 /obj/item/medical/bruise_pack,
+/obj/item/kitchen/utensil/knife{
+	pixel_x = -7
+	},
+/obj/item/circular_saw{
+	pixel_y = 10;
+	pixel_x = -3
+	},
 /obj/item/reagent_containers/food/drinks/moonshine{
 	pixel_x = 8;
 	pixel_y = 8
@@ -1527,6 +1566,11 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Sk" = (
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
 /obj/item/plank,
 /obj/item/plank,
 /obj/item/plank,
@@ -2049,7 +2093,7 @@ bj
 Hu
 PL
 PL
-Gq
+PL
 PL
 FH
 Hu
@@ -2230,7 +2274,7 @@ GN
 PA
 PA
 Km
-AZ
+Ax
 FM
 FM
 bF
@@ -2265,7 +2309,7 @@ GN
 Km
 RX
 Km
-Sk
+AZ
 sC
 bF
 bF
@@ -2301,7 +2345,7 @@ mY
 GN
 GN
 GN
-PA
+Gq
 hx
 hx
 hx
