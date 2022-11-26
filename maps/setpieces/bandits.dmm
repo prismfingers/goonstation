@@ -78,11 +78,11 @@
 /obj/item/gun/kinetic/single_action/mts_255{
 	pixel_y = -8;
 	desc = "An old level action shotgun. You're not sure where it came from, but it's clear that whoever had it last took good care of it.";
-	name = "Level action shotgun"
+	name = "lever action shotgun"
 	},
 /obj/item/gun/kinetic/single_action/mts_255{
 	pixel_y = 8;
-	name = "Level action shotgun";
+	name = "lever action shotgun";
 	desc = "An old level action shotgun. You're not sure where it came from, but it's clear that whoever had it last took good care of it."
 	},
 /turf/unsimulated/floor/wood/seven,
@@ -498,6 +498,12 @@
 "rf" = (
 /turf/unsimulated/floor/carpet/purple/standard/edge/north,
 /area/bandit_camp)
+"ry" = (
+/obj/stool/bench/wooden/auto,
+/obj/landmark/bandits,
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
 "rI" = (
 /obj/decal/fakeobjects/skeleton{
 	desc = "Didn't even have the courtesy to die with his boots on. Nothing to loot here.";
@@ -811,11 +817,13 @@
 /obj/table/wood/auto,
 /obj/item/gun/kinetic/sawnoff{
 	pixel_x = 4;
-	pixel_y = -8
+	pixel_y = -8;
+	name = "sawed-off shotgun"
 	},
 /obj/item/gun/kinetic/sawnoff{
 	pixel_x = -4;
-	pixel_y = 8
+	pixel_y = 8;
+	name = "sawed-off shotgun"
 	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
@@ -986,7 +994,6 @@
 /area/bandit_camp)
 "CV" = (
 /obj/campfire,
-/obj/map/light/yellow,
 /turf/unsimulated/dirt,
 /area/bandit_camp)
 "CY" = (
@@ -1034,8 +1041,9 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "Es" = (
-/obj/storage/crate/bin,
-/turf/unsimulated/floor/auto/sand,
+/obj/map/light/white,
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
 /area/bandit_camp)
 "ET" = (
 /obj/decal/fakeobjects/rockpile,
@@ -1487,6 +1495,7 @@
 /area/bandit_camp)
 "Rx" = (
 /obj/effects/lightshaft,
+/obj/map/light/yellow,
 /turf/unsimulated/dirt,
 /area/bandit_camp)
 "RS" = (
@@ -2176,7 +2185,7 @@ mY
 PA
 GN
 Dk
-Dk
+ry
 Dk
 GN
 PA
@@ -2212,7 +2221,7 @@ Rx
 GN
 Ae
 GN
-GN
+Ae
 GN
 GN
 GN
@@ -2244,7 +2253,7 @@ mY
 Dk
 GN
 Ae
-Ae
+GN
 Ae
 GN
 Dk
@@ -2275,13 +2284,13 @@ GN
 GN
 PA
 PA
-Dk
+ry
 Ae
-Ae
+GN
 CV
+GN
 Ae
-Ae
-Dk
+ry
 GN
 GN
 GN
@@ -2312,7 +2321,7 @@ PA
 Dk
 GN
 Ae
-Ae
+GN
 Ae
 GN
 Dk
@@ -2344,11 +2353,11 @@ PL
 bj
 PA
 GN
-GN
+Ae
 GN
 Ae
 GN
-mY
+Es
 GN
 PA
 GN
@@ -2380,7 +2389,7 @@ PA
 GN
 GN
 Dk
-Dk
+ry
 zQ
 kU
 Km
@@ -2518,7 +2527,7 @@ GN
 GN
 sm
 PA
-Es
+PA
 bj
 Cm
 ha
