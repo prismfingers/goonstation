@@ -1,0 +1,2818 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aq" = (
+/obj/stool/wooden,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"aI" = (
+/obj/table/wood/auto,
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"bj" = (
+/turf/unsimulated/wall/auto/supernorn/wood,
+/area/bandit_camp)
+"bD" = (
+/obj/machinery/door/unpowered/wood{
+	name = "Chief's room";
+	locked = 1
+	},
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"bF" = (
+/turf/simulated/wall/auto/asteroid/mountain/desert,
+/area/noGenerate)
+"bM" = (
+/obj/storage/crate/wooden,
+/obj/item/paper/book/from_file/deep_blue_sea,
+/obj/item/paper/book/from_file/critter_compendium,
+/obj/item/paper/book/from_file/the_trial,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"ck" = (
+/obj/submachine/chef_sink/chem_sink{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"cl" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/single_action/mts_255{
+	pixel_y = -8;
+	desc = "An old level action shotgun. You're not sure where it came from, but it's clear that whoever had it last took good care of it.";
+	name = "lever action shotgun"
+	},
+/obj/item/gun/kinetic/single_action/mts_255{
+	pixel_y = 8;
+	name = "lever action shotgun";
+	desc = "An old level action shotgun. You're not sure where it came from, but it's clear that whoever had it last took good care of it."
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"cn" = (
+/obj/table/wood/round/auto,
+/obj/item/reagent_containers/food/drinks/bottle/vintage{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/drinks/bottle/mead{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/reagent_containers/food/drinks/bottle/thegoodstuff{
+	pixel_y = -3;
+	pixel_x = -2
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"cq" = (
+/obj/machinery/door/unpowered/wood{
+	name = "Barracks";
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"cw" = (
+/obj/table/wood/auto,
+/obj/item/clothing/head/that/gold,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"cO" = (
+/obj/table/wood/auto,
+/obj/item/cigarbox/gold,
+/obj/item/device/light/zippo/gold,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"di" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/single_action/colt_saa/detective{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/gun/kinetic/single_action/colt_saa/detective{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"fg" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/obj/item/ammo/bullets/buckshot_burst,
+/turf/unsimulated/floor/carpet/purple/standard/edge/south,
+/area/bandit_camp)
+"fE" = (
+/obj/bookshelf,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"fU" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 4
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/kitchen/utensil/fork{
+	dir = 4;
+	pixel_y = -8;
+	pixel_x = -3
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"fZ" = (
+/turf/unsimulated/floor/carpet/regalcarpet/border,
+/area/bandit_camp)
+"gm" = (
+/obj/table/wood/auto,
+/obj/item/diceholder/dicecup,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"gv" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/west,
+/area/bandit_camp)
+"gA" = (
+/obj/item/stamped_bullion,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"ha" = (
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"hr" = (
+/obj/item/raw_material/gold,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 4
+	},
+/area/bandit_camp)
+"hx" = (
+/turf/simulated/wall/auto/asteroid/mountain/desert,
+/area/bandit_camp)
+"hE" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug,
+/obj/item/cigpacket/cigarillo{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"hL" = (
+/obj/table/wood/auto/desk,
+/obj/item/gun/kinetic/derringer{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/plant/herb/poppy{
+	pixel_x = 7;
+	pixel_y = 10;
+	name = "dry poppy";
+	desc = "Slightly faded. Holding it close brings you comfort."
+	},
+/obj/item/device/key/generic{
+	desc = "Unlocks the door to the armory.";
+	name = "camp key";
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"ie" = (
+/obj/table/wood/auto/desk,
+/obj/item/matchbook,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"iK" = (
+/obj/machinery/door/unpowered/wood{
+	dir = 8;
+	name = "Saloon"
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"iO" = (
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"ka" = (
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"kf" = (
+/obj/table/wood/auto,
+/obj/item/clothing/head/cowboy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/cowboy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/cowboy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/cowboy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/cowboy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/cowboy{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/obj/item/clothing/head/westhat/red,
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"kR" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 2;
+	pixel_y = -2
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/obj/item/kitchen/utensil/fork{
+	pixel_x = 8
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"kU" = (
+/obj/effects/lightshaft,
+/obj/map/light/white,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"lu" = (
+/turf/unsimulated/floor/carpet/regalcarpet,
+/area/bandit_camp)
+"mh" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = -4
+	},
+/obj/item/cigpacket/cigarillo{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"mn" = (
+/obj/storage/crate/wooden,
+/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
+/obj/item/reagent_containers/food/drinks/drinkingglass/pitcher,
+/obj/item/reagent_containers/food/drinks/drinkingglass/wine,
+/obj/item/reagent_containers/food/drinks/drinkingglass/wine,
+/obj/item/reagent_containers/food/drinks/drinkingglass/wine,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
+/obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
+/obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
+/obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
+/obj/item/reagent_containers/food/drinks/drinkingglass/oldf,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"mD" = (
+/obj/table/wood/auto/desk,
+/obj/item/reagent_containers/food/drinks/flask,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"mY" = (
+/obj/map/light/white,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"nP" = (
+/obj/item/raw_material/gold,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"oo" = (
+/obj/item/reagent_containers/glass/bucket{
+	name = "trusty spitoon";
+	desc = "For spittin'."
+	},
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"ov" = (
+/obj/machinery/door/unpowered/wood{
+	dir = 8;
+	name = "Safehouse"
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"oG" = (
+/obj/decoration/candles/prelit,
+/turf/unsimulated/wall/auto/supernorn/wood,
+/area/bandit_camp)
+"oL" = (
+/obj/table/wood/auto,
+/obj/item/clothing/shoes/westboot{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot/black{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot/black{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot/black{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot/black{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/shoes/westboot/brown{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/brown{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/brown{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/brown{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/dirty{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/dirty{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/dirty{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/clothing/shoes/westboot/dirty{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"pi" = (
+/obj/table/wood/auto,
+/obj/item/device/light/zippo{
+	pixel_x = 8;
+	pixel_y = 12
+	},
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = -6;
+	pixel_y = 5
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = 7;
+	pixel_y = -2
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/nw,
+/area/bandit_camp)
+"pt" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/obj/item/ammo/bullets/abg,
+/turf/unsimulated/floor/carpet/purple/standard,
+/area/bandit_camp)
+"qw" = (
+/obj/decal/woodclutter,
+/obj/map/light/white,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"qy" = (
+/obj/item/goldbar,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 5
+	},
+/area/bandit_camp)
+"qG" = (
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = -6;
+	pixel_y = 9;
+	broken = 1
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"qU" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/sw,
+/area/bandit_camp)
+"qZ" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = -4
+	},
+/obj/item/reagent_containers/food/snacks/riceandbeans{
+	pixel_y = 8;
+	pixel_x = 3
+	},
+/obj/map/light/white,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"rf" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/north,
+/area/bandit_camp)
+"ry" = (
+/obj/stool/bench/wooden/auto,
+/obj/landmark/bandits,
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"rI" = (
+/obj/decal/fakeobjects/skeleton{
+	desc = "Didn't even have the courtesy to die with his boots on. Nothing to loot here.";
+	name = "Snake-eye Bob"
+	},
+/obj/item/clothing/head/westhat{
+	pixel_y = -12;
+	pixel_x = 12;
+	name = "Very flat Ten-Gallon hat";
+	desc = "This thing has been squished by a ton of rubble!"
+	},
+/turf/simulated/wall/auto/asteroid/mountain/desert,
+/area/bandit_camp)
+"rN" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/east,
+/area/bandit_camp)
+"rQ" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = 5;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -3;
+	pixel_y = -4
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"sm" = (
+/obj/item/horseshoe{
+	pixel_x = -9;
+	pixel_y = -3
+	},
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"sC" = (
+/obj/item/mining_tools/pick,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"sF" = (
+/obj/stool/chair/wooden{
+	dir = 1
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"sG" = (
+/obj/item/device/light/magic_lantern,
+/turf/unsimulated/wall/auto/supernorn/wood,
+/area/bandit_camp)
+"sH" = (
+/obj/machinery/door/unpowered/wood{
+	locked = 1;
+	dir = 8;
+	name = "Armory"
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"sQ" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = 8
+	},
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = -8
+	},
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"sU" = (
+/obj/stool/chair/comfy/throne_gold{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"te" = (
+/obj/storage/crate/chest/coins,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"tJ" = (
+/obj/storage/closet/coffin/wood,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"uz" = (
+/obj/item/horseshoe{
+	pixel_x = -6;
+	pixel_y = 12
+	},
+/obj/head_on_spike{
+	anchored = 1;
+	name = "horseshoe spike";
+	desc = "Used to practice horse throwing. For the love of god don't run near this thing, last guy poked his eye out on it."
+	},
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"vp" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/snacks/breadloaf,
+/obj/item/reagent_containers/food/snacks/breadloaf,
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"vX" = (
+/obj/item/raw_material/shard/glass,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"wh" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/matchbook{
+	pixel_x = 7
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"wj" = (
+/obj/table/wood/auto,
+/obj/item/storage/belt/security/shoulder_holster,
+/obj/item/storage/belt/security/shoulder_holster,
+/obj/item/storage/belt/security/shoulder_holster,
+/obj/item/storage/belt/security/shoulder_holster,
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"wK" = (
+/obj/item/reagent_containers/food/drinks/bottle/beer{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"xl" = (
+/obj/table/wood/auto,
+/obj/item/matchbook,
+/obj/item/device/light/zippo,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"xs" = (
+/obj/table/wood/auto,
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/blue{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/green{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/orange{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/pink{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"xQ" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/item/ammo/bullets/a38,
+/obj/map/light/white,
+/turf/unsimulated/floor/carpet/purple/standard,
+/area/bandit_camp)
+"yp" = (
+/obj/table/wood/auto,
+/obj/item/cigarbox{
+	pixel_x = -8;
+	pixel_y = 7
+	},
+/obj/item/reagent_containers/food/drinks/flask{
+	pixel_x = 8;
+	pixel_y = 10
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/west,
+/area/bandit_camp)
+"yy" = (
+/obj/table/wood/auto,
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"yB" = (
+/obj/table/wood/auto,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/blue,
+/obj/item/clothing/head/westhat/tan{
+	pixel_x = -8;
+	pixel_y = -8
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/obj/item/clothing/head/westhat{
+	pixel_x = 9;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"yD" = (
+/obj/item/coin,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 1
+	},
+/area/bandit_camp)
+"yL" = (
+/obj/stool/wooden,
+/obj/landmark/bandits,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"yU" = (
+/obj/table/reinforced/bar/auto,
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/snacks/toastbacon{
+	pixel_x = 8;
+	pixel_y = 9
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"zd" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/sawnoff{
+	pixel_x = 4;
+	pixel_y = -8;
+	name = "sawed-off shotgun"
+	},
+/obj/item/gun/kinetic/sawnoff{
+	pixel_x = -4;
+	pixel_y = 8;
+	name = "sawed-off shotgun"
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"zQ" = (
+/obj/stool/bench/wooden/auto,
+/obj/landmark/bandits,
+/obj/map/light/white,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"Ae" = (
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"Ai" = (
+/obj/player_piano,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"AG" = (
+/obj/railing/orange{
+	dir = 4
+	},
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"AS" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet,
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"AZ" = (
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"Bf" = (
+/obj/table/wood/auto,
+/obj/item/clothing/suit/poncho,
+/obj/item/clothing/suit/poncho,
+/obj/item/clothing/suit/poncho,
+/obj/item/clothing/suit/poncho,
+/obj/item/clothing/suit/poncho,
+/obj/item/clothing/suit/poncho/flower{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/poncho/flower{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/poncho/flower{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/poncho/flower{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/poncho/flower{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/poncho/flower{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/obj/item/clothing/suit/poncho/leaf{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/obj/item/clothing/suit/poncho/leaf{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/obj/item/clothing/suit/poncho/leaf{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/obj/item/clothing/suit/poncho/leaf{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/obj/item/clothing/suit/poncho/leaf{
+	pixel_x = -8;
+	pixel_y = -9
+	},
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"Bx" = (
+/obj/storage/crate/wooden,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/mead,
+/obj/item/reagent_containers/food/drinks/bottle/mead,
+/obj/item/reagent_containers/food/drinks/bottle/cider,
+/obj/item/reagent_containers/food/drinks/bottle/cider,
+/mob/living/critter/small_animal/mouse/weak{
+	name = "alcohol-reeking rodent";
+	desc = "Damned thing snuck in your alcohol crate!";
+	health_burn = 0;
+	health_burn_vuln = 0
+	},
+/obj/item/reagent_containers/food/drinks/flask,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"BG" = (
+/obj/table/wood/auto,
+/obj/item/ammo/bullets/a38{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/ammo/bullets/a38/stun{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/sw,
+/area/bandit_camp)
+"BL" = (
+/obj/item/pen/crayon/golden,
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 9
+	},
+/area/bandit_camp)
+"Ci" = (
+/obj/storage/crate/chest{
+	desc = "Nothing is too fancy to protect your alcohol.";
+	name = "beer chest"
+	},
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/storage/box/beer,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Cm" = (
+/obj/stool/chair/wooden{
+	dir = 4
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Cr" = (
+/turf/unsimulated/floor/auto/sand,
+/area/allowGenerate)
+"Cz" = (
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"CA" = (
+/obj/item/stamped_bullion,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 10
+	},
+/area/bandit_camp)
+"CO" = (
+/obj/stool/chair/wooden{
+	dir = 8
+	},
+/turf/unsimulated/floor/carpet/red/fancy/edge/ne,
+/area/bandit_camp)
+"CV" = (
+/obj/campfire,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"CY" = (
+/obj/table/wood/auto,
+/obj/item/matchbook,
+/obj/item/cigpacket/cigarillo{
+	pixel_x = -6
+	},
+/obj/item/reagent_containers/food/drinks/flask{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"De" = (
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 8
+	},
+/area/bandit_camp)
+"Dh" = (
+/mob/living/critter/small_animal/pig{
+	desc = "You really hope you're not going to be the one who has to kill it.";
+	name = "Lil' bacon"
+	},
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"Dj" = (
+/obj/machinery/door/unpowered/wood{
+	name = "Dispensary"
+	},
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"Dk" = (
+/obj/stool/bench/wooden/auto,
+/obj/landmark/bandits,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"DK" = (
+/obj/table/wood/auto,
+/obj/item/handcuffs/tape_roll,
+/obj/item/handcuffs/tape_roll,
+/obj/item/handcuffs/tape_roll,
+/obj/item/handcuffs/tape_roll,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"Es" = (
+/obj/map/light/white,
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"ET" = (
+/obj/decal/fakeobjects/rockpile,
+/turf/unsimulated/floor/auto/sand,
+/area/allowGenerate)
+"Fe" = (
+/obj/table/wood/auto,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/bandage,
+/obj/item/suture,
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"FH" = (
+/obj/item/dice,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"FM" = (
+/obj/decal/woodclutter,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"FW" = (
+/obj/table/wood/auto,
+/obj/item/ticket/golden,
+/obj/item/clothing/gloves/ring/gold,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Gg" = (
+/obj/table/wood/auto,
+/obj/item/card_box/plain,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Gq" = (
+/obj/landmark/bandits,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"GM" = (
+/obj/table/reinforced/roulette,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"GN" = (
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"Hk" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/se,
+/area/bandit_camp)
+"Hn" = (
+/obj/reagent_dispensers/beerkeg,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Hu" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/green,
+/obj/landmark/bandits,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"HF" = (
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"HW" = (
+/obj/table/wood/auto,
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/red{
+	pixel_x = 8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/white{
+	pixel_x = -8;
+	pixel_y = 6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/yellow{
+	pixel_x = -8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/obj/item/clothing/mask/bandana/purple{
+	pixel_x = 8;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"HX" = (
+/obj/item/reagent_containers/glass/bucket{
+	name = "trusty spitoon";
+	desc = "For spittin'."
+	},
+/obj/item/mop/old,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"Ib" = (
+/mob/living/critter/small_animal/armadillo/ai_controlled{
+	name = "Tumbles";
+	desc = "An armadillo you were supposed to cook for everyone, but you couldn't bring yourself to do it. Look at those little legs, aww."
+	},
+/obj/item/gun/kinetic/hunting_rifle{
+	name = "antique varmint hunting rifle";
+	desc = "Passed down for generations from bandit to bandit. Surprisingly still loaded.";
+	pixel_x = -26;
+	pixel_y = 32
+	},
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"Iz" = (
+/obj/decal/fakeobjects/rockpile/big,
+/turf/unsimulated/floor/auto/sand,
+/area/allowGenerate)
+"Jp" = (
+/obj/item/goldbar,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"JG" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38/AP,
+/obj/item/ammo/bullets/a38/AP,
+/obj/item/ammo/bullets/a38/AP,
+/turf/unsimulated/floor/carpet/purple/standard,
+/area/bandit_camp)
+"Km" = (
+/obj/map/light/white,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"KG" = (
+/obj/effects/lightshaft,
+/obj/item/paper/bandithideout,
+/obj/map/light/white,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"KL" = (
+/obj/item/goldbar,
+/turf/unsimulated/floor/carpet/regalcarpet,
+/area/bandit_camp)
+"Lb" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/snacks/plant/bean{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/plant/bean{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/plant/bean{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/plant/bean{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/plant/bean{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/plant/bean{
+	pixel_x = 6;
+	pixel_y = -4
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/snacks/breakfast{
+	pixel_x = -4;
+	pixel_y = 4
+	},
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"Le" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/ammo/bullets/foamdarts{
+	pixel_y = -10;
+	pixel_x = 6
+	},
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
+	},
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
+	},
+/obj/item/gun/kinetic/foamdartrevolver{
+	name = "Big iron"
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"Li" = (
+/obj/stool/bed{
+	dir = 1
+	},
+/obj/item/clothing/suit/bedsheet,
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"LN" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/east,
+/area/bandit_camp)
+"LQ" = (
+/obj/table/wood/auto,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/medical/ointment,
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"Mn" = (
+/obj/stool/bed,
+/obj/item/clothing/suit/bedsheet/red,
+/obj/landmark/bandits/leader,
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"Mx" = (
+/obj/table/reinforced/bar/auto,
+/obj/item/reagent_containers/food/drinks/mug,
+/obj/item/cigpacket/cigarillo{
+	pixel_x = 9;
+	pixel_y = 8
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = -7;
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"MH" = (
+/obj/table/wood/auto,
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = -8
+	},
+/obj/item/gun/kinetic/old_lever_action{
+	pixel_x = -16;
+	pixel_y = 8
+	},
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/obj/item/ammo/bullets/old_rifle,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"ML" = (
+/obj/storage/crate/wooden,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/obj/item/cigpacket/cigarillo,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"Ni" = (
+/obj/table/wood/auto,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/medical/bruise_pack,
+/obj/item/reagent_containers/food/drinks/moonshine{
+	pixel_x = 8;
+	pixel_y = 8
+	},
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"Nw" = (
+/turf/unsimulated/floor/wood,
+/area/bandit_camp)
+"NX" = (
+/obj/roulette_table_w,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"Oi" = (
+/obj/bookshelf,
+/turf/unsimulated/floor/wood/five,
+/area/bandit_camp)
+"PA" = (
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"PL" = (
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"PW" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/turf/unsimulated/floor/carpet/purple/standard/edge/south,
+/area/bandit_camp)
+"Qd" = (
+/obj/item/item_box/gold_star,
+/turf/unsimulated/floor/carpet/regalcarpet,
+/area/bandit_camp)
+"QC" = (
+/obj/stool/bench/wooden/auto,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"QM" = (
+/obj/machinery/door/unpowered/wood{
+	name = "Storage room"
+	},
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"QX" = (
+/turf/unsimulated/floor/carpet/red/fancy/edge/se,
+/area/bandit_camp)
+"Ra" = (
+/obj/table/podium_wood,
+/obj/item/skull/gold,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 4
+	},
+/area/bandit_camp)
+"Rx" = (
+/obj/effects/lightshaft,
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"RS" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/ne,
+/area/bandit_camp)
+"RW" = (
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 8
+	},
+/area/bandit_camp)
+"RX" = (
+/obj/effects/lightshaft,
+/obj/map/light/white,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"Sc" = (
+/obj/table/podium_wood,
+/obj/item/clothing/head/bigtex,
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"Sg" = (
+/obj/table/wood/auto,
+/obj/item/matchbook,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/obj/item/dynamite,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"Sk" = (
+/obj/item/plank,
+/obj/item/plank,
+/obj/item/plank,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"SR" = (
+/turf/unsimulated/floor/carpet/purple/standard/edge/nw,
+/area/bandit_camp)
+"Tj" = (
+/turf/unsimulated/floor/wood/three,
+/area/bandit_camp)
+"Tn" = (
+/turf/unsimulated/wall/cave,
+/area/noGenerate)
+"Tr" = (
+/obj/table/wood/auto,
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black{
+	pixel_x = 6;
+	pixel_y = -6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"TE" = (
+/obj/item/goldbar,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 6
+	},
+/area/bandit_camp)
+"UI" = (
+/obj/item/coin,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 8
+	},
+/area/bandit_camp)
+"Vg" = (
+/obj/decal/fakeobjects/smallrocks,
+/turf/unsimulated/floor/auto/sand,
+/area/allowGenerate)
+"Ww" = (
+/obj/storage/closet/dresser,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"WU" = (
+/obj/table/wood/auto,
+/obj/item/dice{
+	pixel_x = -4
+	},
+/obj/item/decoration/ashtray{
+	pixel_x = 4
+	},
+/obj/item/device/light/candle{
+	pixel_y = 18;
+	pixel_x = 6
+	},
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"XE" = (
+/obj/table/wood/auto,
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/ingredient/meat/bacon/raw{
+	pixel_y = -8
+	},
+/obj/item/reagent_containers/food/snacks/soup/refried_beans,
+/obj/item/reagent_containers/food/snacks/soup/refried_beans,
+/obj/item/reagent_containers/food/snacks/soup/refried_beans,
+/obj/item/reagent_containers/food/snacks/soup/refried_beans,
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"XX" = (
+/obj/table/wood/auto,
+/obj/item/clothing/under/misc/western{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/misc/western{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/misc/western{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/misc/western{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/misc/western{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/obj/item/clothing/under/misc/westerndress{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/under/misc/westerndress{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/under/misc/westerndress{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/under/misc/westerndress{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/under/misc/westerndress{
+	pixel_x = 8;
+	pixel_y = -8
+	},
+/obj/item/clothing/under/misc/serpico,
+/obj/item/clothing/under/misc/serpico,
+/obj/item/clothing/under/misc/serpico,
+/obj/item/clothing/under/misc/serpico,
+/obj/item/clothing/under/misc/serpico,
+/turf/unsimulated/floor/wood/two,
+/area/bandit_camp)
+"Yb" = (
+/obj/item/spacecash/random/really_small,
+/turf/unsimulated/floor/carpet/regalcarpet/border{
+	dir = 4
+	},
+/area/bandit_camp)
+"YK" = (
+/obj/table/wood/round/auto,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/obj/item/ammo/bullets/a38/stun,
+/turf/unsimulated/floor/carpet/purple/standard/edge/south,
+/area/bandit_camp)
+"ZU" = (
+/obj/storage/crate/wooden,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/obj/item/reagent_containers/food/drinks/bottle/beer,
+/turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+
+(1,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(2,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+ET
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+ET
+Cr
+Cr
+Cr
+Cr
+Vg
+Cr
+Cr
+"}
+(3,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+bF
+bF
+bF
+Tn
+Tn
+Tn
+bj
+bj
+sG
+bj
+bj
+bj
+sG
+bj
+bj
+Tn
+Tn
+Tn
+bF
+bF
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(4,1,1) = {"
+Cr
+Iz
+Cr
+bF
+bF
+bF
+Tn
+bF
+bF
+bF
+bj
+Hu
+PL
+Bx
+bM
+ML
+PL
+Hu
+bj
+bF
+bF
+bF
+Tn
+Tn
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(5,1,1) = {"
+Cr
+Cr
+bF
+bF
+bF
+Tn
+bF
+bF
+PA
+PA
+bj
+vX
+PL
+PL
+PL
+qG
+PL
+ie
+bj
+tJ
+tJ
+bj
+bj
+bj
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(6,1,1) = {"
+Cr
+bF
+bF
+bF
+bj
+bj
+bj
+Dh
+PA
+PA
+bj
+Hu
+PL
+QC
+wh
+QC
+PL
+Hu
+bj
+PA
+PA
+bj
+XX
+bj
+bj
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(7,1,1) = {"
+Cr
+bF
+bF
+bj
+bj
+Li
+sG
+AG
+AG
+AG
+bj
+fE
+PL
+QC
+WU
+QC
+PL
+PL
+bj
+PA
+PA
+sG
+HF
+wj
+bj
+bF
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+"}
+(8,1,1) = {"
+bF
+bF
+bF
+bj
+Ni
+Tj
+bj
+PA
+PA
+PA
+sG
+Hu
+PL
+QC
+gm
+QC
+PL
+Hu
+sG
+PA
+PA
+bj
+HF
+kf
+sG
+bj
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+"}
+(9,1,1) = {"
+bF
+bF
+bj
+sG
+LQ
+Tj
+Dj
+PA
+PA
+PA
+bj
+mD
+FH
+QC
+yy
+QC
+PL
+Ww
+bj
+PA
+GN
+bj
+HF
+HF
+oL
+bj
+bj
+bF
+Cr
+Cr
+Cr
+Cr
+"}
+(10,1,1) = {"
+bF
+bF
+bj
+Fe
+Tj
+Tj
+bj
+PA
+PA
+PA
+bj
+Hu
+PL
+PL
+Gq
+PL
+FH
+Hu
+bj
+GN
+GN
+bj
+HF
+HF
+HF
+yB
+bj
+bF
+Cr
+Cr
+Cr
+Cr
+"}
+(11,1,1) = {"
+bF
+bF
+bj
+AS
+Tj
+iO
+sG
+PA
+PA
+PA
+bj
+ZU
+PL
+PL
+PL
+wK
+PL
+HX
+bj
+GN
+GN
+QM
+HF
+HF
+HF
+Bf
+bj
+bF
+bF
+Cr
+Cr
+Cr
+"}
+(12,1,1) = {"
+bF
+bj
+bj
+bj
+bj
+bj
+bj
+PA
+PA
+PA
+bj
+bj
+sG
+bj
+cq
+bj
+sG
+bj
+bj
+GN
+GN
+sG
+Sc
+vp
+Lb
+XE
+bj
+bF
+bF
+Cr
+Cr
+ET
+"}
+(13,1,1) = {"
+bF
+sG
+pi
+yp
+BG
+sG
+GN
+GN
+PA
+PA
+PA
+PA
+PA
+GN
+GN
+GN
+PA
+PA
+PA
+GN
+GN
+bj
+bj
+bj
+bj
+sG
+bj
+bF
+bF
+Cr
+Cr
+Cr
+"}
+(14,1,1) = {"
+bF
+bj
+CO
+LN
+QX
+bj
+GN
+GN
+GN
+GN
+mY
+PA
+GN
+Dk
+ry
+Dk
+GN
+PA
+GN
+GN
+GN
+PA
+PA
+PA
+sC
+Sk
+FM
+bF
+bF
+bF
+Cr
+Cr
+"}
+(15,1,1) = {"
+bF
+bj
+Nw
+Nw
+Nw
+bD
+GN
+GN
+GN
+mY
+mY
+mY
+Rx
+GN
+Ae
+GN
+Ae
+GN
+GN
+GN
+GN
+GN
+PA
+PA
+Km
+AZ
+FM
+FM
+bF
+bF
+bF
+Cr
+"}
+(16,1,1) = {"
+bF
+bj
+Ib
+Nw
+Nw
+bj
+GN
+GN
+GN
+GN
+mY
+Dk
+GN
+Ae
+GN
+Ae
+GN
+Dk
+GN
+GN
+GN
+GN
+GN
+Km
+RX
+Km
+Sk
+sC
+bF
+bF
+bF
+bF
+"}
+(17,1,1) = {"
+bF
+sG
+Mn
+hL
+oo
+sG
+GN
+GN
+GN
+PA
+PA
+ry
+Ae
+GN
+CV
+GN
+Ae
+ry
+GN
+GN
+GN
+GN
+GN
+GN
+mY
+GN
+GN
+GN
+PA
+hx
+hx
+hx
+"}
+(18,1,1) = {"
+bF
+bj
+bj
+bj
+bj
+bj
+sG
+sH
+bj
+bj
+PA
+Dk
+GN
+Ae
+GN
+Ae
+GN
+Dk
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+mY
+GN
+hx
+rI
+hx
+"}
+(19,1,1) = {"
+bF
+bF
+bj
+xs
+HW
+aI
+Tr
+PL
+PL
+bj
+PA
+GN
+Ae
+GN
+Ae
+GN
+Es
+GN
+PA
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+mY
+KG
+Km
+hx
+hx
+hx
+"}
+(20,1,1) = {"
+bF
+bF
+sG
+di
+PL
+SR
+gv
+qU
+PL
+bj
+PA
+GN
+GN
+Dk
+ry
+zQ
+kU
+Km
+PA
+PA
+GN
+GN
+GN
+GN
+PA
+sC
+FM
+qw
+bF
+bF
+bF
+bF
+"}
+(21,1,1) = {"
+bF
+bF
+bj
+di
+PL
+rf
+JG
+PW
+PL
+sG
+PA
+PA
+GN
+GN
+GN
+PA
+Km
+bj
+bj
+sG
+bj
+iK
+bj
+sG
+bj
+bj
+bj
+bj
+bF
+bF
+bF
+Cr
+"}
+(22,1,1) = {"
+bF
+bF
+bj
+di
+PL
+rf
+xQ
+YK
+PL
+bj
+PA
+PA
+GN
+GN
+PA
+PA
+PA
+bj
+Ai
+ha
+ha
+ha
+ha
+ha
+ha
+ha
+NX
+bj
+bF
+bF
+Cr
+Cr
+"}
+(23,1,1) = {"
+Cr
+bF
+bj
+sG
+sQ
+rf
+pt
+fg
+PL
+bj
+PA
+GN
+GN
+GN
+PA
+uz
+PA
+bj
+ha
+ha
+ha
+aq
+yL
+aq
+ha
+ha
+GM
+bj
+bF
+bF
+Cr
+Cr
+"}
+(24,1,1) = {"
+Cr
+bF
+bF
+bj
+MH
+RS
+rN
+Hk
+PL
+bj
+PA
+GN
+GN
+GN
+sm
+PA
+PA
+bj
+Cm
+ha
+yL
+hE
+fU
+rQ
+ha
+mh
+oG
+bj
+bF
+Cr
+Cr
+Cr
+"}
+(25,1,1) = {"
+Cr
+Cr
+bF
+bj
+bj
+DK
+PL
+PL
+xl
+bj
+bj
+sG
+bj
+ov
+bj
+sG
+bj
+bj
+Gg
+sF
+aq
+qZ
+ha
+ha
+ha
+Hn
+bj
+bF
+bF
+Cr
+Cr
+Cr
+"}
+(26,1,1) = {"
+Vg
+Cr
+bF
+bF
+bj
+sG
+zd
+PL
+Sg
+bj
+Jp
+BL
+RW
+De
+UI
+CA
+sU
+sG
+CY
+sF
+yL
+Mx
+ha
+mn
+Ci
+bj
+bj
+bF
+Cr
+Cr
+Iz
+Cr
+"}
+(27,1,1) = {"
+Cr
+Cr
+ET
+bF
+bF
+bj
+sG
+cl
+Le
+sG
+te
+yD
+lu
+Qd
+KL
+fZ
+nP
+bj
+ka
+ha
+aq
+yU
+ha
+cn
+sG
+bj
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+"}
+(28,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+bF
+bF
+bj
+bj
+bj
+bj
+gA
+qy
+Ra
+Yb
+hr
+TE
+Cz
+bj
+ha
+ha
+yL
+kR
+ck
+bj
+bj
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(29,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+Cr
+bF
+bF
+bF
+bF
+bj
+bj
+bj
+sG
+bj
+cO
+FW
+cw
+bj
+Oi
+ha
+aq
+oG
+bj
+bj
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(30,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+bF
+bF
+bF
+bF
+bF
+bj
+bj
+sG
+bj
+bj
+bj
+bj
+bj
+bj
+bF
+bF
+bF
+Cr
+Cr
+Vg
+Cr
+Cr
+Cr
+Cr
+"}
+(31,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}
+(32,1,1) = {"
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Iz
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+Cr
+"}

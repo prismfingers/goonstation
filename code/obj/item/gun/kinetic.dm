@@ -2282,3 +2282,70 @@ ABSTRACT_TYPE(/obj/item/gun/kinetic/single_action)
 	alter_projectile(obj/projectile/P)
 		. = ..()
 		P.proj_data.shot_sound = 'sound/weapons/sawnoff.ogg'
+
+/obj/item/gun/kinetic/old_lever_action
+	name = "Lever action rifle"
+	desc = "A lever action rifle with a nice glint to it."
+	icon = 'icons/obj/large/64x32.dmi'
+	icon_state = "lever_action"
+	item_state = "lever_action"
+	wear_state = "lever_action" // prevent empty state from breaking the worn image
+	wear_image_icon = 'icons/mob/clothing/back.dmi'
+	flags =  FPRINT | TABLEPASS | USEDELAY | ONBACK
+	c_flags = NOT_EQUIPPED_WHEN_WORN | EQUIPPED_WHILE_HELD
+	force = MELEE_DMG_RIFLE
+	contraband = 5
+	ammo_cats = list(AMMO_RIFLE_308)
+	max_ammo_capacity = 4
+	auto_eject = 1
+	can_dual_wield = 0
+	two_handed = 1
+	has_empty_state = 0
+	default_magazine = /obj/item/ammo/bullets/old_rifle
+	w_class = W_CLASS_BULKY
+	var/chambered = FALSE
+
+
+
+	New()
+		ammo = new default_magazine
+		set_current_projectile(new/datum/projectile/bullet/rifle_30_30)
+		..()
+
+	canshoot(mob/user)
+		return(..() && src.chambered)
+
+	shoot(var/target,var/start ,var/mob/user)
+		if(ammo.amount_left > 0 && !src.chambered)
+			boutput(user, "<span class='notice'>You need to chamber a round before you can fire!</span>")
+		..()
+		src.chambered = FALSE
+		src.icon_state = "lever_action"
+		src.UpdateIcon()
+
+	shoot_point_blank(atom/target, mob/user, second_shot)
+		if(ammo.amount_left > 0 && !src.chambered)
+			boutput(user, "<span class='notice'>You need to chamber a round before you can fire!</span>")
+			return
+		..()
+		src.chambered = FALSE
+		src.UpdateIcon()
+
+	attack_self(mob/user as mob)
+		..()
+		src.chamber(user)
+
+	proc/chamber(var/atom/movable/user)
+		var/mob/mob_user = null
+		if(ismob(user))
+			mob_user = user
+		if (!src.chambered)
+			if (src.ammo.amount_left == 0)
+				boutput(mob_user, "<span class ='notice'>You are out of bullets!</span>")
+			else
+				src.chambered = TRUE
+				src.icon_state = "lever_action_reload"
+				UpdateIcon()
+				boutput(mob_user, "<span class='notice'>You chamber a bullet!</span>")
+				playsound(user.loc, 'sound/weapons/gun_cocked_colt45.ogg', 70, 1)
+				src.casings_to_eject = 1

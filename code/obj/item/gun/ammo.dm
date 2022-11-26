@@ -414,6 +414,19 @@
 	icon_short = "rifle_clip"
 	icon_empty = "rifle_clip_empty"
 
+/obj/item/ammo/bullets/old_rifle
+	sname = ".30-30 winchester"
+	name = ".300 rifle magazine"
+	desc = "A common clip of .30-30 bullets, perfect to hunt rattlesnakes, scorpions, or rich passerbys."
+	ammo_type = new/datum/projectile/bullet/rifle_30_30
+	icon_state = "rifle_clip-4"
+	amount_left = 4
+	max_amount = 4
+	ammo_cat = AMMO_RIFLE_308
+	icon_dynamic = 1
+	icon_short = "rifle_clip"
+	icon_empty = "rifle_clip_empty"
+
 /obj/item/ammo/bullets/rifle_762_NATO
 	sname = "7.62×51mm NATO"
 	name = "7.62 NATO magazine"

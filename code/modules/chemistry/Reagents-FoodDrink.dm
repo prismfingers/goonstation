@@ -463,7 +463,7 @@ datum
 				. = ..()
 				if(!volume_passed) return
 				if(method == INGEST)
-					if(M.client && (istraitor(M) || isspythief(M)))
+					if(M.client && (istraitor(M) || isspythief(M) || isbandit(M)))
 						M.reagents.add_reagent("omnizine",volume_passed * 2)
 						return
 

@@ -1795,6 +1795,39 @@
 	icon_state = "guncoat_dirty"
 	item_state = "guncoat_dirty"
 
+//Reinforced Western Coats
+
+/obj/item/clothing/suit/gimmick/guncoat/reinforced
+	name = "Reinforced Shotgun Coat"
+	desc = "A coat that does not hinder you when shooting from horseback, how neat! Padded with extra protective varmint fiber so you can take a bullet or three!"
+	icon_state = "guncoat"
+	item_state = "guncoat"
+	body_parts_covered = TORSO|ARMS
+
+	setupProperties()
+		..()
+		setProperty("meleeprot", 6)
+		setProperty("rangedprot", 1)
+
+	New()
+		..()
+		src.setMaterial(getMaterial("carbonfibre"), appearance = FALSE, setname = FALSE)
+
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/black
+	name = "Reinforced Black Shotgun Coat"
+	icon_state = "guncoat_black"
+	item_state = "guncoat_black"
+
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/tan
+	name = "Reinforced Tan Shotgun Coat"
+	icon_state = "guncoat_tan"
+	item_state = "guncoat_tan"
+
+/obj/item/clothing/suit/gimmick/guncoat/reinforced/dirty
+	name = "Reinforced Dirty Shotgun Coat"
+	icon_state = "guncoat_dirty"
+	item_state = "guncoat_dirty"
+
 //western Ponchos
 
 /obj/item/clothing/suit/poncho/flower

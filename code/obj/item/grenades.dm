@@ -1948,3 +1948,82 @@ ABSTRACT_TYPE(/obj/item/old_grenade/spawner)
 	explosion_new(src, T, strength, 1)
 	if (delete)
 		qdel(src)
+
+/obj/item/dynamite
+	name = "bundle of dynamite"
+	desc = "Some gunpowder packed into tubes kept nice and dry for a special occasion."
+	icon = 'icons/obj/items/assemblies.dmi'
+	icon_state = "dynamite_unlit"
+	inhand_image_icon = 'icons/mob/inhand/hand_weapons.dmi'
+	item_state = "dynamite"
+	duration_put = 0.5 SECONDS
+	contraband = 4
+	var/strength = 8.9
+	var/brisance = 1
+	var/breaching_range = 2
+	var/armed = FALSE
+
+	attack_self(mob/user as mob)
+		return
+
+	attackby(obj/item/W, mob/user)
+		if (src.armed)
+			return
+		//Stolen from cigarettes
+		if (isweldingtool(W) && W:try_weld(user,0,-1,0,0))
+			src.visible_message("<span class='alert'><b>[user]</b> casually lights [src] with [W], what a badass.</span>")
+			src.armed = TRUE
+		else if (istype(W, /obj/item/clothing/head/cakehat) && W:on)
+			src.visible_message("<span class='alert'>Did [user] just light \his with [W]? Holy Shit.</span>")
+			src.armed = TRUE
+		else if (istype(W, /obj/item/device/igniter))
+			src.visible_message("<span class='alert'><b>[user]</b> fumbles around with [W]; sparks erupt from [src].</span>")
+			src.armed = TRUE
+		else if (istype(W, /obj/item/device/light/zippo) && W:on)
+			src.visible_message("<span class='alert'>With a single flick of their wrist, [user] smoothly lights [src] with [W].</span>")
+			src.armed = TRUE
+		else if ((istype(W, /obj/item/match) || istype(W, /obj/item/device/light/candle)) && W:on)
+			src.visible_message("<span class='alert'><b>[user] lights [src] with [W].</span>")
+			src.armed = TRUE
+		else if (W.burning)
+			src.visible_message("<span class='alert'><b>[user]</b> lights [src] with [W]. Goddamn.</span>")
+			src.armed = TRUE
+		if (!src.armed)
+			return ..()
+		else
+			message_admins("[key_name(user)] arms a [src.name] (power [strength]) at [log_loc(src)] by [key_name(user)].")
+			logTheThing(LOG_COMBAT, user, "arms a [src.name] (power [strength]) at [log_loc(src)])")
+
+			var/delay = rand(4, 7)
+			src.icon_state = "dynamite_lit-[delay]"
+			playsound(src.loc, 'sound/misc/fuse.ogg', 30, 1)
+			SPAWN (delay SECONDS)
+				src.detonate()
+
+	proc/detonate()
+		if (!src.strength || !src.brisance)
+			return
+		var/turf/location = get_turf(src.loc)
+		src.visible_message("<span class='alert'>[src] explodes!</span>")
+		new /obj/effects/explosion/tiny_baby (src.loc)
+		playsound(src.loc, 'sound/effects/ExplosionFirey.ogg', 75, 1)
+
+		explosion_new(src, location, src.strength, src.brisance)
+		for (var/turf/simulated/wall/W in range(src.breaching_range, location))
+			if (W && istype(W) && !location.loc:sanctuary)
+				W.ReplaceWithFloor()
+		for (var/obj/structure/girder/G in range(src.breaching_range, location))
+			var/area/a = get_area(G)
+			if (G && istype(G) && !a.sanctuary)
+				qdel(G)
+		for (var/obj/window/WD in range(src.breaching_range, location))
+			var/area/a = get_area(WD)
+			if (WD && istype(WD) && prob(max(0, 100 - (WD.health / 3))) && !a.sanctuary)
+				WD.smash()
+		for (var/obj/grille/GR in range(src.breaching_range, location))
+			var/area/a = get_area(GR)
+			if (GR && istype(GR) && GR.ruined != 1 && !a.sanctuary)
+				GR.ex_act(2)
+		for (var/obj/storage/secure/closet/safe/safe in range(src.breaching_range, location))
+			safe.break_open()
+		qdel(src)

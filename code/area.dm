@@ -3847,6 +3847,13 @@ ABSTRACT_TYPE(/area/mining)
 	sound_environment = 2
 	teleport_blocked = 1
 
+/area/bandit_camp
+	name = "Bandit Camp"
+	icon_state = "orange"
+	requires_power = 0
+	teleport_blocked = 1
+	sound_environment = 18
+	do_not_irradiate = TRUE
 
 /* ================================================== */
 

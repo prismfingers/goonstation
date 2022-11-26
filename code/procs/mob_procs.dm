@@ -751,6 +751,7 @@
 	var/see_traitors = 0
 	var/see_nukeops = 0
 	var/see_wizards = 0
+	var/see_bandits = 0
 	var/see_revs = 0
 	var/see_heads = 0
 	var/see_xmas = 0
@@ -799,6 +800,8 @@
 			see_nukeops = 1
 		else if (iswizard(src))
 			see_wizards = 1
+		else if (isbandit(src))
+			see_bandits = 1
 		else if (isvampire(src))
 			V = src.get_ability_holder(/datum/abilityHolder/vampire)
 		else if (isvampiricthrall(src))
@@ -823,7 +826,7 @@
 	if (remove)
 		return
 
-	if (!see_traitors && !see_nukeops && !see_wizards && !see_revs && !see_heads && !see_xmas && !see_zombies && !see_salvager && !see_special && !see_everything && gang_to_see == null && PWT_to_see == null && !V && !VT)
+	if (!see_traitors && !see_nukeops && !see_bandits && !see_wizards && !see_revs && !see_heads && !see_xmas && !see_zombies && !see_salvager && !see_special && !see_everything && gang_to_see == null && PWT_to_see == null && !V && !VT)
 		src.last_overlay_refresh = world.time
 		return
 
@@ -918,6 +921,14 @@
 				if (ROLE_ZOMBIE)
 					if (see_everything || see_zombies)
 						var/I = image(antag_generic, loc = M.current)
+						can_see.Add(I)
+				if (ROLE_BANDIT)
+					if (see_everything || see_bandits)
+						var/I = image(antag_bandit, loc = M.current)
+						can_see.Add(I)
+				if (ROLE_BANDIT_LEADER)
+					if (see_everything || see_bandits)
+						var/I = image(antag_bandit_leader, loc = M.current)
 						can_see.Add(I)
 				if (ROLE_SALVAGER)
 					if (see_everything || see_salvager)

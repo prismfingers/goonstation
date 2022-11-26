@@ -211,7 +211,15 @@ ABSTRACT_TYPE(/datum/terrainify)
 				station_repair.ambient_obj = new /obj/ambient
 				station_repair.ambient_obj.color = ambient_light
 			else
-				station_repair.ambient_light = new /image/ambient
+				//station_repair.ambient_light = new /image/ambient
+				// FOR BANDITS?!?!?
+				station_repair.ambient_light = image('icons/effects/overlays/simplelight.dmi', "3x3", pixel_x = -32, pixel_y = -32)
+				station_repair.ambient_light.appearance_flags = RESET_COLOR | RESET_TRANSFORM | RESET_ALPHA | NO_CLIENT_COLOR | KEEP_APART
+				station_repair.ambient_light.layer = LIGHTING_LAYER_BASE
+				station_repair.ambient_light.plane = PLANE_LIGHTING
+				station_repair.ambient_light.blend_mode = BLEND_ADD
+				// FOR BANDITS?!?!?
+
 				station_repair.ambient_light.color = ambient_light
 			station_repair.default_air.temperature = 330
 
@@ -219,6 +227,7 @@ ABSTRACT_TYPE(/datum/terrainify)
 			for(var/turf/space/S in block(locate(1, 1, Z_LEVEL_STATION), locate(world.maxx, world.maxy, Z_LEVEL_STATION)))
 				space += S
 			convert_turfs(space)
+			space += get_area_turfs(/area/allowGenerate) // FOR BANDITS?!?!?
 			for (var/turf/S in space)
 				if(params["Ambient Light Obj"])
 					S.vis_contents |= station_repair.ambient_obj

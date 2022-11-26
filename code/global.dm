@@ -444,6 +444,8 @@ var/global
 	antag_spy_theft = image('icons/mob/antag_overlays.dmi', icon_state = "spy_thief")
 	antag_arcfiend = image('icons/mob/antag_overlays.dmi', icon_state = "arcfiend")
 	antag_salvager = image('icons/mob/antag_overlays.dmi', icon_state = "salvager")
+	antag_bandit = image('icons/mob/antag_overlays.dmi', icon_state = "bandit")
+	antag_bandit_leader = image('icons/mob/antag_overlays.dmi', icon_state = "bandit_leader")
 
 	pod_wars_NT = image('icons/mob/antag_overlays.dmi', icon_state = "nanotrasen")
 	pod_wars_NT_CMDR = image('icons/mob/antag_overlays.dmi', icon_state = "nanocomm")

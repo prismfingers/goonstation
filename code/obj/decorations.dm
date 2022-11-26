@@ -1497,3 +1497,32 @@ obj/decoration/pottedfern
 
 			qdel(src)
 		return
+
+/obj/campfire
+	name = "Campfire"
+	desc = "Cozy. Often used to roast critters."
+	icon = 'icons/obj/large/64x64.dmi'
+	icon_state = "campfire"
+	density = 1
+	anchored = 1
+	opacity = 0
+	pixel_x = -16
+	pixel_y = -16
+
+	var/datum/light/light
+
+	New()
+		UpdateParticles(new/particles/embers_large, "embers")
+		UpdateParticles(new/particles/wide_smoke, "smoke")
+		light = new /datum/light/point
+		light.attach(src)
+		light.set_brightness(1)
+		light.set_color(0.5, 0.3, 0)
+		light.enable()
+		..()
+
+	disposing()
+		light.disable()
+		light.detach()
+		light = null
+		..()

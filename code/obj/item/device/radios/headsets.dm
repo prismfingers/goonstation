@@ -467,6 +467,23 @@
 			STOP_TRACKING_CAT(TR_CAT_NUKE_OP_STYLE)
 			..()
 
+/obj/item/device/radio/headset/bandit
+	name = "radio headset"
+	desc = "A radio headset that is also capable of communicating over- wait, isn't that frequency illegal?"
+	icon_state = "headset"
+	chat_class = RADIOCL_SYNDICATE
+	locked_frequency = TRUE
+	frequency = R_FREQ_BANDIT
+	secure_frequencies = list("p" = R_FREQ_BANDIT)
+	secure_classes = list(RADIOCL_SYNDICATE)
+	protected_radio = 1
+	icon_override = "bandit"
+	icon_tooltip = "Bandit"
+
+	leader
+		icon_override = "bandit_chief"
+		icon_tooltip = "Bandit Chief"
+
 /obj/item/device/radio/headset/deaf
 	name = "auditory headset"
 	desc = "A radio headset that also interfaces with the ear canal, allowing the deaf to hear normally while wearing it."

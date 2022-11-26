@@ -35,6 +35,10 @@
 #define LANDMARK_SYNDICATE_ASSAULT_POD_TELE "Syndicate-Assault-Pod-Tele"
 #define LANDMARK_SYNDICATE_ASSAULT_POD_COMP "Syndicate-Assault-Pod-Comp"
 
+// Bandits
+#define LANDMARK_BANDIT "Bandit-Spawn"
+#define LANDMARK_BANDIT_LEADER "Bandit-Leader-Spawn"
+
 // Salvagers
 
 #define LANDMARK_SALVAGER "Salvager-Spawn"
