@@ -127,6 +127,10 @@
 	pixel_x = -4;
 	pixel_y = 4
 	},
+/obj/item/gun/kinetic/single_action/colt_saa/detective{
+	pixel_x = 4;
+	pixel_y = -4
+	},
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "fg" = (
@@ -289,6 +293,11 @@
 	},
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
+"kU" = (
+/obj/effects/lightshaft,
+/obj/map/light/white,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
 "lu" = (
 /turf/unsimulated/floor/carpet/regalcarpet,
 /area/bandit_camp)
@@ -330,7 +339,7 @@
 /turf/unsimulated/floor/wood/seven,
 /area/bandit_camp)
 "mY" = (
-/obj/item/paper/bandithideout,
+/obj/map/light/white,
 /turf/unsimulated/dirt,
 /area/bandit_camp)
 "nP" = (
@@ -452,6 +461,11 @@
 /obj/item/ammo/bullets/abg,
 /turf/unsimulated/floor/carpet/purple/standard,
 /area/bandit_camp)
+"qw" = (
+/obj/decal/woodclutter,
+/obj/map/light/white,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
 "qy" = (
 /obj/item/goldbar,
 /turf/unsimulated/floor/carpet/regalcarpet/border{
@@ -478,6 +492,7 @@
 	pixel_y = 8;
 	pixel_x = 3
 	},
+/obj/map/light/white,
 /turf/unsimulated/floor/wood/five,
 /area/bandit_camp)
 "rf" = (
@@ -714,6 +729,7 @@
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
 /obj/item/ammo/bullets/a38,
+/obj/map/light/white,
 /turf/unsimulated/floor/carpet/purple/standard,
 /area/bandit_camp)
 "yp" = (
@@ -802,6 +818,16 @@
 	pixel_y = 8
 	},
 /turf/unsimulated/floor/wood/seven,
+/area/bandit_camp)
+"zQ" = (
+/obj/stool/bench/wooden/auto,
+/obj/landmark/bandits,
+/obj/map/light/white,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
+"Ae" = (
+/obj/map/light/yellow,
+/turf/unsimulated/dirt,
 /area/bandit_camp)
 "Ai" = (
 /obj/player_piano,
@@ -956,16 +982,11 @@
 /obj/stool/chair/wooden{
 	dir = 8
 	},
-/obj/item/gun/kinetic/hunting_rifle{
-	name = "antique varmint hunting rifle";
-	desc = "Passed down for generations from bandit to bandit. Surprisingly still loaded.";
-	pixel_x = -26;
-	pixel_y = 32
-	},
 /turf/unsimulated/floor/carpet/red/fancy/edge/ne,
 /area/bandit_camp)
 "CV" = (
 /obj/campfire,
+/obj/map/light/yellow,
 /turf/unsimulated/dirt,
 /area/bandit_camp)
 "CY" = (
@@ -1161,6 +1182,12 @@
 	name = "Tumbles";
 	desc = "An armadillo you were supposed to cook for everyone, but you couldn't bring yourself to do it. Look at those little legs, aww."
 	},
+/obj/item/gun/kinetic/hunting_rifle{
+	name = "antique varmint hunting rifle";
+	desc = "Passed down for generations from bandit to bandit. Surprisingly still loaded.";
+	pixel_x = -26;
+	pixel_y = 32
+	},
 /turf/unsimulated/floor/wood,
 /area/bandit_camp)
 "Iz" = (
@@ -1177,6 +1204,16 @@
 /obj/item/ammo/bullets/a38/AP,
 /obj/item/ammo/bullets/a38/AP,
 /turf/unsimulated/floor/carpet/purple/standard,
+/area/bandit_camp)
+"Km" = (
+/obj/map/light/white,
+/turf/unsimulated/floor/auto/sand,
+/area/bandit_camp)
+"KG" = (
+/obj/effects/lightshaft,
+/obj/item/paper/bandithideout,
+/obj/map/light/white,
+/turf/unsimulated/dirt,
 /area/bandit_camp)
 "KL" = (
 /obj/item/goldbar,
@@ -1448,6 +1485,10 @@
 	dir = 4
 	},
 /area/bandit_camp)
+"Rx" = (
+/obj/effects/lightshaft,
+/turf/unsimulated/dirt,
+/area/bandit_camp)
 "RS" = (
 /turf/unsimulated/floor/carpet/purple/standard/edge/ne,
 /area/bandit_camp)
@@ -1455,6 +1496,11 @@
 /turf/unsimulated/floor/carpet/regalcarpet/border{
 	dir = 8
 	},
+/area/bandit_camp)
+"RX" = (
+/obj/effects/lightshaft,
+/obj/map/light/white,
+/turf/unsimulated/floor/auto/sand,
 /area/bandit_camp)
 "Sc" = (
 /obj/table/podium_wood,
@@ -1684,15 +1730,15 @@ Cr
 Cr
 Cr
 Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
-Cr
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
+bF
 Cr
 Cr
 Cr
@@ -1754,11 +1800,11 @@ Tn
 Tn
 bj
 bj
+sG
 bj
 bj
 bj
-bj
-bj
+sG
 bj
 bj
 Tn
@@ -1936,7 +1982,7 @@ PA
 bj
 HF
 kf
-bj
+sG
 bj
 bF
 bF
@@ -1949,7 +1995,7 @@ Cr
 bF
 bF
 bj
-bj
+sG
 LQ
 Tj
 Dj
@@ -2083,7 +2129,7 @@ ET
 "}
 (13,1,1) = {"
 bF
-bj
+sG
 pi
 yp
 BG
@@ -2126,7 +2172,7 @@ GN
 GN
 GN
 GN
-GN
+mY
 PA
 GN
 Dk
@@ -2159,12 +2205,12 @@ bD
 GN
 GN
 GN
+mY
+mY
+mY
+Rx
 GN
-GN
-GN
-GN
-GN
-GN
+Ae
 GN
 GN
 GN
@@ -2174,7 +2220,7 @@ GN
 GN
 PA
 PA
-PA
+Km
 AZ
 FM
 FM
@@ -2194,6 +2240,12 @@ GN
 GN
 GN
 GN
+mY
+Dk
+GN
+Ae
+Ae
+Ae
 GN
 Dk
 GN
@@ -2201,15 +2253,9 @@ GN
 GN
 GN
 GN
-Dk
-GN
-GN
-GN
-GN
-GN
-PA
-PA
-PA
+Km
+RX
+Km
 Sk
 sC
 bF
@@ -2219,7 +2265,7 @@ bF
 "}
 (17,1,1) = {"
 bF
-bj
+sG
 Mn
 hL
 oo
@@ -2230,11 +2276,11 @@ GN
 PA
 PA
 Dk
-GN
-GN
+Ae
+Ae
 CV
-GN
-GN
+Ae
+Ae
 Dk
 GN
 GN
@@ -2242,7 +2288,7 @@ GN
 GN
 GN
 GN
-GN
+mY
 GN
 GN
 GN
@@ -2265,9 +2311,9 @@ bj
 PA
 Dk
 GN
-GN
-GN
-GN
+Ae
+Ae
+Ae
 GN
 Dk
 GN
@@ -2300,21 +2346,21 @@ PA
 GN
 GN
 GN
+Ae
 GN
-GN
-GN
-GN
-PA
-GN
-GN
-GN
-GN
-GN
-GN
-GN
-GN
+mY
 GN
 PA
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+mY
+KG
+Km
 hx
 hx
 hx
@@ -2322,7 +2368,7 @@ hx
 (20,1,1) = {"
 bF
 bF
-bj
+sG
 di
 PL
 SR
@@ -2335,9 +2381,9 @@ GN
 GN
 Dk
 Dk
-Dk
-GN
-PA
+zQ
+kU
+Km
 PA
 PA
 GN
@@ -2347,7 +2393,7 @@ GN
 PA
 sC
 FM
-FM
+qw
 bF
 bF
 bF
@@ -2370,7 +2416,7 @@ GN
 GN
 GN
 PA
-PA
+Km
 bj
 bj
 sG
@@ -2425,7 +2471,7 @@ Cr
 Cr
 bF
 bj
-bj
+sG
 sQ
 rf
 pt
@@ -2500,13 +2546,13 @@ PL
 PL
 xl
 bj
+bj
 sG
 bj
 ov
 bj
-bj
-bj
 sG
+bj
 bj
 Gg
 sF
@@ -2529,7 +2575,7 @@ Cr
 bF
 bF
 bj
-bj
+sG
 zd
 PL
 Sg
@@ -2541,7 +2587,7 @@ De
 UI
 CA
 sU
-bj
+sG
 CY
 sF
 yL
@@ -2564,7 +2610,7 @@ ET
 bF
 bF
 bj
-bj
+sG
 cl
 Le
 sG
@@ -2582,7 +2628,7 @@ aq
 yU
 ha
 cn
-bj
+sG
 bj
 bF
 bF
@@ -2638,7 +2684,7 @@ bF
 bj
 bj
 bj
-bj
+sG
 bj
 cO
 FW
@@ -2675,7 +2721,7 @@ bF
 bF
 bj
 bj
-bj
+sG
 bj
 bj
 bj
